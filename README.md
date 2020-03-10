@@ -321,3 +321,10 @@ Code de la page welcome.blade.php
 ```
 
 </details>
+
+<details>
+<summary>
+Visuel de la page d'accueil
+</summary>
+![docs/FB-welcome.png](docs/FB-welcome.png)
+</details>
