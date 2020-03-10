@@ -110,8 +110,9 @@ Gestionnaire de version de notre projet, pour garantir l'optimisation et la sauv
 ## III - Modification de la page d'accueil
 
 Transformation de la page d'accueil de LARAVEL en une page d'accueil similaire à celle de Facebook.
-A. Pour cela, il faut modifier le fichier **"welcome.blade.php"**
-Il se situe dans le dossier ./ressources/views
+
+1. Pour cela, il faut modifier le fichier **"welcome.blade.php"**<br>
+   Il se situe dans le dossier ./ressources/views
 
 <details>
 <summary>
@@ -330,3 +331,59 @@ Visuel de la page d'accueil
 ![docs/FB-welcome.png](docs/FB-welcome.png)
 
 </details>
+
+## IV - Ajout du champ prénom
+
+Maintenant que notre code et notre visuel est prêt pour faire fonctionner celui-ci nous avons ajouter un champ prénom qu'il faut également ajouter dans notre BDD.
+
+1. Aller dans le fichier : annnée_mois_date_000000_create_users_table.php
+   Qui se situe dans le dossier /database/migrations/
+
+-   Ajouter la ligne concernant le prénom : ``\$table->string('firstname');`
+
+2. Dans le fichier : User.php
+   Qui se situe dans le dossier /app/
+
+-   Ajouter la propriété "firstname" :
+
+```php
+protected $fillable = [
+      'firstname','name', 'email', 'password',
+  ];
+
+```
+
+3. Dans le fichier de création des Users soit ici "RegisterController"
+   Qui se situe dans /app/Http/Controllers/Auth/
+
+-   Ajouter la ligne concernant le prénom dans la fonction validator et User::create comme suit :
+
+```php
+ protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'firstname' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+     protected function create(array $data)
+    {
+        return User::create([
+            'firstname' => $data['firstname'],
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
+```
+
+4. Lancer la migration pour que les modifications prennent effet :
+   `php artisan migrate`
+
+-   Si vous aviez déjà des utilisateurs de crée, votre application plantera car il n'avait pas de prénom.
+    Deux solutions: Ajouter le prénom directement en BDD ou supprimer vos utilisateurs en lançant la commande `php artisan migrate:refresh`
+
+5. Tester une inscription utilisateurs, puis une déconnexion, et une connexion via l'utilisateur crée.
