@@ -79,14 +79,14 @@
                                 @if (Route::has('password.request'))
                                 <a style="color:#9cb4d8; font-size:12px;" class="btn btn-link"
                                     href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    {{ __('Informations de compte oubliées ?') }}
                                 </a>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group m-auto">
-                            <div class="offset-md-2 pb-1">
+                            <div class="offset-md-2 pb-2">
                                 <button style="font-size:12px;" type="submit" class="btn btn-primary">
                                     {{ __('Connexion') }}
                                 </button>
