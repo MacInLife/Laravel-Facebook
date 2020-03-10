@@ -34,7 +34,7 @@ laravel new Laravel-Facebook --auth
 Le projet doit maintenant être crée avec Bootstrap intégrer !!
 Un nouveau dossier se crée avec le nom que vous lui avez donné ici "Laravel-Facebook".
 
--   Pour vérifier qu'il fonctionne, placer vous dans ce dossier nouvellement crée et taper la commande : `php artisan serve`
+-   Pour vérifier qu'il fonctionne, placer vous dans ce dossier nouvellement crée et taper la commande : `php artisan serve`<br>
     Le terminal vous renvoie l'url et le port sur lequel se lance votre projet
     ex par défault: **http://127.0.0.1:8000**
 -   Rendez-vous sur cette adresse, vous devrez obtenir le visuel suivant :
@@ -42,7 +42,7 @@ Un nouveau dossier se crée avec le nom que vous lui avez donné ici "Laravel-Fa
 
 2. Créer une BDD vide.
    Lancer votre MAMP ou autres, et accéder à PHPMyAdmin.
-    - Cliquer dans le menu de gauche sur "Nouvelle base de données", en haute taper le nom de votre BDD et cliquer sur **Créer**
+    - Cliquer dans le menu de gauche sur "Nouvelle base de données", en haute taper le nom de votre BDD et cliquer sur **Créer**<br>
       Lui donner le nom du projet exemple "Laravel-Facebook"
 
 ![docs/PHPMyAdmin-CreateBDD.png](docs/PHPMyAdmin-CreateBDD.png)
@@ -50,7 +50,7 @@ Un nouveau dossier se crée avec le nom que vous lui avez donné ici "Laravel-Fa
 -   Ouvrir se dossier via votre éditeur de code, pour moi se sera Visual Studio Code.
 -   Pour connecter la BDD à notre projet, il faut modifier le fichier **_".env"_** situé à la racine du projet.
 
-\*\* Faire correspondre les données suivantes entre MySQL et votre projet, vous trouverez ces informations dans la configuration de votre MAMP
+-   Faire correspondre les données suivantes entre MySQL et votre projet, vous trouverez ces informations dans la configuration de votre MAMP
 
     ```
     DB_CONNECTION=mysql
@@ -61,13 +61,13 @@ Un nouveau dossier se crée avec le nom que vous lui avez donné ici "Laravel-Fa
     DB_PASSWORD=root
     ```
 
-\*\* Modifier la ligne suivante pour les utilisateurs de mamps
-`DB_HOST=localhost;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock`
+-   Modifier la ligne suivante pour les utilisateurs de mamps
+    `DB_HOST=localhost;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock`
 
 Votre projet dois désormais être connecter à la base de données, vous pourrez le constatez une fois que vous aurez effectué des migrations dans votre projet.
-`php artisan migrate`
+`php artisan migrate`<br>
 Ensuite essayer en créant des utilisateurs en lançant le serveur car sur ce projet l'authentification de base de laravel est installé avec le projet et donc fonctionnel :
-`php artisan serve`
+`php artisan serve`<br>
 
 Si dans votre BDD, vous pouvez voir les utilisateurs crée, c'est que la connexion est correctement effectué.
 
@@ -92,8 +92,10 @@ Si dans votre BDD, vous pouvez voir les utilisateurs crée, c'est que la connexi
 Gestionnaire de version de notre projet, pour garantir l'optimisation et la sauvegarde du projet.
 
 1. Crée un nouveau référentiel sur la ligne de commande
-   `git init`
+   `git init`<br>
 
 2. Pousser un référentiel existant depuis la ligne de commande
-   `git remote add origin https://lien_de_votre_projet.git`
-   `git push -u origin master`
+   `git remote add origin https://lien_de_votre_projet.git`<br>
+   `git push -u origin master`<br>
+
+3. Faire un premier commit
