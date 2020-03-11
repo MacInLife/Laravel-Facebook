@@ -338,12 +338,12 @@ Visuel de la page d'accueil
 
 Maintenant que notre code et notre visuel est prêt pour faire fonctionner celui-ci nous avons ajouter un champ prénom qu'il faut également ajouter dans notre BDD.
 
-1. Aller dans le fichier : annnée_mois_date_000000_create_users_table.php
+1. Aller dans le fichier : annnée_mois_date_000000_create_users_table.php<br>
    Qui se situe dans le dossier /database/migrations/
 
--   Ajouter la ligne concernant le prénom : ``\$table->string('firstname');`
+-   Ajouter la ligne concernant le prénom : `$table->string('firstname');`
 
-2. Dans le fichier : User.php
+2. Dans le fichier : User.php<br>
    Qui se situe dans le dossier /app/
 
 -   Ajouter la propriété "firstname" :
@@ -355,7 +355,7 @@ protected $fillable = [
 
 ```
 
-3. Dans le fichier de création des Users soit ici "RegisterController"
+3. Dans le fichier de création des Users soit ici "RegisterController"<br>
    Qui se situe dans /app/Http/Controllers/Auth/
 
 -   Ajouter la ligne concernant le prénom dans la fonction validator et User::create comme suit :
@@ -394,13 +394,13 @@ protected $fillable = [
 
 Nous aurons également besoin d'un avatar pour la suite de notre profil. Nous allons donc ajouter ce champs dans la BDD comme précédemment pour le prénom.
 
-1. Aller dans le fichier : annnée_mois_date_000000_create_users_table.php
+1. Aller dans le fichier : annnée_mois_date_000000_create_users_table.php<br>
    Ce champ est null à la création du compte<br>
    Qui se situe dans le dossier /database/migrations/
 
--   Ajouter la ligne concernant l'avatar : `` \$table->string('avatar')->nullable();`
+-   Ajouter la ligne concernant l'avatar : `$table->string('avatar')->nullable();`
 
-2. Dans le fichier : User.php
+2. Dans le fichier : User.php<br>
    Qui se situe dans le dossier /app/
 
 -   Ajouter la propriété "avatar" et une fonction pour le récuperer :
@@ -419,7 +419,7 @@ Nous aurons également besoin d'un avatar pour la suite de notre profil. Nous al
 
 ```
 
-3. Dans le fichier de création des Users soit ici "RegisterController"
+3. Dans le fichier de création des Users soit ici "RegisterController"<br>
    Qui se situe dans /app/Http/Controllers/Auth/
 
 -   Ajouter la ligne concernant le prénom dans la fonction validator et User::create comme suit :
@@ -481,9 +481,9 @@ use Intervention\Image\Facades\Image;
 
 6. Lancer la migration pour que les modifications prennent effet :
    `php artisan migrate`
-    - Si celui-ci affiche "Nothing to migrate".
+    - Si celui-ci affiche "Nothing to migrate".<br>
       Procéder comme suit, cela permet de revenir une modification en arrière<br>
-      `php artisan migrate:rollback`
+      `php artisan migrate:rollback`<br>
       et relancer la migration<br>
       `php artisan migrate`
 
