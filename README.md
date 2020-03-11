@@ -496,7 +496,7 @@ use Intervention\Image\Facades\Image;
 
 Pour créer un projet avec des messages d'erreur en français, cela est possible grâce à plusieurs méthodes :
 
--   Voir le lien suivant : [https://www.apprendre-laravel.fr/laraguide/2017-11-18-personnaliser-nos-messages-d-erreur]
+-   Voir le lien suivant : [Apprendre à gérer les messages d'erreur](https://www.apprendre-laravel.fr/laraguide/2017-11-18-personnaliser-nos-messages-d-erreur)
 -   Plusieurs langues disponibles sur le ".zip" suivant : [docs/Laravel-lang-master.zip](docs/Laravel-lang-master.zip)
 -   Ou en ajoutant le dossier "fr" dans le répertoire "ressources/lang/".
 
