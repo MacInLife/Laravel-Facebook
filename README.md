@@ -7,7 +7,7 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 Dans ce projet nous allons utilisés le CDN Bootstrap pour gérer le style de nos pages, ainsi que du jquery/javascript utilisé pour certains affichages.
 Pour nos fichiers de vue coder en PHP, nous utilisons "Blade" natif dans les projets LARAVEL.
 
-### A. En invite de commande / Côté Serveur
+### A. En invite de commande / Côté code
 
 Se placer dans le dossier ou vous souhaiter développer votre application via l'invite de commande.
 
@@ -40,7 +40,9 @@ Un nouveau dossier se crée avec le nom que vous lui avez donné ici "Laravel-Fa
 -   Rendez-vous sur cette adresse, vous devrez obtenir le visuel suivant :
     ![docs/localhost.png](docs/localhost.png)
 
-2. Créer une BDD vide.
+### B. Coté Base de données
+
+1. Créer une BDD vide.
    Lancer votre MAMP ou autres, et accéder à PHPMyAdmin.
     - Cliquer dans le menu de gauche sur "Nouvelle base de données", en haute taper le nom de votre BDD et cliquer sur **Créer**<br>
       Lui donner le nom du projet exemple "Laravel-Facebook"
@@ -73,7 +75,7 @@ Si dans votre BDD, vous pouvez voir les utilisateurs crée, c'est que la connexi
 
 **_`Attention à chaque modification du fichier ".env", il faut relancer le serveur !`_**
 
-### Interface obtenu
+### C. Interface obtenu
 
 -   Page d'accueil :
     ![docs/localhost.png](docs/localhost.png)
@@ -457,6 +459,8 @@ use Intervention\Image\Facades\Image;
         ]);
     }
 ```
+
+### Ajout de la bibliothèque "Intervention/image"
 
 4. Pour l'utilisation des avatars, nous avons besoin d'importer une bibliothèque :
    `composer require intervention/image`
