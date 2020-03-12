@@ -907,7 +907,7 @@ Route::get('/account/{id}', 'AccountController@destroy')->middleware('auth')->na
 
 ### G. Ajout d'un nom d'utilisateur
 
-Voici la marche à suivre pour ajouter le nom d'utilisateur au code que vous venez de faire :
+Voici la marche à suivre pour ajouter le nom d'utilisateur au code que vous venez de faire. <br>
 Étapes :
 
 1. Ajouter le champs dans le formulaire de la vue (input pseudo)
