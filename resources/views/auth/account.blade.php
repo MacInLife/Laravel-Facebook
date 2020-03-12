@@ -8,14 +8,14 @@
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
             @endif
             <div class="card mb-2">
-                <div class="card-header">Gestion du compte</div>
+                <div class="card-header">Paramètres Généraux du compte</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('account.update', $user->id) }}" enctype="multipart/form-data">
                         @csrf
                         <!-- Changement d'état de l'avatar de base à l'upload -->
-                        <div class="mx-auto mb-2" style="width:80px; height:80px;"><img id="user-avatar"
-                                class="m-auto rounded img-thumbnail" src="{{Auth::user()->getAvatar()}}" width="100%"
-                                height="100%">
+                        <div class="mx-auto mb-2" style="width:80px; height:80px;"><img id="user-avatar" class="m-auto"
+                                style="width:80px; border-radius:50%; border:1px solid #DADDE1;"
+                                src="{{Auth::user()->getAvatar()}}" width="100%" height="100%">
                         </div>
 
                         <!-- Ajout de l'avatar -->
@@ -36,6 +36,25 @@
                             </div>
                         </div>
                         <!-- Fin ajout de l'avatar -->
+
+                        <div class="form-group row">
+                            <label for="pseudo"
+                                class="col-md-4 col-form-label text-md-right">{{ __("Nom d'utilisateur") }}</label>
+
+                            <div class="col-md-6">
+                                <input id="pseudo" type="text"
+                                    class="form-control @error('pseudo') is-invalid @enderror" name="pseudo"
+                                    value="{{Auth::user()->pseudo}}" autocomplete="pseudo" autofocus>
+                                <p class="font-italic text-muted">Remarque – Votre nom d’utilisateur doit inclure votre
+                                    véritable
+                                    nom. </p>
+                                @error('pseudo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
@@ -68,6 +87,8 @@
                                 @enderror
                             </div>
                         </div>
+
+
 
                         <div class="form-group row">
                             <label for="email"
@@ -103,7 +124,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" style="background-color:#385898;">
                                     {{ __("Enregister les modifications") }}
                                 </button>
                             </div>
