@@ -23,3 +23,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('account', 'AccountController@show')->middleware('auth')->name('account');
+Route::post('account/{id}', 'AccountController@update')->middleware('auth')->name('account.update');
+Route::get('/account/{id}', 'AccountController@destroy')->middleware('auth')->name('account.destroy');

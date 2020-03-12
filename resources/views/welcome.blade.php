@@ -98,8 +98,11 @@
             </div>
         </div>
     </nav>
-
+    @if(session()->has('ok'))
+    <div class="alert alert-danger alert-dismissible">{!! session('ok') !!}</div>
+    @endif
     <div class="container d-flex flex-nowrap">
+
         <div class="left m-2">
             <H1
                 style="color:#0e385f; font-size: 20px; font-weight: bold; line-height: 29px;
