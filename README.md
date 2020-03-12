@@ -906,3 +906,15 @@ Route::get('/account/{id}', 'AccountController@destroy')->middleware('auth')->na
 ```
 
 ### G. Ajout d'un nom d'utilisateur
+
+Voici la marche à suivre pour ajouter le nom d'utilisateur au code que vous venez de faire :
+Étapes :
+
+1. Ajouter le champs dans le formulaire de la vue (input pseudo)
+2. Ajouter le champs dans notre migration (`$table->string('pseudo')->nullable()->unique();`)
+3. Relancer notre migration (`php artisan migrate:rollback` puis `php artisan migrate`)
+4. Ajouter notre variable dans le model (User.php)
+5. Ajouter la variable dans le controller pour récupérer et gerer la donnée (RegisterController + AccountController)
+6. Ajouter si besoin la route correspondante (AccountController@update)
+
+## IX - Création de la page "Profil"
