@@ -3435,6 +3435,7 @@ input[type="button"].btn-block {
 }
 
 .dropdown-toggle::after {
+    color: #1a2a47;
     display: inline-block;
     margin-left: 0.255em;
     vertical-align: 0.255em;
@@ -3643,9 +3644,9 @@ input[type="button"].btn-block {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    color: #16181b;
+    color: #fff;
     text-decoration: none;
-    background-color: #f8f9fa;
+    background-color: #385898;
 }
 
 .dropdown-item.active,

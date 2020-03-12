@@ -53,16 +53,32 @@
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown d-flex">
+                            <a href="#" class="text-decoration-none text-white m-auto d-flex">
+                                <div class="mr-2" style="width:40px;"><img class="m-auto"
+                                        style="width:40px; border-radius:50%; border:1px solid #DADDE1;"
+                                        src="{{Auth::user()->getAvatar()}}" width="100%" height="100%">
+                                </div>
+                                <p class="my-auto"
+                                    style="font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif; font-weight:bold;">
+                                    {{ Auth::user()->firstname }}
+                                </p>
+                            </a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" v-pre>
+                                <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="#">Profil</a>
+                                <a class="dropdown-item" href="#">Compte</a>
+                                <div class="m-2">
+                                    <hr>
+                                </div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Se déconnecter') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
