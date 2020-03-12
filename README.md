@@ -621,7 +621,7 @@ Cette page permettra à l'utilisateur de gérer son compte, c'est-à-dire de pou
 ### A. Création de la vue (views)
 
 -   La vue portera le nom suivant : account.blade.php
-    La page fera appel à la même barre de navigation que le reste des pages déjà crée, avec le même style.
+    La page fera appel à la même barre de navigation que le reste des pages déjà crée, avec le même style.<br>
     Pour cela, il suffit de récupérer le template qui s'est crée en même temps que notre projet c'est-à-dire le fichier "app.blade.php" qui se situe dans le dossier /layouts.
 
 Nous appelons donc dans nos fichiers de vue le template permettant de récupérer le même stlye sur chaque page. Cela évite également la répétition du code en ce qui concerne le HTML, le HEAD, le BODY et le MAIN grace au balisage suivantes :
@@ -629,7 +629,7 @@ Nous appelons donc dans nos fichiers de vue le template permettant de récupére
 -   Appel du template avec HTML, HEAD, BODY : `@extends('layouts.app')`
 -   Appel du conteneur MAIN : `@section('content')`
 
-\*\* Cette balise est bien sûre à fermer en fin de page par `@endsection`, tout comme pour annoncer la fermeture du MAIN.
+Cette balise est bien sûre à fermer en fin de page par `@endsection`, tout comme pour annoncer la fermeture du MAIN.
 
 -   Créer un fichier appelé "account.blade.php" dans le dossier "ressources/views/auth" et y appelé les balises nécéssaires.
 
@@ -644,23 +644,23 @@ Nous appelons donc dans nos fichiers de vue le template permettant de récupére
 
 Il permet de gérer les données de la vue
 
-    - Taper la commande suivante : `php artisan make:controller AccountController -r`
-      On demande à LARAVEL de créer un controlleur pour gérer les données de la vue, le "-r" permet de créer ce fichier avec les ressources précharger (function index(), voir(), créer(), modifier(), supprimer() etc...)
-    - Le controller que vous venez de créer avec le nom "AccountController" se situe dans le dossier /app/Http/Controllers.
+-   Taper la commande suivante : `php artisan make:controller AccountController -r`
+    On demande à LARAVEL de créer un controlleur pour gérer les données de la vue, le "-r" permet de créer ce fichier avec les ressources précharger (function index(), voir(), créer(), modifier(), supprimer() etc...)
+-   Le controller que vous venez de créer avec le nom "AccountController" se situe dans le dossier /app/Http/Controllers.
 
-    * Ajouter les fonctions suivantes pour afficher les données de la page :
+-   Ajouter les fonctions suivantes pour afficher les données de la page :
 
-    ```php
-      public function show()
-    {
-        return view('/auth/account', ['user' => Auth::user()]);
-    }
+```php
+  public function show()
+{
+    return view('/auth/account', ['user' => Auth::user()]);
+}
 
-    public function account()
-    {
-        return view('/auth/account', array('user' => Auth::user()));
-    }
-    ```
+public function account()
+{
+    return view('/auth/account', array('user' => Auth::user()));
+}
+```
 
 ### C. Création de la "Route" dans "web.php"
 
