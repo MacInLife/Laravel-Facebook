@@ -631,7 +631,7 @@ Nous appelons donc dans nos fichiers de vue le template permettant de récupére
 
 \*\* Cette balise est bien sûre à fermer en fin de page par `@endsection`, tout comme pour annoncer la fermeture du MAIN.
 
-1. Créer un fichier appelé "account.blade.php" dans le dossier "ressources/views/auth" et y appelé les balises nécéssaires.
+-   Créer un fichier appelé "account.blade.php" dans le dossier "ressources/views/auth" et y appelé les balises nécéssaires.
 
 ```php
 @extends('layouts.app')
@@ -640,10 +640,34 @@ Nous appelons donc dans nos fichiers de vue le template permettant de récupére
 @endsection
 ```
 
-2. Créer le "Controller"
-   Il permet de gérer les données de la vue
+### B. Création du "Controller"
+
+Il permet de gérer les données de la vue
 
     - Taper la commande suivante : `php artisan make:controller AccountController -r`
       On demande à LARAVEL de créer un controlleur pour gérer les données de la vue, le "-r" permet de créer ce fichier avec les ressources précharger (function index(), voir(), créer(), modifier(), supprimer() etc...)
+    - Le controller que vous venez de créer avec le nom "AccountController" se situe dans le dossier /app/Http/Controllers.
 
-3. Créer la "Route"
+    * Ajouter les fonctions suivantes pour afficher les données de la page :
+
+    ```php
+      public function show()
+    {
+        return view('/auth/account', ['user' => Auth::user()]);
+    }
+
+    public function account()
+    {
+        return view('/auth/account', array('user' => Auth::user()));
+    }
+    ```
+
+### C. Création de la "Route" dans "web.php"
+
+Elle permet l'accès à l'url, ce fichier se situe dans le dossier "/routes"
+
+-   Pour créer la route, ajouter cette ligne :
+    ```php
+    //Route de vision du compte
+    Route::get('account', 'AccountController@show')->middleware('auth')->name('account');
+    ```

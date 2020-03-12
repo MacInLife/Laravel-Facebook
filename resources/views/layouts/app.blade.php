@@ -72,7 +72,7 @@
                             <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
 
                                 <a class="dropdown-item" href="#">Profil</a>
-                                <a class="dropdown-item" href="#">Compte</a>
+                                <a class="dropdown-item" href="{{ route('account') }}">Compte</a>
                                 <div class="m-2">
                                     <hr>
                                 </div>
