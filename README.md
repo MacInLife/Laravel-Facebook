@@ -615,3 +615,35 @@ Ajout des deux dernières lignes pour la typographie.
 Votre barre de navigation est désormais prête et ressemblante à celle de Facebook.
 
 ## VIII - Création de la page "Compte"
+
+Cette page permettra à l'utilisateur de gérer son compte, c'est-à-dire de pouvoir y modifier les informations le concernant ainsi que de pouvoir supprimer son compte.
+
+### A. Création de la vue (views)
+
+-   La vue portera le nom suivant : account.blade.php
+    La page fera appel à la même barre de navigation que le reste des pages déjà crée, avec le même style.
+    Pour cela, il suffit de récupérer le template qui s'est crée en même temps que notre projet c'est-à-dire le fichier "app.blade.php" qui se situe dans le dossier /layouts.
+
+Nous appelons donc dans nos fichiers de vue le template permettant de récupérer le même stlye sur chaque page. Cela évite également la répétition du code en ce qui concerne le HTML, le HEAD, le BODY et le MAIN grace au balisage suivantes :
+
+-   Appel du template avec HTML, HEAD, BODY : `@extends('layouts.app')`
+-   Appel du conteneur MAIN : `@section('content')`
+
+\*\* Cette balise est bien sûre à fermer en fin de page par `@endsection`, tout comme pour annoncer la fermeture du MAIN.
+
+1. Créer un fichier appelé "account.blade.php" dans le dossier "ressources/views/auth" et y appelé les balises nécéssaires.
+
+```php
+@extends('layouts.app')
+@section('content')
+<h1>Page Compte</h1>
+@endsection
+```
+
+2. Créer le "Controller"
+   Il permet de gérer les données de la vue
+
+    - Taper la commande suivante : `php artisan make:controller AccountController -r`
+      On demande à LARAVEL de créer un controlleur pour gérer les données de la vue, le "-r" permet de créer ce fichier avec les ressources précharger (function index(), voir(), créer(), modifier(), supprimer() etc...)
+
+3. Créer la "Route"
