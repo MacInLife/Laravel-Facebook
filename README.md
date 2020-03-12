@@ -895,4 +895,14 @@ public function update(User $user)
 
 </details>
 
+### F. Ajout des routes update et destroy
+
+```php
+//Route d'envoi de la données via l'id vers la BDD pour le update
+Route::post('account/{id}', 'AccountController@update')->middleware('auth')->name('account.update');
+//Route d'envoi de la données de suppression du compte via l'id en BDD
+Route::get('/account/{id}', 'AccountController@destroy')->middleware('auth')->name('account.destroy');
+
+```
+
 ### G. Ajout d'un nom d'utilisateur
