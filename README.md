@@ -462,10 +462,10 @@ use Intervention\Image\Facades\Image;
 
 ### Ajout de la bibliothèque "Intervention/image"
 
-4. Pour l'utilisation des avatars, nous avons besoin d'importer une bibliothèque :
+1. Pour l'utilisation des avatars, nous avons besoin d'importer une bibliothèque :
    `composer require intervention/image`
 
-5. Dans le fichier "app.php" qui se situe dans /config/
+2. Dans le fichier "app.php" qui se situe dans /config/
 
 -   Ajouter dans les "providers" la ligne suivante :
 
@@ -479,7 +479,7 @@ use Intervention\Image\Facades\Image;
   'Image' => Intervention\Image\Facades\Image::class
 ```
 
-6. Lancer la migration pour que les modifications prennent effet :
+3. Lancer la migration pour que les modifications prennent effet :
    `php artisan migrate`
     - Si celui-ci affiche "Nothing to migrate".<br>
       Procéder comme suit, cela permet de revenir une modification en arrière<br>
@@ -489,7 +489,7 @@ use Intervention\Image\Facades\Image;
 
 -   Si vous avez coupez votre serveur pour installer la bibliothèque d'image, n'oubliez pas de le relancer avec `php artisan serve`.
 
-7. Tester une inscription utilisateur, puis une déconnexion, et une connexion via l'utilisateur crée.
+4. Tester une inscription utilisateur, puis une déconnexion, et une connexion via l'utilisateur crée.
    Si cela fonctionne toujours mais que vous ne voyez pas l'avatar cela est normal car nous ne l'avons pas encore ajouté à nos vues.
 
 ## VI - Gestion des erreurs en français
@@ -667,7 +667,10 @@ public function account()
 Elle permet l'accès à l'url, ce fichier se situe dans le dossier "/routes"
 
 -   Pour créer la route, ajouter cette ligne :
+
     ```php
     //Route de vision du compte
     Route::get('account', 'AccountController@show')->middleware('auth')->name('account');
     ```
+
+La page compte est désormais crée, maintenant il faut la remplir avec notre formulaire de modification des données du compte, ainsi que la possibilité de supprimer son compte.
