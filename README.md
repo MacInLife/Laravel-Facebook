@@ -510,9 +510,9 @@ Il faut ensuite modifier le fichier "app.php" situé "app/config" en modifiant l
 
 Vous pouvez désormais tester vos formulaires pour vérifier l'application des messages en français
 
-## VII - Création page "Home" après la connexion
+## VII - Barre de navigation et gestion du menu après connexion
 
-### A. Modification de la bare de navigation
+### A. Modification de la barre de navigation
 
 La barre de navigation est native à la connexion de LARAVEL, elle se trouve dans /ressources/views/layouts/<br>
 Dans le fichier "app.blade.php"
@@ -578,7 +578,9 @@ Ajout des deux dernières lignes pour la typographie.
   </a>
 ```
 
-4. Déplacement et ajout des sous-menu profil et compte
+### B. Modification du menu et sous-menu de la barre de navigation
+
+1. Déplacement et ajout des sous-menu profil et compte
 
 ```php
       <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
@@ -599,7 +601,7 @@ Ajout des deux dernières lignes pour la typographie.
 </li>
 ```
 
-5. Ajout au hover du bleu foncé dans le css et changement de couleur en blanc
+2. Ajout au hover du bleu foncé dans le css et changement de couleur en blanc
 
 ```css
 .dropdown-item:hover,
@@ -611,3 +613,5 @@ Ajout des deux dernières lignes pour la typographie.
 ```
 
 Votre barre de navigation est désormais prête et ressemblante à celle de Facebook.
+
+## VIII - Création de la page "Compte"
