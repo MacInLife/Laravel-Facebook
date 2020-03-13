@@ -10,6 +10,15 @@
             <div class="card mb-2">
                 <div class="card-header">Paramètres Généraux du compte</div>
                 <div class="card-body">
+                    <form action="{{ route('account.destroyAvatar') }}" method="DELETE">
+                        @csrf
+                        <!-- method('DELETE') -->
+                        <div class="border-bottom mb-2 pb-2">
+                            <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer votre avatar ?')){
+                                            return true;}else{ return false;}"><img id="user-avatar" class="m-auto"
+                                    src="/img/close.png" width="60" height="60"></button>
+                        </div>
+                    </form>
                     <form method="POST" action="{{ route('account.update', $user->id) }}" enctype="multipart/form-data">
                         @csrf
                         <!-- Changement d'état de l'avatar de base à l'upload -->
@@ -17,6 +26,7 @@
                                 style="width:80px; border-radius:50%; border:1px solid #DADDE1;"
                                 src="{{Auth::user()->getAvatar()}}" width="100%" height="100%">
                         </div>
+
 
                         <!-- Ajout de l'avatar -->
                         <div class="form-group row">
@@ -149,9 +159,9 @@
                                 compte</button>
 
                         </div>
-
+                    </form>
                 </div>
-                </form>
+
             </div>
         </div>
     </div>

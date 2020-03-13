@@ -925,7 +925,38 @@ Voici la marche à suivre pour ajouter le nom d'utilisateur au code que vous ven
 
 ### H. Supprimer son avatar
 
-Possibilité pour l'utilisateur de supprimer son avatar, celui-ci reviendra à l'utilisateur par défaut.
+Possibilité pour l'utilisateur de supprimer son avatar, celui-ci reviendra à l'avatar par défaut.
+
+1. Bouton avec formulaire dans la vue
+   **Attention ! On ne peut pas mettre un formulaire dans un autre formulaire !**
+
+```php
+ <form action="{{ route('account.destroyAvatar') }}" method="DELETE">
+    @csrf
+    <!-- method('DELETE') -->
+    <div class="border-bottom mb-2 pb-2">
+        <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer votre avatar ?')){
+                        return true;}else{ return false;}"><img id="user-avatar" class="m-auto"
+                src="/img/close.png" width="60" height="60"></button>
+    </div>
+</form>
+```
+
+2. Fonction dans le controller
+
+```php
+public function destroyAvatar(User $user)
+{
+
+    $u = $user->where('avatar', Auth::user()->avatar);
+    $u->update(['avatar'=> '/img/avatar-vide.png']);
+
+    return redirect('/account')->withOk("Votre avatar à bien été supprimé");
+}
+```
+
+3. Route
+   `Route::post('/account', 'AccountController@destroyAvatar')->middleware('auth')->name('account.destroyAvatar');`
 
 ## IX - Création de la page "Profil"
 

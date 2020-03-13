@@ -54,7 +54,7 @@
                         @endif
                         @else
                         <li class="nav-item dropdown d-flex">
-                            <a href="#" class="text-decoration-none text-white m-auto d-flex">
+                            <a href="{{ route('profil', Auth::user()->id || Auth::user()->pseudo) }}" class="text-decoration-none text-white m-auto d-flex">
                                 <div class="mr-2" style="width:40px;"><img class="m-auto"
                                         style="width:40px; border-radius:50%; border:1px solid #DADDE1;"
                                         src="{{Auth::user()->getAvatar()}}" width="100%" height="100%">

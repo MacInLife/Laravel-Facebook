@@ -75,5 +75,14 @@ class AccountController extends Controller
     //->withOk("L'utilisation'" . $u->name . " a été supprimé.");
     }
 
+    public function destroyAvatar(User $user)
+    {
+      
+    $u = $user->where('avatar', Auth::user()->avatar);
+    $u->update(['avatar'=> '/img/avatar-vide.png']);
+
+    return redirect('/account')->withOk("Votre avatar à bien été supprimé");
+    }
+
 
 }
