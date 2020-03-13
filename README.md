@@ -901,6 +901,16 @@ public function update(User $user)
 
 </details>
 
+Lors de la modification de l'avatar, nous stockons cette nouvelle image dans la variable suivantes :
+
+```php
+ $path = '/uploads/avatars/' . $filename;
+```
+
+Il faut donc crée l'emplacement de se dossier dans votre projet.<br>
+Dans le dossier /public, faire un clic droit, nouveau dossier et appeler le "uploads/avatars".<br>
+Votre projet est désormais prêt à recevoir les images des utilisateurs.
+
 ### F. Ajout des routes update et destroy
 
 ```php
@@ -966,7 +976,7 @@ public function destroyAvatar(User $user)
 
 Cette page permettra à l'utilisateur de voir son profil, c'est-à-dire de pouvoir poster un commentaire, voir ses demandes d'amis et ses amis.
 
-1. Crée le fichier **"profil.blade.php"** dans /ressources/views
+-   Crée le fichier **"profil.blade.php"** dans /ressources/views
 
 ```php
 @extends('layouts.app')
@@ -981,7 +991,9 @@ Cette page permettra à l'utilisateur de voir son profil, c'est-à-dire de pouvo
   <a class="dropdown-item" href="{{ route('profil', Auth::user()->id || Auth::user()->pseudo) }}">Profil</a>
 ```
 
-2. Création du controlleur "ProfilController"
+### B. Création du controleur
+
+1. Controlleur "ProfilController"
 
     `php artisan make:controller ProfilController`
 
@@ -995,9 +1007,11 @@ public function index($id, User $user)
   }
 ```
 
-3. Création de la route
+### C. Création de la route
 
 -   Gestion par le pseudo ou par l'identifiant
 
     `Route::get('/profil/{pseudo}', 'ProfilController@index')->name('profil');`
     `Route::get('/profil/{id}', 'ProfilController@index')->name('profil');`
+
+### D. Optimisation de la vue
