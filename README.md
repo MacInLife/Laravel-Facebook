@@ -928,7 +928,8 @@ Voici la marche à suivre pour ajouter le nom d'utilisateur au code que vous ven
 Possibilité pour l'utilisateur de supprimer son avatar, celui-ci reviendra à l'avatar par défaut.
 
 1. Bouton avec formulaire dans la vue
-   **Attention ! On ne peut pas mettre un formulaire dans un autre formulaire !**
+
+    **Attention ! On ne peut pas mettre un formulaire dans un autre formulaire !**
 
 ```php
  <form action="{{ route('account.destroyAvatar') }}" method="DELETE">
@@ -956,7 +957,8 @@ public function destroyAvatar(User $user)
 ```
 
 3. Route
-   `Route::post('/account', 'AccountController@destroyAvatar')->middleware('auth')->name('account.destroyAvatar');`
+
+    `Route::post('/account', 'AccountController@destroyAvatar')->middleware('auth')->name('account.destroyAvatar');`
 
 ## IX - Création de la page "Profil"
 
