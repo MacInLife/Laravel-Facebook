@@ -982,7 +982,8 @@ Cette page permettra à l'utilisateur de voir son profil, c'est-à-dire de pouvo
 ```
 
 2. Création du controlleur "ProfilController"
-   `php artisan make:controller ProfilController`
+
+    `php artisan make:controller ProfilController`
 
 -   Contenu du controlleur :
 
@@ -997,5 +998,6 @@ public function index($id, User $user)
 3. Création de la route
 
 -   Gestion par le pseudo ou par l'identifiant
+
     `Route::get('/profil/{pseudo}', 'ProfilController@index')->name('profil');`
     `Route::get('/profil/{id}', 'ProfilController@index')->name('profil');`
