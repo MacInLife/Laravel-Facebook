@@ -831,6 +831,12 @@ Elle permet l'accès à l'url, ce fichier se situe dans le dossier "/routes"
 
 </details>
 
+-   Ajout du lien dans la barre de navigation du fichier **"app.blade.php"**
+
+```php
+  <a class="dropdown-item" href="{{ route('account') }}">Compte</a>
+```
+
 ### E. Gestion des données compte dans le controller
 
 -   Retour dans le controller "AccountController" pour gérer l'update et la suppression
@@ -917,4 +923,46 @@ Voici la marche à suivre pour ajouter le nom d'utilisateur au code que vous ven
 5. Ajouter la variable dans le controller pour récupérer et gerer la donnée (RegisterController + AccountController)
 6. Ajouter si besoin la route correspondante (AccountController@update)
 
+### H. Supprimer son avatar
+
+Possibilité pour l'utilisateur de supprimer son avatar, celui-ci reviendra à l'utilisateur par défaut.
+
 ## IX - Création de la page "Profil"
+
+### A. Création de la vue
+
+Cette page permettra à l'utilisateur de voir son profil, c'est-à-dire de pouvoir poster un commentaire, voir ses demandes d'amis et ses amis.
+
+1. Crée le fichier **"profil.blade.php"** dans /ressources/views
+
+```php
+@extends('layouts.app')
+@section('content')
+<h1>Page Compte</h1>
+@endsection
+```
+
+-   Ajout du lien dans la barre de navigation du fichier **"app.blade.php"**
+
+```php
+  <a class="dropdown-item" href="{{ route('profil', Auth::user()->id || Auth::user()->pseudo) }}">Profil</a>
+```
+
+2. Création du controlleur "ProfilController"
+   `php artisan make:controller ProfilController`
+
+-   Contenu du controlleur :
+
+```php
+public function index($id, User $user)
+  {
+      $user = $user->where('id', $id)->first();
+      return view('/auth/profil', [ 'user' => $user ]);
+  }
+```
+
+3. Création de la route
+
+-   Gestion par le pseudo ou par l'identifiant
+    `Route::get('/profil/{pseudo}', 'ProfilController@index')->name('profil');`
+    `Route::get('/profil/{id}', 'ProfilController@index')->name('profil');`
