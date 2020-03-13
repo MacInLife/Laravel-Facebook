@@ -1,5 +1,16 @@
 @extends('layouts.app')
-<title>Laravel Facebook - Compte</title>
+@section('title')
+Laravel Facebook - Compte
+@endsection
+@section('style')
+<style>
+    #avatar {
+        border: none;
+    }
+
+</style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -13,11 +24,10 @@
                     <form action="{{ route('account.destroyAvatar') }}" method="DELETE">
                         @csrf
                         <!-- method('DELETE') -->
-                        <div class="border-bottom mb-2 pb-2">
-                            <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer votre avatar ?')){
+                        <button style="    position: absolute; left: 55%; top: 15%;
+    transform: translate(-50%,-50%)" type="submit" class="btn" onclick="if(confirm('Voulez-vous vraiment supprimer votre avatar ?')){
                                             return true;}else{ return false;}"><img id="user-avatar" class="m-auto"
-                                    src="/img/close.png" width="60" height="60"></button>
-                        </div>
+                                src="/img/close.png" width="30" height="30"></button>
                     </form>
                     <form method="POST" action="{{ route('account.update', $user->id) }}" enctype="multipart/form-data">
                         @csrf
@@ -168,9 +178,3 @@
 </div>
 
 @endsection
-<style>
-    #avatar {
-        border: none;
-    }
-
-</style>

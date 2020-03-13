@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel Facebook') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('style')
 </head>
 
 <body>
@@ -26,7 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background:#385898;">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('home') }}">
-                    {{ config('app.name', 'Laravel') }}<img class="pl-2 mb-1" src="img/facebook.png" alt="" width="90">
+                    {{ config('app.name', 'Laravel') }}<img class="pl-2 mb-1" src="/img/facebook.png" alt="" width="90">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -54,7 +55,8 @@
                         @endif
                         @else
                         <li class="nav-item dropdown d-flex">
-                            <a href="{{ route('profil', Auth::user()->id || Auth::user()->pseudo) }}" class="text-decoration-none text-white m-auto d-flex">
+                            <a href="{{ route('profil', Auth::user()->id || Auth::user()->pseudo) }}"
+                                class="text-decoration-none text-white m-auto d-flex">
                                 <div class="mr-2" style="width:40px;"><img class="m-auto"
                                         style="width:40px; border-radius:50%; border:1px solid #DADDE1;"
                                         src="{{Auth::user()->getAvatar()}}" width="100%" height="100%">
