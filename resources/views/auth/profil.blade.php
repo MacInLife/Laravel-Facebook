@@ -16,7 +16,13 @@ Laravel Facebook - Profil
                     style="width:168px; height:168px; position: absolute;   top: 82%;   left: 13%;  transform: translate(-50%,-50%)">
                     <img id="user-avatar" class="m-auto"
                         style="width:168px; border-radius:50%; border:1px solid #DADDE1;"
-                        src="{{Auth::user()->getAvatar()}}" width="100%" height="100%">
+                        src="{{$user->getAvatar()}}" width="100%" height="100%">
+                </div>
+                <div style="position: absolute;   top: 84%;   left: 36%;  transform: translate(-50%,-50%)">
+                    <H3 class="text-white">{{$user->firstname}} {{$user->name}}</H3>
+                    @if($user->pseudo)
+                    <p class="text-white">({{$user->pseudo}})</p>
+                    @endif
                 </div>
             </div>
             <nav class="nav-pills nav-justified">
@@ -35,11 +41,6 @@ Laravel Facebook - Profil
             </nav>
 
             <div class="tab-content card-body bg-white" id="nav-tabContent">
-
-                <!-- Partie Vide -->
-                <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    coucou rien
-                </div> -->
 
                 <!-- Partie Journal -->
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">

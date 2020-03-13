@@ -1004,18 +1004,26 @@ Cette page permettra à l'utilisateur de voir son profil, c'est-à-dire de pouvo
 -   Contenu du controlleur :
 
 ```php
-public function index($id, User $user)
-  {
-      $user = $user->where('id', $id)->first();
-      return view('/auth/profil', [ 'user' => $user ]);
-  }
+  public function index($slug, User $user)
+    {
+        $u = $user->wherePseudo($slug)->first();
+
+        if (!$u) {
+            $u = $user->whereId($slug)->first();
+            if (!$u) {
+                return redirect('/', 302);
+            }
+        }
+
+        //Retourne la view des posts
+        return view('/auth/profil', [ 'user' => $u ]);
+    }
 ```
 
 ### C. Création de la route
 
 -   Gestion par le pseudo ou par l'identifiant
 
-    `Route::get('/profil/{pseudo}', 'ProfilController@index')->name('profil');`<br>
-    `Route::get('/profil/{id}', 'ProfilController@index')->name('profil');`
+    `Route::get('/profil/{slug}', 'ProfilController@index')->name('profil');`
 
 ### D. Optimisation de la vue

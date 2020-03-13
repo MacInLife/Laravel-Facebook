@@ -28,5 +28,4 @@ Route::post('/account', 'AccountController@destroyAvatar')->middleware('auth')->
 Route::get('/account/{id}', 'AccountController@destroy')->middleware('auth')->name('account.destroy');
 
 
-Route::get('/profil/{pseudo}', 'ProfilController@index')->name('profil');
-Route::get('/profil/{id}', 'ProfilController@index')->name('profil');
+Route::get('/profil/{slug}', 'ProfilController@index')->name('profil');
