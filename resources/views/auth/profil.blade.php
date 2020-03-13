@@ -36,8 +36,21 @@ Laravel Facebook - Profil
 
             <div class="tab-content card-body bg-white" id="nav-tabContent">
 
-                <!-- Partie Tweets = Tweets du profil de la personne -->
-                coucou
+                <!-- Partie Vide -->
+                <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    coucou rien
+                </div> -->
+
+                <!-- Partie Journal -->
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    coucou journal
+                </div>
+
+                <!-- Partie Amis -->
+                <div class="tab-pane fade bg-white" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    coucou amis
+                </div>
+
             </div>
 
         </div>

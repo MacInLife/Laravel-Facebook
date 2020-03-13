@@ -2,6 +2,10 @@
 
 Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel.
 
+## Tutorial
+
+1. [Création du projet](docs/creation-projet.md)
+
 ## I - Création du projet
 
 Dans ce projet nous allons utilisés le CDN Bootstrap pour gérer le style de nos pages, ainsi que du jquery/javascript utilisé pour certains affichages.
@@ -1011,7 +1015,7 @@ public function index($id, User $user)
 
 -   Gestion par le pseudo ou par l'identifiant
 
-    `Route::get('/profil/{pseudo}', 'ProfilController@index')->name('profil');`
+    `Route::get('/profil/{pseudo}', 'ProfilController@index')->name('profil');`<br>
     `Route::get('/profil/{id}', 'ProfilController@index')->name('profil');`
 
 ### D. Optimisation de la vue
