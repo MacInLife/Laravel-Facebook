@@ -992,7 +992,7 @@ Cette page permettra à l'utilisateur de voir son profil, c'est-à-dire de pouvo
 -   Ajout du lien dans la barre de navigation du fichier **"app.blade.php"**
 
 ```php
-  <a class="dropdown-item" href="{{ route('profil', Auth::user()->id || Auth::user()->pseudo) }}">Profil</a>
+  <a class="dropdown-item" href="{{ route('profil', Auth::user()->id ) }}">Profil</a>
 ```
 
 ### B. Création du controleur
