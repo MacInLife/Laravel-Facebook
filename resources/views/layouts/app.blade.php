@@ -73,8 +73,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item"
-                                    href="{{ route('profil', Auth::user()->id || Auth::user()->pseudo) }}">Profil</a>
+                                <a class="dropdown-item" href="{{ route('profil', Auth::user()->id) }}">Profil</a>
                                 <a class="dropdown-item" href="{{ route('account') }}">Compte</a>
                                 <div class="m-2">
                                     <hr>
