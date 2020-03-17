@@ -22,5 +22,15 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 ## Grilles des Vues
 
-![docs/localhost.png](docs/localhost.png) | ![docs/PHPMyAdmin-CreateBDD.png](docs/PHPMyAdmin-CreateBDD.png) | ![docs/localhost.png](docs/localhost.png)
-![docs/Base-register.png](docs/Base-register.png) | ![docs/Base-login.png](docs/Base-login.png) | ![docs/Base-logged_in.png](docs/Base-logged_in.png)
+   <tbody>
+        <tr>
+            <td align="right">![docs/localhost.png](docs/localhost.png)</td>
+            <td align="center">![docs/PHPMyAdmin-CreateBDD.png](docs/PHPMyAdmin-CreateBDD.png)</td>
+            <td align="left">![docs/localhost.png](docs/localhost.png)</td>
+        </tr>
+        <tr>
+            <td align="right">![docs/Base-register.png](docs/Base-register.png)</td>
+            <td align="center">![docs/Base-login.png](docs/Base-login.png)</td>
+            <td align="left"> ![docs/Base-logged_in.png](docs/Base-logged_in.png)</td>
+        </tr>
+    </tbody>
