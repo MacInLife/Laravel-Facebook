@@ -22,7 +22,8 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 ## Grilles des Vues
 
-|                                                                                         |                                                                                                |                                                                                          |
-| :-------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: |
-|   <img style="border-radius:50%; border:1px solid #DADDE1;" src="docs/localhost.png">   | <img style="border-radius:50%; border:1px solid #DADDE1;" src="docs/PHPMyAdmin-CreateBDD.png"> |   <img style="border-radius:50%; border:1px solid #DADDE1;" src="docs/localhost.png">    |
-| <img style="border-radius:50%; border:1px solid #DADDE1;" src="docs/Base-register.png"> |      <img style="border-radius:50%; border:1px solid #DADDE1;" src="docs/Base-login.png">      | <img style="border-radius:50%; border:1px solid #DADDE1;" src="docs/Base-logged_in.png"> |
+|                                             |                                                            |                                                          |
+| :-----------------------------------------: | :--------------------------------------------------------: | :------------------------------------------------------: |
+|       <img src="docs/localhost.png">        |         <img src="docs/PHPMyAdmin-CreateBDD.png">          |            <img src="docs/Base-register.png">            |
+|       <img src="docs/Base-login.png">       |            <img src="docs/Base-logged_in.png">             | ![Logo Laravel Facebook](docs/logo-laravel-facebook.png) |
+| ![docs/FB-welcome.png](docs/FB-welcome.png) | ![FBL-barre-navigation.png](docs/FBL-barre-navigation.png) |       ![FBL-page-compte.png](FBL-page-compte.png)        |
