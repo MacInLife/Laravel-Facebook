@@ -1,8 +1,4 @@
-<div class="m-auto">
-    ![Logo Laravel Facebook](docs/logo-laravel-facebook.png)
-</div>
-
-# Facebook Laravel
+# Facebook Laravel ![Logo Laravel Facebook](docs/logo-laravel-facebook.png)
 
 Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel.
 
