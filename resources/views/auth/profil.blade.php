@@ -99,11 +99,14 @@ Laravel Facebook - Profil
 
                         <!-- Publication -->
                         <div class="card mb-1">
-                            <div class="card-header d-flex my-auto">
+                            <div class="card-header d-flex my-auto p-2">
+
                                 <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
                                         src="{{Auth::user()->avatar}}" alt="" width="40"></div>
-                                <p class="my-auto">{{Auth::user()->firstname}} {{Auth::user()->name}}</p>
-                                <p class="text-muted mr-2">Date</p>
+                                <div>
+                                    <p class="my-auto">{{Auth::user()->firstname}} {{Auth::user()->name}}</p>
+                                    <p class="text-muted mr-2 my-auto">Date</p>
+                                </div>
                             </div>
                             <div class="card-body">
 
