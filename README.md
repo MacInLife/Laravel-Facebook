@@ -22,8 +22,8 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 ## Grilles des Vues
 
-|                                             |                                                            |                                                          |
-| :-----------------------------------------: | :--------------------------------------------------------: | :------------------------------------------------------: |
-|       <img src="docs/localhost.png">        |         <img src="docs/PHPMyAdmin-CreateBDD.png">          |            <img src="docs/Base-register.png">            |
-|       <img src="docs/Base-login.png">       |            <img src="docs/Base-logged_in.png">             | ![Logo Laravel Facebook](docs/logo-laravel-facebook.png) |
-| ![docs/FB-welcome.png](docs/FB-welcome.png) | ![FBL-barre-navigation.png](docs/FBL-barre-navigation.png) |       ![FBL-page-compte.png](FBL-page-compte.png)        |
+|                                             |                                                                 |                                                          |
+| :-----------------------------------------: | :-------------------------------------------------------------: | :------------------------------------------------------: |
+|  ![docs/localhost.png](docs/localhost.png)  | ![docs/PHPMyAdmin-CreateBDD.png](docs/PHPMyAdmin-CreateBDD.png) |    ![docs/Base-register.png](docs/Base-register.png)     |
+| ![docs/Base-login.png](docs/Base-login.png) |       ![docs/Base-logged_in.png](docs/Base-logged_in.png)       | ![Logo Laravel Facebook](docs/logo-laravel-facebook.png) |
+| ![docs/FB-welcome.png](docs/FB-welcome.png) |   ![FBL-barre-navigation.png](docs/FBL-barre-navigation.png)    |  ![docs/FBL-page-compte.png](docs/FBL-page-compte.png)   |
