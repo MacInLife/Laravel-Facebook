@@ -4,12 +4,12 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 ## Tutorial Étapes
 
-I. [Création du projet](docs/creation-projet.md)
-Projet initial vide
-II. [Création d'un repo git](docs/creation-repo-git.md)
-Gestion du versionning de fichier
-III. [Page de connexion](docs/page-connexion.md)
-Modification de page d'accueil LARAVEL en page de connexion pour Facebook
+-   I. [Création du projet](docs/creation-projet.md)
+    Projet initial vide
+-   II. [Création d'un repo git](docs/creation-repo-git.md)
+    Gestion du versionning de fichier
+-   III. [Page de connexion](docs/page-connexion.md)
+    Modification de page d'accueil LARAVEL en page de connexion pour Facebook
 
 IV. Ajout des champs "prénom" & "avatar"
 
