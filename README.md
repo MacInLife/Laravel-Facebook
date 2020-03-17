@@ -1,4 +1,4 @@
-[Logo Laravel Facebook](docs/logo-laravel-facebook.png)
+![Logo Laravel Facebook](docs/logo-laravel-facebook.png)
 
 # Facebook Laravel
 
