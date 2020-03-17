@@ -326,7 +326,7 @@ Possibilité pour l'utilisateur de supprimer son avatar, celui-ci reviendra à l
     **Attention ! On ne peut pas mettre un formulaire dans un autre formulaire !**
 
 ```php
- <form action="{{ route('account.destroyAvatar') }}" method="DELETE">
+ <form action="{{ route('account.destroyAvatar') }}" method="POST">
     @csrf
     <!-- method('DELETE') -->
     <div class="border-bottom mb-2 pb-2">

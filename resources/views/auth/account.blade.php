@@ -21,7 +21,7 @@ Laravel Facebook - Compte
             <div class="card mb-2">
                 <div class="card-header">Paramètres Généraux du compte</div>
                 <div class="card-body">
-                    <form action="{{ route('account.destroyAvatar') }}" method="DELETE">
+                    <form action="{{ route('account.destroyAvatar') }}" method="POST">
                         @csrf
                         <!-- method('DELETE') -->
                         <button style="    position: absolute; left: 55%; top: 15%;
