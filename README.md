@@ -1,3 +1,5 @@
+[Logo Laravel Facebook](docs/logo-laravel-facebook.png)
+
 # Facebook Laravel
 
 Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel.
@@ -17,6 +19,8 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 -   **VI. [Barre de navigation](docs/barre-navigation.md)** > _Modification de l'apparence de la barre de navigation de LARAVEL après connexion, par une barre de navigation ressemblante à celle de Facebook, ainsi qu'un sous-menu correspondant._
 
 -   **VII. [Page Compte](docs/page-compte.md)** > _Création de la page de gestion du compte avec le controller et les routes associés "AccountController" (modification données du compte, ajout d'un nom d'utilisateur \[migration], suppression avatar/compte)._
+
+-   **VIII. [Page Profil](docs/page-profil.md)** > _Création de la page profil avec le controller et les routes associés "ProfilController" (Ajout/Vision/Suppression de ses propres posts sur son journal et de ses ami(e)s)._
 
 ## VIII - Création de la page "Profil"
 
