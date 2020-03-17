@@ -1,4 +1,6 @@
-![Logo Laravel Facebook](docs/logo-laravel-facebook.png)
+<div class="m-auto">
+    ![Logo Laravel Facebook](docs/logo-laravel-facebook.png)
+</div>
 
 # Facebook Laravel
 
