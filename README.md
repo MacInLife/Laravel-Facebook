@@ -22,8 +22,8 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 ## Grilles des Vues
 
-|                                             |                                                                 |                                                          |
-| :-----------------------------------------: | :-------------------------------------------------------------: | :------------------------------------------------------: |
-|  ![docs/localhost.png](docs/localhost.png)  | ![docs/PHPMyAdmin-CreateBDD.png](docs/PHPMyAdmin-CreateBDD.png) |    ![docs/Base-register.png](docs/Base-register.png)     |
-| ![docs/Base-login.png](docs/Base-login.png) |       ![docs/Base-logged_in.png](docs/Base-logged_in.png)       | ![Logo Laravel Facebook](docs/logo-laravel-facebook.png) |
-| ![docs/FB-welcome.png](docs/FB-welcome.png) |   ![FBL-barre-navigation.png](docs/FBL-barre-navigation.png)    |  ![docs/FBL-page-compte.png](docs/FBL-page-compte.png)   |
+|                                                                                      |                                                                                    |                                                                                |
+| :----------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
+|          ![docs/localhost.png](docs/localhost.png) Page de base de LARAVEL           |  ![docs/PHPMyAdmin-CreateBDD.png](docs/PHPMyAdmin-CreateBDD.png) Création de BDD   |  ![docs/Base-register.png](docs/Base-register.png) Page d'inscription LARAVEL  |
+|        ![docs/Base-login.png](docs/Base-login.png) Page de connexion LARAVEL         |     ![docs/Base-logged_in.png](docs/Base-logged_in.png) Page d'accueil LARAVEL     | ![Logo Laravel Facebook](docs/logo-laravel-facebook.png) Logo Laravel Facebook |
+| ![docs/FB-welcome.png](docs/FB-welcome.png) Page de connexion/inscription FB Laravel | ![FBL-barre-navigation.png](docs/FBL-barre-navigation.png) Barre de navigation FBL |     ![docs/FBL-page-compte.png](docs/FBL-page-compte.png) Page Compte FBL      |
