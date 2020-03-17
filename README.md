@@ -10,131 +10,13 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 -   **III. [Page de connexion](docs/page-connexion.md)** > _Modification de page d'accueil LARAVEL en page de connexion pour Facebook_
 
--   **IV. [Ajout des champs "prénom" et "avatar"](docs/firstname-and-avatar.md)** > \*Ajout du champ prénom à notre formulaire d'inscription, et ajout de l'avatar pour l'intégration futur de celui-ci.
+-   **IV. [Champs "prénom" et "avatar"](docs/firstname-and-avatar.md)** > _Ajout du champ prénom à notre formulaire d'inscription, et ajout de l'avatar pour l'intégration futur de celui-ci._
 
-## VI - Gestion des erreurs en français
+-   **V. [Intégration de la Gestion des erreurs en français](docs/gestion-erreur-fr.md)** > _Tester vos formulaires en faisant des erreurs pour vérifier la bonne application._
 
-Pour créer un projet avec des messages d'erreur en français, cela est possible grâce à plusieurs méthodes :
+-   **VI. [Barre de navigation](docs/barre-navigation.md)** > _Modification de l'apparence de la barre de navigation de LARAVEL après connexion, par une barre de navigation ressemblante à celle de Facebook, ainsi qu'un sous-menu correspondant._
 
--   Voir le lien suivant : [Apprendre à gérer les messages d'erreur](https://www.apprendre-laravel.fr/laraguide/2017-11-18-personnaliser-nos-messages-d-erreur)
--   Plusieurs langues disponibles sur le ".zip" suivant : [docs/Laravel-lang-master.zip](docs/Laravel-lang-master.zip)
--   Ou en ajoutant le dossier "fr" dans le répertoire "ressources/lang/".
-
-Il faut ensuite modifier le fichier "app.php" situé "app/config" en modifiant les lignes suivantes par "fr" au lieu de "en" :
-
-```php
-    'locale' => 'fr',
-    'fallback_locale' => 'fr',
-    'faker_locale' => 'fr_FR',
-```
-
-Vous pouvez désormais tester vos formulaires pour vérifier l'application des messages en français
-
-## VII - Barre de navigation et gestion du menu après connexion
-
-### A. Modification de la barre de navigation
-
-La barre de navigation est native à la connexion de LARAVEL, elle se trouve dans /ressources/views/layouts/<br>
-Dans le fichier "app.blade.php"
-
-1. Ajout de la couleur de fond correspondant à celle de Facebook
-
-```php
-<nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background:#385898;">
-```
-
-Implémenter simplement le style en ligne précédent sur la "nav" existante
-
-2. Ajout du logo de Facebook
-
-```php
-   <a class="navbar-brand text-white" href="{{ url('/') }}">
-      {{ config('app.name', 'Laravel') }}
-      <img class="pl-2 mb-1" src="img/facebook.png" alt="" width="90">
-    </a>
-```
-
-Ajout de la class "text-write" pour afficher le texte en blanc via Bootstrap.<br>
-Implémentation de la balise image avec intégration du logo de Facebook en mode image.
-
-<p>
-  Pour ce qui est du style du texte Laravel cela à été modifier dans le fichier "app.css" qui se situe dans /public/css/.
-</p>
-
-```css
-.navbar-brand {
-    display: inline-block;
-    padding-top: 0.32rem;
-    padding-bottom: 0.32rem;
-    margin-right: 1rem;
-    font-size: 1.125rem;
-    line-height: inherit;
-    white-space: nowrap;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular",
-        sans-serif;
-    font-weight: 600;
-}
-```
-
-Ajout des deux dernières lignes pour la typographie.
-
-3. Ajout de l'avatar & changement nom par prénom & changement couleur texte et puce.
-
-```php
-<li class="nav-item dropdown d-flex">
-  <a href="#" class="text-decoration-none text-white m-auto d-flex">
-    <div class="mr-2" style="width:40px;"><img class="m-auto"
-            style="width:40px; border-radius:50%; border:1px solid #DADDE1;"
-            src="{{Auth::user()->getAvatar()}}" width="100%" height="100%">
-    </div>
-    <p class="my-auto"
-        style="font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif; font-weight:bold;">
-        {{ Auth::user()->firstname }}
-    </p>
-  </a>
-  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false" v-pre>
-      <span class="caret" style="color:#1a2a47;"></span>
-  </a>
-```
-
-### B. Modification du menu et sous-menu de la barre de navigation
-
-1. Déplacement et ajout des sous-menu profil et compte
-
-```php
-      <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
-
-        <a class="dropdown-item" href="#">Profil</a>
-        <a class="dropdown-item" href="#">Compte</a>
-         <div class="m-2"><hr></div>
-        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">
-            {{ __('Se déconnecter') }}
-        </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-            style="display: none;">
-            @csrf
-        </form>
-    </div>
-</li>
-```
-
-2. Ajout au hover du bleu foncé dans le css et changement de couleur en blanc
-
-```css
-.dropdown-item:hover,
-.dropdown-item:focus {
-    color: #fff;
-    text-decoration: none;
-    background-color: #385898;
-}
-```
-
-Votre barre de navigation est désormais prête et ressemblante à celle de Facebook.
-
-## VIII - Création de la page "Compte"
+## VII - Création de la page "Compte"
 
 Cette page permettra à l'utilisateur de gérer son compte, c'est-à-dire de pouvoir y modifier les informations le concernant ainsi que de pouvoir supprimer son compte.
 
@@ -490,7 +372,7 @@ public function destroyAvatar(User $user)
 
     `Route::post('/account', 'AccountController@destroyAvatar')->middleware('auth')->name('account.destroyAvatar');`
 
-## IX - Création de la page "Profil"
+## VIII - Création de la page "Profil"
 
 ### A. Création de la vue
 

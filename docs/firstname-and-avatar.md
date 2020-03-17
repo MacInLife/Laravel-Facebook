@@ -1,6 +1,6 @@
-# Ajout des champs "prénom" & "avatar" dans nos formulaires
+# IV Ajout des champs "prénom" & "avatar" dans nos formulaires
 
-## IV - Ajout du champ prénom
+## A. Ajout du champ prénom
 
 Maintenant que notre code et notre visuel est prêt pour faire fonctionner celui-ci nous avons ajouter un champ prénom qu'il faut également ajouter dans notre BDD.
 
@@ -56,7 +56,7 @@ protected $fillable = [
 
 5. Tester une inscription utilisateurs, puis une déconnexion, et une connexion via l'utilisateur crée.
 
-## V - Ajout du champ avatar
+## B. Ajout du champ avatar
 
 Nous aurons également besoin d'un avatar pour la suite de notre profil. Nous allons donc ajouter ce champs dans la BDD comme précédemment pour le prénom.
 
