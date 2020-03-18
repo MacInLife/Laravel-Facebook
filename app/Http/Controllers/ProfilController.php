@@ -58,7 +58,7 @@ class ProfilController extends Controller
             $cover = $request->file('cover');
             $filename = time() . '.' . $cover->getClientOriginalExtension();
             $path = '/uploads/covers/' . $filename;
-            Image::make($cover)->resize(200, 200)->save(public_path($path));
+            Image::make($cover)->resize(930, 315)->save(public_path($path));
             $user = Auth::user();
             $user->cover = $path;
             $user->save();

@@ -472,14 +472,14 @@ use Intervention\Image\Facades\Image;
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
             $path = '/uploads/avatars/' . $filename;
-            Image::make($avatar)->resize(100, 100)->save(public_path($path));
+            Image::make($avatar)->resize(200, 200)->save(public_path($path));
         }
 
          if($request->hasFile('cover')){
             $cover = $request->file('cover');
             $filename = time() . '.' . $cover->getClientOriginalExtension();
             $path = '/uploads/covers/' . $filename;
-            Image::make($cover)->resize(100, 100)->save(public_path($path));
+            Image::make($cover)->resize(930, 315)->save(public_path($path));
         }
 
         return User::create([

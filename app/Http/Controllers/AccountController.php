@@ -32,7 +32,7 @@ class AccountController extends Controller
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
             $path = '/uploads/avatars/' . $filename;
-            Image::make($avatar)->resize(100, 100)->save(public_path($path));
+            Image::make($avatar)->resize(200, 200)->save(public_path($path));
             //$user = $user->find($id);
             // $id = Auth::id();
             $user = Auth::user();

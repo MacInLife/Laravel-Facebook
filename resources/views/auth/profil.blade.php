@@ -275,7 +275,7 @@ Laravel Facebook - Profil
     <div class="m-2">
         <hr>
     </div>
-    <div class="mx-auto mb-2"><img id="user-cover" class="m-auto" border:1px solid #DADDE1;"
+    <div class="mx-auto mb-2"><img id="user-cover" class="m-auto" style="width:350px;border:1px solid #DADDE1;"
             src="{{Auth::user()->getCover()}}" width="100%" height="100%">
     </div>
     <form action="{{ route('profil.updateCover', $user->id) }}" method="POST" class="text-center"
