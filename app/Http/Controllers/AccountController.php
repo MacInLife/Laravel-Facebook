@@ -81,7 +81,7 @@ class AccountController extends Controller
     $u = $user->where('avatar', Auth::user()->avatar);
     $u->update(['avatar'=> '/img/avatar-vide.png']);
 
-    return redirect('/account')->withOk("Votre avatar à bien été supprimé");
+    return redirect('/account')->withOk("Votre avatar à bien été modifié");
     }
 
 

@@ -18,7 +18,9 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 -   **VII. [Page Compte](docs/page-compte.md)** > _Création de la page de gestion du compte avec le controller et les routes associés "AccountController" (modification données du compte, ajout d'un nom d'utilisateur \[migration], suppression avatar/compte)._
 
--   **VIII. [Page Profil](docs/page-profil.md)** > _Création de la page profil avec le controller et les routes associés "ProfilController" (Ajout/Vision/Suppression de ses propres posts sur son journal et de ses ami(e)s)._
+-   **VIII. [Page Profil](docs/page-profil.md)** > _Création de la page profil avec le controller et les routes associés "ProfilController"_
+
+-   **IX. [Création des posts](docs/posts.md)** > _Création des posts / commentaires avec la migration, les ressources du controller, le model et les routes associés "PostController" (Ajout/Vision/Suppression de ses propres posts sur son fil d'actualité (home) et sur son profil dans le journal + Visualisation des posts de mes ami(e)s sur le fil d'actualité)._
 
 ## Grilles des Vues
 

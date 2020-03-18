@@ -16,7 +16,7 @@ Laravel Facebook - Compte
     <div class="row justify-content-center">
         <div class="col-md-10">
             @if(session()->has('ok'))
-            <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
+            <div class="alert alert-warning alert-dismissible">{!! session('ok') !!}</div>
             @endif
             <div class="card mb-2">
                 <div class="card-header">Paramètres Généraux du compte</div>

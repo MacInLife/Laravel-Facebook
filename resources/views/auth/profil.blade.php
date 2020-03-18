@@ -2,6 +2,39 @@
 @section('title')
 Laravel Facebook - Profil
 @endsection
+
+@section('style')
+<style>
+    .img-avatar>div {
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    .img-avatar>div:hover {
+        opacity: 1;
+    }
+
+    .bg-black {
+        background: #00000099;
+        top: 50%;
+        position: absolute;
+        width: 100%;
+        height: 50%;
+    }
+
+    #dialogEditAvatar[open] {
+        display: block;
+        background: aliceblue;
+        border-radius: 20px;
+        border: 1px solid darkblue;
+        top: 50%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+    }
+
+</style>
+@endsection
 @section('content')
 
 <div class="container">
@@ -13,10 +46,18 @@ Laravel Facebook - Profil
             <div class="position-relative">
                 <img src="/img/banner.jpeg" alt="" width="100%" height="315">
                 <div class="mx-auto mb-2"
-                    style="width:168px; height:168px; position: absolute;   top: 82%;   left: 11%;  transform: translate(-50%,-50%)">
-                    <img id="user-avatar" class="m-auto"
-                        style="width:168px; border-radius:50%; border:1px solid #DADDE1;" src="{{$user->getAvatar()}}"
-                        width="100%" height="100%">
+                    style="width:168px; height:168px; position: absolute;   top: 82%;   left: 11%;  transform: translate(-50%,-50%); border-radius:50%; overflow:hidden;">
+                    <a class="img-avatar" onclick="showDialogEditAvatar()">
+                        <img id=" user-avatar" class="m-auto"
+                            style="width:168px; border-radius:50%; border:1px solid #DADDE1;"
+                            src="{{$user->getAvatar()}}" width="100%" height="100%">
+                        <div class="bg-black">
+                            <div class="text-center mt-2">
+                                <img src="/img/apphoto.png" alt="" width="26" height="21">
+                            </div>
+                            <p class="text-white text-center">Mettre à jour</p>
+                        </div>
+                    </a>
                 </div>
                 <div style="position: absolute;   top: 84%;   left: 30%;  transform: translate(-50%,-50%)">
                     <H3 class="text-white">{{$user->firstname}} {{$user->name}}</H3>
@@ -59,7 +100,7 @@ Laravel Facebook - Profil
                         <div class="d-flex flex-wrap">
                             <div class="m-2">
                                 <div class="">
-                                    <img src="{{$user->avatar}}" alt="">
+                                    <img src="{{$user->avatar}}" alt="" width="100">
                                 </div>
                                 <p>{{$user->firstname}} {{$user->name}}</p>
                             </div>
@@ -133,5 +174,44 @@ Laravel Facebook - Profil
     </div>
 </div>
 </div>
+<!-- Boite de dialogue d'édition de l'avatar -->
+<dialog id="dialogEditAvatar">
+    <button type="button" class="close" onclick="closeDialogEdit()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <H3 class="text-center bg-light">Modifier la miniature</H3>
+    <div class="m-2">
+        <hr>
+    </div>
+    <div class="mx-auto mb-2" style="width:80px; height:80px;"><img id="user-avatar" class="m-auto"
+            style="width:80px; border-radius:50%; border:1px solid #DADDE1;" src="{{Auth::user()->getAvatar()}}"
+            width="100%" height="100%">
+    </div>
+    <form action="{{ route('profil.updateAvatar', $user->id) }}" method="POST" class="text-center"
+        enctype="multipart/form-data">
+        @csrf
+        <input type="file" id="avatar" class="form-control @error('avatar') is-invalid @enderror" name="avatar"
+            accept="image/png, image/jpeg" value="{{ old('avatar') }}" autocomplete="avatar" autofocus
+            onclick="changeImage();" value="">
+        <button type="submit" class="btn btn-primary mt-2 text-center" style="background-color:#385898;">
+            {{ __("Enregister") }}
+        </button>
+        </div>
 
+    </form>
+</dialog>
+<script>
+    var e = document.getElementById("dialogEditAvatar");
+
+    function showDialogEditAvatar() {
+        e.show();
+        console.log(event.type, e, StyleSheet, x.userID);
+    }
+
+    function closeDialogEdit() {
+        e.close();
+        console.log(event.type, e, StyleSheet);
+    }
+
+</script>
 @endsection
