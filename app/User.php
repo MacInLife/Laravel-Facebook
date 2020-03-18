@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'avatar','firstname','name','pseudo', 'email', 'password',
+        'avatar', 'cover','firstname','name','pseudo', 'email', 'password',
     ];
 
     /**
@@ -43,4 +43,10 @@ class User extends Authenticatable
                 }
                 return $this->avatar;
         }
+        public function getCover() {
+            if (!$this->cover) {
+                        return '/img/banner.jpeg';
+                    }
+                    return $this->cover;
+            }
 }

@@ -5,12 +5,12 @@ Laravel Facebook - Profil
 
 @section('style')
 <style>
-    .img-avatar>div {
+    .img-avatar>.bg-black {
         opacity: 0;
         transition: all 0.5s ease;
     }
 
-    .img-avatar>div:hover {
+    .img-avatar>.bg-black:hover {
         opacity: 1;
     }
 
@@ -33,6 +33,47 @@ Laravel Facebook - Profil
         position: absolute;
     }
 
+    .photo-cover {
+        left: 5%;
+        display: flex;
+        position: absolute;
+        top: 10%;
+        border-radius: 3px;
+        padding: 2px;
+    }
+
+    .img-cover>.bg-cover {
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    .img-cover>.bg-cover:hover {
+        opacity: 1;
+    }
+
+    .bg-cover {
+        left: 5%;
+        display: flex;
+        position: absolute;
+        top: 10%;
+        background: #00000099;
+        border: 1px solid white;
+        border-radius: 3px;
+        padding: 2px;
+        height: 28px;
+    }
+
+    #dialogEditCover[open] {
+        display: block;
+        background: aliceblue;
+        border-radius: 20px;
+        border: 1px solid darkblue;
+        top: 50%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+    }
+
 </style>
 @endsection
 @section('content')
@@ -44,7 +85,18 @@ Laravel Facebook - Profil
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
             @endif
             <div class="position-relative">
-                <img src="/img/banner.jpeg" alt="" width="100%" height="315">
+                <a class="img-cover" onclick="showDialogEditCover()">
+                    <img src="{{$user->getCover()}}" alt="" width="100%" height="315">
+                    <div class="photo-cover">
+                        <img src="/img/apphoto.png" alt="" width="26" height="21">
+                    </div>
+                    <div class="bg-cover">
+                        <div class="text-center">
+                            <img src="/img/apphoto.png" alt="" width="26" height="21">
+                        </div>
+                        <p class="text-white mx-2">Modifier la photo de courverture</p>
+                    </div>
+                </a>
                 <div class="mx-auto mb-2"
                     style="width:168px; height:168px; position: absolute;   top: 82%;   left: 11%;  transform: translate(-50%,-50%); border-radius:50%; overflow:hidden;">
                     <a class="img-avatar" onclick="showDialogEditAvatar()">
@@ -210,6 +262,45 @@ Laravel Facebook - Profil
 
     function closeDialogEdit() {
         e.close();
+        console.log(event.type, e, StyleSheet);
+    }
+
+</script>
+<!-- Boite de dialogue d'édition de la photo de couverture -->
+<dialog id="dialogEditCover">
+    <button type="button" class="close" onclick="closeDialogEditCover()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <H3 class="text-center bg-light">Modifier la photo de couverture</H3>
+    <div class="m-2">
+        <hr>
+    </div>
+    <div class="mx-auto mb-2"><img id="user-cover" class="m-auto" border:1px solid #DADDE1;"
+            src="{{Auth::user()->getCover()}}" width="100%" height="100%">
+    </div>
+    <form action="{{ route('profil.updateCover', $user->id) }}" method="POST" class="text-center"
+        enctype="multipart/form-data">
+        @csrf
+        <input type="file" id="cover" class="form-control @error('cover') is-invalid @enderror" name="cover"
+            accept="image/png, image/jpeg" value="{{ old('cover') }}" autocomplete="cover" autofocus
+            onclick="changeImage();" value="">
+        <button type="submit" class="btn btn-primary mt-2 text-center" style="background-color:#385898;">
+            {{ __("Enregister") }}
+        </button>
+        </div>
+
+    </form>
+</dialog>
+<script>
+    var c = document.getElementById("dialogEditCover");
+
+    function showDialogEditCover() {
+        c.show();
+        console.log(event.type, e, StyleSheet, x.userID);
+    }
+
+    function closeDialogEditCover() {
+        c.close();
         console.log(event.type, e, StyleSheet);
     }
 

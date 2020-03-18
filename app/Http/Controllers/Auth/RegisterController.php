@@ -77,9 +77,16 @@ class RegisterController extends Controller
             $path = '/uploads/avatars/' . $filename;
             Image::make($avatar)->resize(100, 100)->save(public_path($path));
         }
+        if($request->hasFile('cover')){
+            $cover = $request->file('cover');
+            $filename = time() . '.' . $cover->getClientOriginalExtension();
+            $path = '/uploads/avatars/' . $filename;
+            Image::make($cover)->resize(100, 100)->save(public_path($path));
+        }
         
         return User::create([
             'avatar' => $path,
+            'cover' => $path,
             'firstname' => $data['firstname'],
             'name' => $data['name'],
             'pseudo' => null,

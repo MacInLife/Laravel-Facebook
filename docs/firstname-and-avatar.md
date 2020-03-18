@@ -88,7 +88,7 @@ Nous aurons également besoin d'un avatar pour la suite de notre profil. Nous al
 3. Dans le fichier de création des Users soit ici "RegisterController"<br>
    Qui se situe dans /app/Http/Controllers/Auth/
 
--   Ajouter la ligne concernant le prénom dans la fonction validator et User::create comme suit :
+-   Ajouter la ligne concernant le prénom dans la fonction create et dans User::create comme suit :
 
 ```php
 use Intervention\Image\Facades\Image;
@@ -125,6 +125,8 @@ use Intervention\Image\Facades\Image;
         ]);
     }
 ```
+
+-   Créer le dossier "/uploads/avatars/" pour crée le chemin ou les fichiers doivent s'enregister, il est situé dans le dossier "/public".
 
 ### Ajout de la bibliothèque "Intervention/image"
 

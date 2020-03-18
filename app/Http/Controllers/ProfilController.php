@@ -45,9 +45,25 @@ class ProfilController extends Controller
             $user->avatar = $path;
             $user->save();
         } 
-        //$u = $user->where('avatar', Auth::user()->avatar);
-        //$u->update(['avatar'=> $path]);
 
     return redirect::back()->withOk("L'avatar a été modifié.");
+    }
+
+    public function updateCover(User $user)
+    {
+        $request = app('request');
+        $path = null;
+        // Logic for user upload of avatar
+        if ($request->hasFile('cover')) {
+            $cover = $request->file('cover');
+            $filename = time() . '.' . $cover->getClientOriginalExtension();
+            $path = '/uploads/covers/' . $filename;
+            Image::make($cover)->resize(200, 200)->save(public_path($path));
+            $user = Auth::user();
+            $user->cover = $path;
+            $user->save();
+        } 
+
+    return redirect::back()->withOk("La photo de courverture a été modifié.");
     }
 }

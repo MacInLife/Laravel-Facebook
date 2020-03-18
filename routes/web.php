@@ -29,4 +29,5 @@ Route::get('/account/{id}', 'AccountController@destroy')->middleware('auth')->na
 
 
 Route::get('/profil/{slug}', 'ProfilController@index')->name('profil');
-Route::post('profil/{id}', 'ProfilController@updateAvatar')->middleware('auth')->name('profil.updateAvatar');
+Route::post('profil/{slug}', 'ProfilController@updateAvatar')->middleware('auth')->name('profil.updateAvatar');
+Route::post('profil', 'ProfilController@updateCover')->middleware('auth')->name('profil.updateCover');
