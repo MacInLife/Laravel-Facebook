@@ -49,6 +49,7 @@ class AccountController extends Controller
             $user->avatar = $path;
             $user->name = $request->name;
             $user->firstname = $request->firstname;
+            $user->pseudo = $request->pseudo;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->save();

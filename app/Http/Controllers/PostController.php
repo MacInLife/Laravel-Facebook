@@ -14,7 +14,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post)
+    public function index(Post $post, User $user)
     {
         //Post de tout le monde
         //$posts = $post->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->paginate(4);
@@ -28,7 +28,11 @@ class PostController extends Controller
 
 
         //Retourne la view des posts
-        return view('home', ['posts' => $posts ]);
+
+        //Récupère tous les users
+        $users = $user->orderBy('id', 'DESC')->get();
+
+        return view('home', ['posts' => $posts, 'users' => $users ]);
     }
 
     /**

@@ -100,7 +100,7 @@ Laravel Facebook - Profil
                 <div class="mx-auto mb-2"
                     style="width:168px; height:168px; position: absolute;   top: 82%;   left: 11%;  transform: translate(-50%,-50%); border-radius:50%; overflow:hidden;">
                     <a class="img-avatar" onclick="showDialogEditAvatar()">
-                        <img id=" user-avatar" class="m-auto"
+                        <img id="user-avatar" class="m-auto"
                             style="width:168px; border-radius:50%; border:1px solid #DADDE1;"
                             src="{{$user->getAvatar()}}" width="100%" height="100%">
                         <div class="bg-black">
