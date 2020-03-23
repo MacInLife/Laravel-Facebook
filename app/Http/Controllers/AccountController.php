@@ -54,15 +54,25 @@ class AccountController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
         } else {
+            if ($request->password != "") {
+                $user = Auth::user();
+                $user->name = $request->name;
+                $user->firstname = $request->firstname;
+                $user->pseudo = $request->pseudo;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->save();
+            }else{
             $user = Auth::user();
             $user->name = $request->name;
             $user->firstname = $request->firstname;
             $user->pseudo = $request->pseudo;
             $user->email = $request->email;
-            $user->password = Hash::make($request->password);
             $user->save();
+            }
         }
     
+   
     return redirect('/account')->withOk("L'utilisateur " . $user->firstname ." ". $user->name . " a été modifié.");
     }
     

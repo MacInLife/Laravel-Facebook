@@ -171,7 +171,7 @@ Laravel Facebook - Compte
                             <div class="col-md-6">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
+                                    autocomplete="new-password">
                                 <!-- Bouton masquer/afficher mot de passe -->
                                 <button class="theMask" type="button" onclick="unmask()"
                                     title="Mask/Unmask password to check content">&#128065;</button>
