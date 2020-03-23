@@ -199,7 +199,7 @@ Notre modèle est désormais prêt !
 
 Revenons a notre controller...
 
-### D. Gestion Controller/Route/Vue
+### D. Gestion Vue/Controller/Route/
 
 <p>
     Nous venons de crée notre migration, notre controller et notre model, désormais nous avons besoins de la vue, des routes associés, ainsi que les données gérer dans le controller précédemment crée.
@@ -208,7 +208,7 @@ Revenons a notre controller...
 Pour crée notre page (vue) qui accueillera nos posts, plusieurs solutions existent :
 
 1. Crée la page nous même dans le dossiers "views" et appelé le à votre guise.
-2. Utiliser la vue de page d'accueil existante ici : home.blade.php.
+2. Utiliser la vue de page d'accueil existante ici : **_"home.blade.php."_**
 
 Dans cet exemple, nous utiliserons la méthode 2, utilisation de la vue existante en la modifiant pour nos besoins.
 
@@ -220,18 +220,20 @@ Dans cet exemple, nous utiliserons la méthode 2, utilisation de la vue existant
 
 Dans ce projet, nous procéderons par étapes :
 
--   <a href="#### Vue">Gestion de la vue du fil d'actualité accueillant nos futurs posts</a>
+-   Gestion de la vue du fil d'actualité accueillant nos futurs posts
 -   Création d'un post par l'utlisateur
 -   Suppression d'un post crée par l'utlisateur
 
-#### &#128065; Vue de la page
+#### Étape 1 - &#128065; - Visibilité de la page
 
--   Fichier : home.blade.php
-    Il correspondait au visuel suivant :
-    [Base-logged_in.png](Base-logged_in.png)
+Fichier : "home.blade.php"
+
+-   Il correspondait au visuel suivant :
+    ![Base-logged_in.png](Base-logged_in.png)
 
 1.  Modification de la vue
-    Nous allons modifier ce visuel pour que nous puissions poster des commentaires, les voir et les supprimer.
+
+Nous allons modifier ce visuel pour que nous puissions poster des commentaires, les voir et les supprimer.
 
 <details>
 <summary>Code de la page</summary>
@@ -337,7 +339,7 @@ Laravel Facebook - Home
 
 </details>
 
-#### Controller gérant la vue de la page
+#### Étape 1 - &#128065; - Controller gérant la vue de la page
 
 -   Création de la fonction index :
 
@@ -360,7 +362,7 @@ Laravel Facebook - Home
     }
 ```
 
-#### Route faisant la liaison entre la vue et le controller de la page
+#### Étape 1 - &#128065; - Route faisant la liaison entre la vue et le controller de la page
 
 -   Ajouter la ligne suivante pour que la liaison entre votre vue et votre controller se fassent
 
