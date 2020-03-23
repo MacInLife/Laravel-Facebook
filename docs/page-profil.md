@@ -299,9 +299,9 @@ Laravel Facebook - Profil
                             <div class="card-header d-flex my-auto p-2">
 
                                 <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
-                                        src="{{Auth::user()->avatar}}" alt="" width="40"></div>
+                                        src="{{$user->avatar}}" alt="" width="40"></div>
                                 <div>
-                                    <p class="my-auto">{{Auth::user()->firstname}} {{Auth::user()->name}}</p>
+                                    <p class="my-auto">{{$user->firstname}} {{$user->name}}</p>
                                     <p class="text-muted mr-2 my-auto">Date</p>
                                 </div>
                             </div>
@@ -379,7 +379,7 @@ Laravel Facebook - Profil
     <div class="m-2">
         <hr>
     </div>
-    <div class="mx-auto mb-2"><img id="user-cover" class="m-auto" border:1px solid #DADDE1;"
+    <div class="mx-auto mb-2"><img id="user-cover" class="m-auto" style="width:350px;border:1px solid #DADDE1;"
             src="{{Auth::user()->getCover()}}" width="100%" height="100%">
     </div>
     <form action="{{ route('profil.updateCover', $user->id) }}" method="POST" class="text-center"
@@ -410,6 +410,7 @@ Laravel Facebook - Profil
 
 </script>
 @endsection
+
 
 ```
 

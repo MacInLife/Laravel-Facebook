@@ -20,7 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+//Route de vision de la page de fil d'actualité
+Route::get('/home', 'PostController@index')->name('home');
+//Route de la méthode publier un commentaire (création)
+Route::post('/home', 'PostController@create')->middleware('auth')->name('create.post');
+//Route de la méthode delete un post (suppression)
+Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('destroy.post');
 
 Route::get('account', 'AccountController@show')->middleware('auth')->name('account');
 Route::post('account/{id}', 'AccountController@update')->middleware('auth')->name('account.update');
