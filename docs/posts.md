@@ -444,7 +444,7 @@ Car nous avons modifié la vue pour qu'elle coresponde à nos attentes et pour c
 
 #### Étape 1 - &#128065; - Rendu visuel
 
-    ![FBL-page-home.png](FBL-page-home.png)
+![FBL-page-home.png](FBL-page-home.png)
 
 ### Routes
 
