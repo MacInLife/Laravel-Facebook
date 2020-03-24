@@ -164,9 +164,9 @@ Laravel Facebook - Profil
                     <!-- Contenu journal -->
                     <div class="w-75 m-1">
                         <!-- Créer une Publication -->
-                        <div class="card mb-1">
+                        <div class="card">
                             <div class="card-header">Créer une publication</div>
-                            <div class="card-body">
+                            <div class="card-body p-0">
                                 @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -177,13 +177,21 @@ Laravel Facebook - Profil
                                 </div>
                                 @endif
                                 <div class="form-group m-2 ">
-                                    <form method="post" action="">
+                                    <form method="post" action="{{route('create.post')}}">
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                        <textarea name="text"
-                                            class="form-control @error('text') is-invalid @enderror mb-2" id="text"
-                                            rows="3">{{ old('text') }}</textarea>
+                                        <div class="d-flex">
+                                            <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                                    src="{{Auth::user()->avatar}}" alt="" width="40"></div>
+                                            <textarea name="text"
+                                                class="form-control @error('text') is-invalid @enderror mb-2 border-0"
+                                                placeholder="Que voulez-vous dire, {{Auth::user()->firstname}} ?"
+                                                id="text" rows="1">{{ old('text') }}</textarea>
+                                        </div>
                                         {{csrf_field()}}
-                                        <button href="#" class="btn btn-primary btn-lg btn-block" role="button"
+                                        <div class="m-2">
+                                            <hr>
+                                        </div>
+                                        <button href="#" class="btn btn-primary btn-sm btn-block" role="button"
                                             aria-pressed="true" type="submit">Publier</button>
                                     </form>
                                 </div>

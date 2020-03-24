@@ -57,7 +57,7 @@ class PostController extends Controller
         $post->save();
 
         //Redirection
-        return redirect('/home');
+        return redirect::back();
     }
 
     /**

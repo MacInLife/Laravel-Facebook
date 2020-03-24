@@ -514,8 +514,8 @@ use Illuminate\Http\Request;
         //Sauvegarde du post tweet
         $post->save();
 
-        //Redirection
-        return redirect('/home');
+        //Redirection sur la dernière page visité
+         return redirect::back();
     }
 ```
 
