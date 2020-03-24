@@ -191,21 +191,43 @@ Laravel Facebook - Profil
                         </div>
 
                         <!-- Publication -->
-                        <div class="card mb-1">
-                            <div class="card-header d-flex my-auto p-2">
-
-                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
-                                        src="{{$user->avatar}}" alt="" width="40"></div>
-                                <div>
-                                    <p class="my-auto">{{$user->firstname}} {{$user->name}}</p>
-                                    <p class="text-muted mr-2 my-auto">Date</p>
-                                </div>
-                            </div>
-                            <div class="card-body">
-
-
-                            </div>
+                        @if(!$posts)
+                        <div class="card my-2">
+                            <div class="card-header">Fil d'actualité</div>
+                            <div class="card-body">Aucune publication</div>
                         </div>
+                        @else
+                        @foreach ($posts as $post)
+                        @if($post->user->name === $user->name)
+                        @csrf
+                        <div class="card my-2">
+                            <div class="card-header d-flex my-auto p-2">
+                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                        src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
+                                <div class="mr-auto">
+                                    <p class="my-auto">{{$post->user->firstname}} {{$post->user->name}}</p>
+                                    <p class="text-muted mr-2 my-auto text-secondary font-italic">
+                                        {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
+                                </div>
+                                <form action="{{route('destroy.post', $post->id)}}" method="DELETE" id="myform"
+                                    class="p-2">
+                                    @if ($post->user->id === Auth::user()->id)
+                                    <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
+                                                return true;}else{ return false;}">Supprimer</button>
+                                    @endif
+                                </form>
+                            </div>
+                            <div class="card-body outer p-2">
+                                <p class="m-0 text-info">
+                                    {{$post->text }}
+                                </p>
+
+                            </div>
+
+                        </div>
+                        @endif
+                        @endforeach
+                        @endif
 
                     </div>
 

@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
+use App\Post;
 
 class ProfilController extends Controller
 {
     //
-    public function index($slug, User $user)
+    public function index($slug, User $user, Post $post)
     {
         $u = $user->wherePseudo($slug)->first();
 
@@ -22,10 +23,10 @@ class ProfilController extends Controller
                 return redirect('/', 302);
             }
         }
-       
+        $posts = $post->orderBy('id', 'DESC')->get();
 
         //Retourne la view des posts
-        return view('/auth/profil', [ 'user' => $u ]);
+        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts]);
     }
 
     public function updateAvatar(User $user)

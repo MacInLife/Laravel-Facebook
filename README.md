@@ -20,7 +20,9 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 -   **VIII. [Page Profil](docs/page-profil.md)** > _Création de la page profil avec le controller et les routes associés "ProfilController", possibilité de modifier son avatar et sa photo de couverture_
 
--   **IX. [Création des posts](docs/posts.md)** > _Création des posts / commentaires avec la migration, les ressources du controller, le model et les routes associés "PostController" (Ajout/Vision/Suppression de ses propres posts sur son fil d'actualité (home) et sur son profil dans le journal + Visualisation des posts de mes ami(e)s sur le fil d'actualité)._
+-   **IX. [Création des posts](docs/posts.md)** > _Création des posts / commentaires avec la migration, les ressources du controller, le model et les routes associés "PostController" (Ajout/Vision/Suppression de ses propres posts sur son fil d'actualité (home)._
+
+-   **X. [Voir ses posts sur son profil](docs/page-profil-posts.md)** > _._
 
 ## Grilles des Vues
 
@@ -31,4 +33,4 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 |                     ![docs/FB-welcome.png](docs/FB-welcome.png) Page de connexion/inscription FBL                     |   ![FBL-barre-navigation.png](docs/FBL-barre-navigation.png) Barre de navigation FBL    |                     ![docs/FBL-page-compte.png](docs/FBL-page-compte.png) Page Compte FBL                      |
 |              ![docs/profil-edit-avatar-cover.png](docs/profil-edit-avatar-cover.png) Page profil initial              | ![docs/FBL-page-home.png](docs/FBL-page-home.png) Page Home (accueil) - Étape 1 initial | ![docs/FBL-page-home-publication.png](docs/FBL-page-home-publication.png) Page Home - Étape 2 avec publication |
 | ![docs/FBL-page-home-publication.png](docs/FBL-page-home-publication.png) Page Home - Étape 2 suppression publication |       ![docs/FBL-post-supp.png](docs/FBL-post-supp.png) Page Home - Étape 3 post        |                 ![docs/FBL-post-alert.png](docs/FBL-post-alert.png) Page Home - Étape 3 alert                  |
-|               ![docs/FBL-page-home-supp.png](docs/FBL-page-home-supp.png) Page Home - Étape 3 supprimé                |                                            ?                                            |                                                       ?                                                        |
+|               ![docs/FBL-page-home-supp.png](docs/FBL-page-home-supp.png) Page Home - Étape 3 supprimé                |     ![FBL-page-profil-posts.png](FBL-page-profil-posts.png) Page profil avec posts      |                                                       ?                                                        |
