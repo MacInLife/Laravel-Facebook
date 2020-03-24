@@ -420,6 +420,13 @@ Laravel Facebook - Home
     }
 ```
 
+Ajout des références utilisés :
+
+```php
+use App\Post;
+use App\User;
+```
+
 #### Étape 1 - &#128065; - Route faisant la liaison entre la vue et le controller de la page
 
 -   Ajouter la ligne suivante pour que la liaison entre votre vue et votre controller se fassent
@@ -445,7 +452,8 @@ Car nous avons modifié la vue pour qu'elle coresponde à nos attentes et pour c
 
 #### Étape 2 - &#8853; - Vue, partie création d'un post
 
--   Ajout de la partie non visible qui accueillera les posts :
+-   Partie non visible qui accueillera les posts.
+    Nous l'avons déjà mis dans l'étape 1, ceci est un rappel pour vous montrez les différentes parties.
 
 ```php
    <!-- Fil d'actualité -->
@@ -491,6 +499,7 @@ Car nous avons modifié la vue pour qu'elle coresponde à nos attentes et pour c
 -   Création de la fonction create :
 
 ```php
+use Illuminate\Http\Request;
  public function create(Post $post, Request $request)
     {
         //Validation
@@ -523,13 +532,58 @@ Route::post('/home', 'PostController@create')->middleware('auth')->name('create.
 
 ![FBL-page-home-publication.png](FBL-page-home-publication.png)
 
-### Routes
+#### Étape 3 - - Vue, partie suppression d'un post
 
--   Ajouter les lignes suivantes pour que la liaison entre votre vue et votre controller se fassent
+-   Partie formulaire de suppression.
+    Nous l'avons déjà mis dans l'étape 1, ceci est un rappel pour vous montrez les différentes parties.
 
 ```php
-//Route de la méthode post un commentaire (création)
-Route::post('/home', 'PostController@create')->middleware('auth')->name('create.post');
+<form action="{{route('destroy.post', $post->id)}}" method="DELETE" id="myform" class="p-2">
+    @if ($post->user->id === Auth::user()->id)
+    <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
+                    return true;}else{ return false;}">Supprimer</button>
+    @endif
+</form>
+```
+
+#### Étape 3 - - Controller gérant la suppression
+
+-   Création de la fonction destroy :
+
+```php
+  public function destroy($id, Post $post)
+    {
+        //Trouve le post de l'utilisateur concerné
+        $p = $post->find($id);
+        //Si t'es authentifier alors il supprime
+       if (Auth::check()) {
+        $p->delete($id);
+
+        //
+        return redirect::back()->withOk("Le post " . $p->text . " a été supprimé.");
+        }
+    }
+```
+
+-   Ajout des références suivantes :
+
+```php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+```
+
+#### Étape 3 - - Route de liaison
+
+-   Ajouter la ligne suivante pour que la liaison entre votre fonction de destroy (controller) et votre vue se fassent :
+
+```php
 //Route de la méthode delete un post (suppression)
 Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('destroy.post');
 ```
+
+#### Étape 3 - - Rendu visuel suppression publication
+
+![FBL-page-home-publication.png](FBL-page-home-publication.png)
+![FBL-post-supp.png](FBL-post-supp.png)
+![FBL-post-alert.png](FBL-post-alert.png)
+![FBL-page-home-supp.png](FBL-page-home-supp.png)

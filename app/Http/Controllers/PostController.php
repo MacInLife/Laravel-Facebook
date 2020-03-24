@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -110,8 +111,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Post $post)
     {
+        //Trouve le post de l'utilisateur concerné
+        $p = $post->find($id);
+        //Si t'es authentifier alors il supprime
+       if (Auth::check()) {
+        $p->delete($id);
+
         //
+        return redirect::back()->withOk("Le post " . $p->text . " a été supprimé.");
+        }
     }
 }
