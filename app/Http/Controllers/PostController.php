@@ -21,6 +21,7 @@ class PostController extends Controller
 
         //Post de la personne connecter
         $posts = $post
+        //->whereIn('user_id', Auth::user()->following()->pluck('follower_id'))
         ->orWhere('user_id', Auth::user()->id)
         ->with('user')
         ->orderBy('id', 'DESC')
@@ -40,9 +41,22 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post, Request $request)
     {
-        //
+        //Validation
+        $validate = $request->validate([
+            'text' => 'required',
+        ]);
+        //Création
+        $post = new Post;
+        $post->text = $request->text;
+        $post->user_id = $request->user_id;
+
+        //Sauvegarde du post tweet
+        $post->save();
+
+        //Redirection
+        return redirect('/home');
     }
 
     /**

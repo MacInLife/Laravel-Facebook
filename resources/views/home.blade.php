@@ -57,48 +57,46 @@ Laravel Facebook - Home
                             </div>
                         </div>
                     </div>
-                    <div class="card mt-2">
+
+                    <!-- Fil d'actualité -->
+                    @if(!$posts)
+                    <div class="card my-2">
                         <div class="card-header">Fil d'actualité</div>
-                        <div class="card-body outer">
-                            @if($posts)
-                            @foreach ($posts as $post)
-                            @csrf
-                            <div class="child border-bottom mb-2 pb-2">
-                                <div class="mb-2 mr-2 float-left" style="width:80px;"><a
-                                        href="{{ route('profil', $post->user->id) }}">
-                                        <img class="m-auto rounded img-thumbnail" src="{{$post->user->getAvatar()}}"
-                                            width="100%" height="100%">
-                                    </a>
-                                </div>
-                                <div class="d-flex">
-                                    <a href="{{ route('profil', $post->user->id) }}" class="mr-auto"
-                                        style="text-decoration: none; color: inherit;">
-                                        <div class="d-flex">
-                                            <H5 class="font-weight-bold pr-2">{{$post->user->name}}</H5>
-                                            <p>{{$post->user->pseudo}}</p>
-                                        </div>
-                                    </a>
-                                    <form action="{{route('destroy.post', $post->id)}}" method="DELETE" id="myform">
-                                        @if ($post->user->id === Auth::user()->id)
-                                        <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
-                                                return true;}else{ return false;}">Supprimer</button>
-                                        @endif
-                                    </form>
-                                </div>
-                                <div class="d-flex">
-                                    <p class="mr-auto w-70 text-info">
-                                        {{$post->text }}
-                                    </p>
-                                    <p class="p-2 text-secondary font-italic">
-                                        {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
-                                </div>
-                            </div>
-                            @endforeach
-                            @endif
-                            {{$posts->links()}}
-                        </div>
+                        <div class="card-body">Aucune publication</div>
                     </div>
+                    @else
+                    @foreach ($posts as $post)
+                    @csrf
+                    <div class="card my-2">
+                        <div class="card-header d-flex my-auto p-2">
+                            <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                    src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
+                            <div class="mr-auto">
+                                <p class="my-auto">{{$post->user->firstname}} {{$post->user->name}}</p>
+                                <p class="text-muted mr-2 my-auto text-secondary font-italic">
+                                    {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
+                            </div>
+                            <form action="{{route('destroy.post', $post->id)}}" method="DELETE" id="myform" class="p-2">
+                                @if ($post->user->id === Auth::user()->id)
+                                <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
+                                                return true;}else{ return false;}">Supprimer</button>
+                                @endif
+                            </form>
+                        </div>
+                        <div class="card-body outer p-2">
+                            <p class="m-0 text-info">
+                                {{$post->text }}
+                            </p>
+
+                        </div>
+
+                    </div>
+                    @endforeach
+                    @endif
+                    {{$posts->links()}}
                 </div>
+
+                <!-- Suggestions d'amis -->
                 <div class="card border-0 bg-light" style="width:25%;">
                     <div class="navbar px-0 bg-light" style="
     border-bottom: 1px solid lightgrey;">
