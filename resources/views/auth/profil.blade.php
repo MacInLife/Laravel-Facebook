@@ -181,8 +181,12 @@ Laravel Facebook - Profil
                                     <form method="post" action="{{route('create.post')}}">
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                         <div class="d-flex">
-                                            <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
-                                                    src="{{Auth::user()->avatar}}" alt="" width="40"></div>
+                                            <a href="{{ route('profil', Auth::user()->id) }}"
+                                                class="text-decoration-none text-dark">
+                                                <div class="mr-2"><img
+                                                        style="border-radius:50%; border:1px solid #DADDE1;"
+                                                        src="{{Auth::user()->avatar}}" alt="" width="40"></div>
+                                            </a>
                                             <textarea name="text"
                                                 class="form-control @error('text') is-invalid @enderror mb-2 border-0"
                                                 placeholder="Que voulez-vous dire, {{Auth::user()->firstname}} ?"
@@ -211,45 +215,48 @@ Laravel Facebook - Profil
                         @csrf
                         <div class="card my-2">
                             <div class="card-header d-flex my-auto p-2">
-                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
-                                        src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
-                                <div class="mr-auto">
+                                <a href="{{ route('profil', $post->user->id) }}" class="text-decoration-none text-dark">
+                                    <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                            src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
+                                    <div class="mr-auto">
+                                </a>
+                                <a href="{{ route('profil', $post->user->id) }}" class="text-decoration-none text-dark">
                                     <p class="my-auto">{{$post->user->firstname}} {{$post->user->name}}</p>
-                                    <p class="text-muted mr-2 my-auto text-secondary font-italic">
-                                        {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
-                                </div>
-                                <form action="{{route('destroy.post', $post->id)}}" method="DELETE" id="myform"
-                                    class="p-2">
-                                    @if ($post->user->id === Auth::user()->id)
-                                    <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
+                                </a>
+                                <p class="text-muted mr-2 my-auto text-secondary font-italic">
+                                    {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
+                            </div>
+                            <form action="{{route('destroy.post', $post->id)}}" method="DELETE" id="myform" class="p-2">
+                                @if ($post->user->id === Auth::user()->id)
+                                <button type="submit" class="btn btn-outline-danger p-2" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
                                                 return true;}else{ return false;}">Supprimer</button>
-                                    @endif
-                                </form>
-                            </div>
-                            <div class="card-body outer p-2">
-                                <p class="m-0 text-info">
-                                    {{$post->text }}
-                                </p>
-
-                            </div>
+                                @endif
+                            </form>
+                        </div>
+                        <div class="card-body outer p-2">
+                            <p class="m-0 text-info">
+                                {{$post->text }}
+                            </p>
 
                         </div>
-                        @endif
-                        @endforeach
-                        @endif
 
                     </div>
-                </div>
+                    @endif
+                    @endforeach
+                    @endif
 
-                <!-- Partie Amis -->
-                <div class="tab-pane fade bg-white" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    coucou amis
                 </div>
+            </div>
 
+            <!-- Partie Amis -->
+            <div class="tab-pane fade bg-white" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                coucou amis
             </div>
 
         </div>
+
     </div>
+</div>
 </div>
 <!-- Boite de dialogue d'édition de l'avatar -->
 <dialog id="dialogEditAvatar">

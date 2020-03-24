@@ -13,11 +13,12 @@ Laravel Facebook - Home
 
             <div class="d-flex">
                 <div class="" style="width:20%;">
-                    <p class="">
-
-                        <img style="border-radius:50%; border:1px solid #DADDE1;" src="{{Auth::user()->avatar}}" alt=""
-                            width="20"> {{Auth::user()->firstname}} {{Auth::user()->name}}
-                    </p>
+                    <a href="{{ route('profil', Auth::user()->id) }}" class="text-decoration-none text-dark m-auto">
+                        <p class="">
+                            <img style="border-radius:50%; border:1px solid #DADDE1;" src="{{Auth::user()->avatar}}"
+                                alt="" width="20"> {{Auth::user()->firstname}} {{Auth::user()->name}}
+                        </p>
+                    </a>
                     <div class="m-2">
                         <hr style="opacity:0;">
                     </div>
@@ -40,8 +41,11 @@ Laravel Facebook - Home
                                 <form method="post" action="{{route('create.post')}}">
                                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                     <div class="d-flex">
-                                        <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
-                                                src="{{Auth::user()->avatar}}" alt="" width="40"></div>
+                                        <a href="{{ route('profil', Auth::user()->id) }}"
+                                            class="text-decoration-none text-dark m-auto">
+                                            <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                                    src="{{Auth::user()->avatar}}" alt="" width="40"></div>
+                                        </a>
                                         <textarea name="text"
                                             class="form-control @error('text') is-invalid @enderror mb-2 border-0"
                                             placeholder="Que voulez-vous dire, {{Auth::user()->firstname}} ?" id="text"
@@ -69,10 +73,14 @@ Laravel Facebook - Home
                     @csrf
                     <div class="card my-2">
                         <div class="card-header d-flex my-auto p-2">
-                            <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
-                                    src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
+                            <a href="{{ route('profil', $post->user->id) }}" class="text-decoration-none text-dark">
+                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                        src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
+                            </a>
                             <div class="mr-auto">
-                                <p class="my-auto">{{$post->user->firstname}} {{$post->user->name}}</p>
+                                <a href="{{ route('profil', $post->user->id) }}" class="text-decoration-none text-dark">
+                                    <p class="my-auto">{{$post->user->firstname}} {{$post->user->name}}</p>
+                                </a>
                                 <p class="text-muted mr-2 my-auto text-secondary font-italic">
                                     {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
                             </div>
