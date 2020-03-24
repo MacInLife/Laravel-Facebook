@@ -102,3 +102,16 @@ Nos modèles sont désormais prêt !
 ### B. Gestion des amis dans le controller
 
 Comme expliquer précédemment les demandes d'amis se géreront dans le profil, nous utiliserons donc le controller correspondant au profil ici "ProfilController".
+
+### C. Vue
+
+```php
+<ul class="card-body">
+    @foreach ($user->amis as $amis)
+    <li>{{ $amis->id }} - {{ $tag->name }} - Pivot Active = {{ $amis->pivot->active }}
+        @if($amis->pivot->active) ✅ @else ❌ @endif > Created at
+        {{ $amis->pivot->created_at->diffForHumans() }}
+    </li>
+    @endforeach
+</ul>
+```
