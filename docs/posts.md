@@ -1,8 +1,8 @@
-## IX. Création d'un post/commentaire
+## IX. Création d'un post
 
 ### A. Création de la Migration/Table "Post"
 
--   Crée une migration pour effectuer des posts/commentaire
+-   Crée une migration pour effectuer des posts
 
 ```
 php artisan make:migration create_posts_table
@@ -46,8 +46,8 @@ class CreatePostsTable extends Migration
 ```
 
 -   Modification du contenu pour faire correspondre nos posts à nos utilisateurs
-    -   Ajout d'un champ "text
-    -   Ajout d'un champ faisant la liaison avec l'id de l'utilisateurs de la table "users.
+    -   Ajout d'un champ "text"
+    -   Ajout d'un champ faisant la liaison avec l'id de l'utilisateurs de la table "users".
 
 ```php
   $table->string('text');
