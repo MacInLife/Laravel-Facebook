@@ -450,7 +450,7 @@ Car nous avons modifié la vue pour qu'elle coresponde à nos attentes et pour c
 
 ![FBL-page-home.png](FBL-page-home.png)
 
-#### Étape 2 - &#8853; - Vue, partie création d'un post
+#### Étape 2 - &#128172; - Vue, partie création d'un post
 
 -   Partie non visible qui accueillera les posts.
     Nous l'avons déjà mis dans l'étape 1, ceci est un rappel pour vous montrez les différentes parties.
@@ -494,7 +494,7 @@ Car nous avons modifié la vue pour qu'elle coresponde à nos attentes et pour c
                     {{$posts->links()}}
 ```
 
-#### Étape 2 - &#8853; - Controller gérant la création
+#### Étape 2 - &#128172; - Controller gérant la création
 
 -   Création de la fonction create :
 
@@ -519,7 +519,7 @@ use Illuminate\Http\Request;
     }
 ```
 
-#### Étape 2 - &#8853; - Route de liaison
+#### Étape 2 - &#128172; - Route de liaison
 
 -   Ajouter la ligne suivante pour que la liaison entre votre fonction de creation (controller) et votre vue se fassent :
 
@@ -528,11 +528,11 @@ use Illuminate\Http\Request;
 Route::post('/home', 'PostController@create')->middleware('auth')->name('create.post');
 ```
 
-#### Étape 2 - &#8853; - Rendu visuel avec publication
+#### Étape 2 - &#128172; - Rendu visuel avec publication
 
 ![FBL-page-home-publication.png](FBL-page-home-publication.png)
 
-#### Étape 3 - - Vue, partie suppression d'un post
+#### Étape 3 - &#9940; - Vue, partie suppression d'un post
 
 -   Partie formulaire de suppression.
     Nous l'avons déjà mis dans l'étape 1, ceci est un rappel pour vous montrez les différentes parties.
@@ -546,7 +546,7 @@ Route::post('/home', 'PostController@create')->middleware('auth')->name('create.
 </form>
 ```
 
-#### Étape 3 - - Controller gérant la suppression
+#### Étape 3 - &#9940; - Controller gérant la suppression
 
 -   Création de la fonction destroy :
 
@@ -572,7 +572,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 ```
 
-#### Étape 3 - - Route de liaison
+#### Étape 3 - &#9940; - Route de liaison
 
 -   Ajouter la ligne suivante pour que la liaison entre votre fonction de destroy (controller) et votre vue se fassent :
 
@@ -581,7 +581,7 @@ use Illuminate\Support\Facades\Redirect;
 Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('destroy.post');
 ```
 
-#### Étape 3 - - Rendu visuel suppression publication
+#### Étape 3 - &#9940; - Rendu visuel suppression publication
 
 ![FBL-page-home-publication.png](FBL-page-home-publication.png)
 ![FBL-post-supp.png](FBL-post-supp.png)
