@@ -164,6 +164,7 @@ Laravel Facebook - Profil
                     <!-- Contenu journal -->
                     <div class="w-75 m-1">
                         <!-- Créer une Publication -->
+                        @if($user->name === Auth::user()->name)
                         <div class="card">
                             <div class="card-header">Créer une publication</div>
                             <div class="card-body p-0">
@@ -197,11 +198,11 @@ Laravel Facebook - Profil
                                 </div>
                             </div>
                         </div>
-
+                        @endif
                         <!-- Publication -->
                         @if(!$posts)
                         <div class="card my-2">
-                            <div class="card-header">Fil d'actualité</div>
+                            <div class="card-header">Publication du journal</div>
                             <div class="card-body">Aucune publication</div>
                         </div>
                         @else
@@ -238,11 +239,6 @@ Laravel Facebook - Profil
                         @endif
 
                     </div>
-
-
-
-
-
                 </div>
 
                 <!-- Partie Amis -->
@@ -254,7 +250,6 @@ Laravel Facebook - Profil
 
         </div>
     </div>
-</div>
 </div>
 <!-- Boite de dialogue d'édition de l'avatar -->
 <dialog id="dialogEditAvatar">
