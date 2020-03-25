@@ -215,4 +215,4 @@ Code de la page welcome.blade.php
 </details>
 
 Visuel de la page de connexion :
-![FB-welcome.png](FB-welcome.png)
+![screens/FB-welcome.png](screens/FB-welcome.png)

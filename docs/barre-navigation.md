@@ -101,4 +101,4 @@ Ajout des deux dernières lignes pour la typographie.
 ```
 
 Votre barre de navigation est désormais prête et ressemblante à celle de Facebook.
-![FBL-barre-navigation.png](docs/FBL-barre-navigation.png)
+![screens/FBL-barre-navigation.png](screens/FBL-barre-navigation.png)

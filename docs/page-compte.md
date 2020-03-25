@@ -355,4 +355,4 @@ public function destroyAvatar(User $user)
     `Route::post('/account', 'AccountController@destroyAvatar')->middleware('auth')->name('account.destroyAvatar');`
 
 Visuel :
-![FBL-page-compte.png](FBL-page-compte.png)
+![screens/FBL-page-compte.png](screens/FBL-page-compte.png)

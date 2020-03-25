@@ -121,7 +121,7 @@ use App\Post;
 
 ### C. Rendu affichage de ses posts
 
-![FBL-page-profil-posts.png](FBL-page-profil-posts.png)
+![screens/FBL-page-profil-posts.png](screens/FBL-page-profil-posts.png)
 
 ### D. Code vue page profil maj
 

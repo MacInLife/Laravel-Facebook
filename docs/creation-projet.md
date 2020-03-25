@@ -34,7 +34,7 @@ Un nouveau dossier se crée avec le nom que vous lui avez donné ici "Laravel-Fa
     Le terminal vous renvoie l'url et le port sur lequel se lance votre projet
     ex par défault: **http://127.0.0.1:8000**
 -   Rendez-vous sur cette adresse, vous devrez obtenir le visuel suivant :
-    ![localhost.png](localhost.png)
+    ![screens/localhost.png](screens/localhost.png)
 
 ### B. Coté Base de données
 
@@ -43,7 +43,7 @@ Un nouveau dossier se crée avec le nom que vous lui avez donné ici "Laravel-Fa
     - Cliquer dans le menu de gauche sur "Nouvelle base de données", en haute taper le nom de votre BDD et cliquer sur **Créer**<br>
       Lui donner le nom du projet exemple "Laravel-Facebook"
 
-![PHPMyAdmin-CreateBDD.png](PHPMyAdmin-CreateBDD.png)
+![screens/PHPMyAdmin-CreateBDD.png](screens/PHPMyAdmin-CreateBDD.png)
 
 -   Ouvrir se dossier via votre éditeur de code, pour moi se sera Visual Studio Code.
 -   Pour connecter la BDD à notre projet, il faut modifier le fichier **_".env"_** situé à la racine du projet.
@@ -74,13 +74,13 @@ Si dans votre BDD, vous pouvez voir les utilisateurs crée, c'est que la connexi
 ### C. Interface obtenu
 
 -   Page d'accueil :
-    ![localhost.png](localhost.png)
+    ![screens/localhost.png](screens/localhost.png)
 
 -   Page de "Register"
-    ![Base-register.png](Base-register.png)
+    ![screens/Base-register.png](screens/Base-register.png)
 
 -   Page de "Login"
-    ![Base-login.png](Base-login.png)
+    ![screens/Base-login.png](screens/Base-login.png)
 
 -   Page une fois connecté
-    ![Base-logged_in.png](Base-logged_in.png)
+    ![screens/Base-logged_in.png](screens/Base-logged_in.png)

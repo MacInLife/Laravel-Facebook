@@ -229,7 +229,7 @@ Dans ce projet, nous procéderons par étapes :
 Fichier : "home.blade.php"
 
 -   Il correspondait au visuel suivant :
-    ![Base-logged_in.png](Base-logged_in.png)
+    ![screens/Base-logged_in.png](screens/Base-logged_in.png)
 
 1.  Modification de la vue
 
@@ -448,7 +448,7 @@ Car nous avons modifié la vue pour qu'elle coresponde à nos attentes et pour c
 
 #### Étape 1 - &#128065; - Rendu visuel initial
 
-![FBL-page-home.png](FBL-page-home.png)
+![screens/FBL-page-home.png](screens/FBL-page-home.png)
 
 #### Étape 2 - &#128172; - Vue, partie création d'un post
 
@@ -530,7 +530,7 @@ Route::post('/home', 'PostController@create')->middleware('auth')->name('create.
 
 #### Étape 2 - &#128172; - Rendu visuel avec publication
 
-![FBL-page-home-publication.png](FBL-page-home-publication.png)
+![screens/FBL-page-home-publication.png](screens/FBL-page-home-publication.png)
 
 #### Étape 3 - &#9940; - Vue, partie suppression d'un post
 
@@ -583,7 +583,7 @@ Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('de
 
 #### Étape 3 - &#9940; - Rendu visuel suppression publication
 
-![FBL-page-home-publication.png](FBL-page-home-publication.png)
-![FBL-post-supp.png](FBL-post-supp.png)
-![FBL-post-alert.png](FBL-post-alert.png)
-![FBL-page-home-supp.png](FBL-page-home-supp.png)
+![screens/FBL-page-home-publication.png](screens/FBL-page-home-publication.png)
+![screens/FBL-post-supp.png](screens/FBL-post-supp.png)
+![screens/FBL-post-alert.png](screens/FBL-post-alert.png)
+![screens/FBL-page-home-supp.png](screens/FBL-page-home-supp.png)

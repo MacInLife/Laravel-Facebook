@@ -512,4 +512,4 @@ use Intervention\Image\Facades\Image;
 
 ### F. Visuel
 
-![profil-edit-avatar-cover.png](profil-edit-avatar-cover.png)
+![screens/profil-edit-avatar-cover.png](screens/profil-edit-avatar-cover.png)
