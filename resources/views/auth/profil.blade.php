@@ -85,6 +85,7 @@ Laravel Facebook - Profil
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
             @endif
             <div class="position-relative">
+                @if($user->name === Auth::user()->name)
                 <a class="img-cover" onclick="showDialogEditCover()">
                     <img src="{{$user->getCover()}}" alt="" width="100%" height="315">
                     <div class="photo-cover">
@@ -97,8 +98,12 @@ Laravel Facebook - Profil
                         <p class="text-white mx-2">Modifier la photo de courverture</p>
                     </div>
                 </a>
+                @else
+                <img src="{{$user->getCover()}}" alt="" width="100%" height="315">
+                @endif
                 <div class="mx-auto mb-2"
                     style="width:168px; height:168px; position: absolute;   top: 82%;   left: 11%;  transform: translate(-50%,-50%); border-radius:50%; overflow:hidden;">
+                    @if($user->name === Auth::user()->name)
                     <a class="img-avatar" onclick="showDialogEditAvatar()">
                         <img id="user-avatar" class="m-auto"
                             style="width:168px; border-radius:50%; border:1px solid #DADDE1;"
@@ -110,6 +115,12 @@ Laravel Facebook - Profil
                             <p class="text-white text-center">Mettre à jour</p>
                         </div>
                     </a>
+                    @else
+                    <img id="user-avatar" class="m-auto"
+                        style="width:168px; border-radius:50%; border:1px solid #DADDE1;" src="{{$user->getAvatar()}}"
+                        width="100%" height="100%">
+
+                    @endif
                 </div>
                 <div style="position: absolute;   top: 84%;   left: 30%;  transform: translate(-50%,-50%)">
                     <H3 class="text-white">{{$user->firstname}} {{$user->name}}</H3>
@@ -258,6 +269,7 @@ Laravel Facebook - Profil
     </div>
 </div>
 </div>
+</div>
 <!-- Boite de dialogue d'édition de l'avatar -->
 <dialog id="dialogEditAvatar">
     <button type="button" class="close" onclick="closeDialogEdit()" aria-label="Close">
@@ -281,7 +293,6 @@ Laravel Facebook - Profil
             {{ __("Enregister") }}
         </button>
         </div>
-
     </form>
 </dialog>
 <script>
