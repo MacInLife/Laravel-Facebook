@@ -85,15 +85,22 @@ Le model permet la liaison entre les différentes tables mais aussi de vérifier
 2. Nous avons donc besoin ici de rajouter la liaison entre nos amis et notre utilisateurs, pour cela écrire la fonction suivante dans notre model "User.php" :
 
 ```php
-  public function amis(){
+  public function amisDemande(){
+      //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
         //Many To Many - withPivot = recup booleen
-        return $this->belongsToMany(\App\Tag::class)->withPivot('active')->withPivot('created_at');
+        return $this->belongsToMany(\App\User::class, 'amis_dmd','user_id', 'amis_id')->withPivot('active')->withPivot('created_at');
     }
     public function amisActive()
     {
-        return $this->belongsToMany(\App\Tag::class)
+        return $this->belongsToMany(\App\User::class)
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', true);
+    }
+        public function amisNotActive()
+    {
+        return $this->belongsToMany(\App\User::class)
+            ->withPivot('active')->withPivot('created_at')
+            ->wherePivot('active', false);
     }
 ```
 
@@ -110,6 +117,10 @@ Comme expliquer précédemment les demandes d'amis se géreront dans le profil, 
     @foreach ($user->amis as $amis)
     <li>{{ $amis->id }} - {{ $tag->name }} - Pivot Active = {{ $amis->pivot->active }}
         @if($amis->pivot->active) ✅ @else ❌ @endif > Created at
+        {{ $amis->pivot->created_at->diffForHumans() }}
+    </li>
+      <li>{{ $amis->id }} - {{ $tag->name }} - Pivot Active = {{ $amis->pivot->active }}
+        @if($amis->pivot->tagActive) ✅ @else ❌ @endif > Created at
         {{ $amis->pivot->created_at->diffForHumans() }}
     </li>
     @endforeach
