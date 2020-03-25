@@ -127,6 +127,8 @@ use App\Post;
 
 Je vous remets le code complet à l'étape ou nous en sommes en cas d'erreur dans le suivi.
 
+-   Ajout que seul l'utilisateur connécté peut modifier son avatar et sa photo de couverture.
+
 <details>
 <summary>Voir le code</summary>
 

@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use App\Post;
+use App\Amis;
 
 class ProfilController extends Controller
 {
     //
-    public function index($slug, User $user, Post $post)
+    public function index($slug, User $user, Post $post, Amis $amis)
     {
         $u = $user->wherePseudo($slug)->first();
 
@@ -24,9 +25,10 @@ class ProfilController extends Controller
             }
         }
         $posts = $post->orderBy('id', 'DESC')->get();
+        $amis = $amis;
 
         //Retourne la view des posts
-        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts]);
+        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts, 'amis' => $amis ]);
     }
 
     public function updateAvatar(User $user)
@@ -66,5 +68,53 @@ class ProfilController extends Controller
         } 
 
     return redirect::back()->withOk("La photo de courverture a été modifié.");
+    }
+
+
+    public function amis_add($id, User $user)
+    {
+        $user_id = Auth::user()->id;
+        $amis_add = $user->where('id', $id)->first();
+
+        $amis = new Amis;
+        $amis->user_id = $user_id;  
+        $amis->amis_id = $amis_add->id;   
+        $amis->active = 0;
+       //dd($amis);
+        $amis->save();
+      
+        return redirect()->back()->withOk("La demande d'amis à été envoyé à " . $amis_add->name ." ". $amis_add->firstname ." et est en attente de sa réponse !");
+    }
+
+    public function amis_invit($id, Amis $amis, User $user)
+    {
+        $user_id = Auth::user()->id;
+        $amis_invit = $user->where('id', $id)->first();
+       
+        //where == request
+        $amis = $amis
+            ->where('user_id', $user_id)
+            ->where('amis_id', $amis_invit->id)
+            ->first();
+        $amis->active = 1;
+        $amis->update();
+
+        return redirect()->back()->withOk("Vous avez accepter la demande d'amis de " . $amis_invit->name ." ". $amis_invit->firstname . " !");
+    }
+
+    public function amis_delete($id, Amis $amis, User $user)
+    {
+        $user_id = Auth::user()->id;
+        $amis_delete = $user->where('id', $id)->first();
+       
+        //where == request
+        $amis = $amis
+            ->where('user_id', $user_id)
+            ->where('amis_id', $amis_delete->id)
+            ->first();
+           // dd($amis);
+        $amis->delete();
+
+        return redirect()->back()->withOk("Vous n'êtes plus amis avec " . $amis_delete->name ." ". $amis_delete->firstname . " !");
     }
 }

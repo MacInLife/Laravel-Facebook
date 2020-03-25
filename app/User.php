@@ -42,11 +42,34 @@ class User extends Authenticatable
                     return '/img/avatar-vide.png';
                 }
                 return $this->avatar;
-        }
-        public function getCover() {
-            if (!$this->cover) {
-                        return '/img/banner.jpeg';
-                    }
-                    return $this->cover;
-            }
+    }
+    public function getCover() {
+        if (!$this->cover) {
+                    return '/img/banner.jpeg';
+                }
+                return $this->cover;
+    }
+
+    public function amisDemande(){
+        //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
+          //Many To Many - withPivot = recup booleen
+          return $this->belongsToMany(\App\User::class, 'amis_dmd','user_id', 'amis_id')->withPivot('created_at');
+    }
+
+    public function amisActive()
+    {
+        return $this->belongsToMany(\App\User::class)
+            ->withPivot('active')->withPivot('created_at')
+            ->wherePivot('active', true);
+    }
+
+    public function amisNotActive()
+    {
+        return $this->belongsToMany(\App\User::class)
+            ->withPivot('active')->withPivot('created_at')
+            ->wherePivot('active', false);
+    }
+    public function posts() {
+        return $this->hasMany(\App\Post::class, 'user_id');
+    }
 }

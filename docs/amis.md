@@ -6,7 +6,7 @@ Vos demandes d'amis en attente et vos amis seront eux affichés uniquement sur v
 
 ### A. Création de la Migration/Table "Amis"
 
--   Crée une migration pour effectuer des posts
+-   Crée une migration pour effectuer des demandes d'amis
 
 ```
 php artisan make:migration create_amis_table
@@ -82,25 +82,30 @@ php artisan make:model Amis
 
 Le model permet la liaison entre les différentes tables mais aussi de vérifier que la valeur correspond bien à ce que le champs demandent.
 
-2. Nous avons donc besoin ici de rajouter la liaison entre nos amis et notre utilisateurs, pour cela écrire la fonction suivante dans notre model "User.php" :
+2. Nous avons donc besoin ici de rajouter la liaison entre nos amis et notre utilisateurs, pour cela écrire les fonctions suivantes dans notre model "User.php" :
 
 ```php
-  public function amisDemande(){
-      //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
-        //Many To Many - withPivot = recup booleen
-        return $this->belongsToMany(\App\User::class, 'amis_dmd','user_id', 'amis_id')->withPivot('active')->withPivot('created_at');
+      public function amisDemande(){
+        //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
+          //Many To Many - withPivot = recup booleen
+          return $this->belongsToMany(\App\User::class, 'amis_dmd','user_id', 'amis_id')->withPivot('created_at');
     }
+
     public function amisActive()
     {
         return $this->belongsToMany(\App\User::class)
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', true);
     }
-        public function amisNotActive()
+
+    public function amisNotActive()
     {
         return $this->belongsToMany(\App\User::class)
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
+    }
+    public function posts() {
+        return $this->hasMany(\App\Post::class, 'user_id');
     }
 ```
 
@@ -110,7 +115,119 @@ Nos modèles sont désormais prêt !
 
 Comme expliquer précédemment les demandes d'amis se géreront dans le profil, nous utiliserons donc le controller correspondant au profil ici "ProfilController".
 
+Ajouter donc dans votre controller les fonctions suivantes :
+
+1. Fonction de demande d'amis en attente d'acceptation
+
+```php
+public function amis_add($id, User $user)
+    {
+        $user_id = Auth::user()->id;
+        $amis_add = $user->where('id', $id)->first();
+
+        $amis = new Amis;
+        $amis->user_id = $user_id;
+        $amis->amis_id = $amis_add->id;
+        $amis->active = 0;
+       //dd($amis);
+        $amis->save();
+
+        return redirect()->back()->withOk("La demande d'amis à été envoyé à " . $amis_add->name ." ". $amis_add->firstname ." et est en attente de sa réponse !");
+    }
+
+```
+
+2. Fonction de demande d'amis accepté
+
+```php
+public function amis_invit($id, Amis $amis, User $user)
+    {
+        $user_id = Auth::user()->id;
+        $amis_invit = $user->where('id', $id)->first();
+
+        //where == request
+        $amis = $amis
+            ->where('user_id', $user_id)
+            ->where('amis_id', $amis_invit->id)
+            ->first();
+        $amis->active = 1;
+        $amis->update();
+
+        return redirect()->back()->withOk("Vous avez accepter la demande d'amis de " . $amis_invit->name ." ". $amis_invit->firstname . " !");
+    }
+```
+
+3. Fonction de suppression d'un amis
+
+```php
+public function amis_delete($id, Amis $amis, User $user)
+    {
+        $user_id = Auth::user()->id;
+        $amis_delete = $user->where('id', $id)->first();
+
+        //where == request
+        $amis = $amis
+            ->where('user_id', $user_id)
+            ->where('amis_id', $amis_delete->id)
+            ->first();
+           // dd($amis);
+        $amis->delete();
+
+        return redirect()->back()->withOk("Vous n'êtes plus amis avec " . $amis_delete->name ." ". $amis_delete->firstname . " !");
+    }
+```
+
 ### C. Vue
+
+-   Création du bouton "Ajouter" pour faire la demande d'amis dans la page profil.
+
+```php
+  <!-- Bouton de demande d'amis "Ajouter"-->
+@if($user->name != Auth::user()->name)
+@if($amis == false)
+<a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+    aria-pressed="true">
+    <div class="border border-dark"
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+        <div class="bg-light d-flex m-auto">
+            <div class="ml-2">
+                <img src="/img/user-add.png" alt="" width="12" height="12">
+            </div>
+            <p class="my-auto mx-2">Ajouter</p>
+        </div>
+    </div>
+</a>
+@elseif($amis->amisDemande == false && $amis->amisActive == false)
+<a class="text-decoration-none text-dark" href="{{ route('profil.amisInvit', $user->id)}}" role="button"
+    aria-pressed="true">
+    <div class="border border-dark"
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+        <div class="bg-light d-flex m-auto">
+            <div class="ml-2">
+                <img src="/img/user-invit.png" alt="" width="12" height="12">
+            </div>
+            <p class="my-auto mx-2">Invitation envoyée</p>
+        </div>
+    </div>
+</a>
+@else
+<a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
+    role="button" aria-pressed="true">
+    <div class="border border-dark"
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+        <div class="bg-light d-flex m-auto">
+            <div class="ml-2">
+                <img src="/img/" alt="" width="12" height="12">
+            </div>
+            <p class="my-auto mx-2">Retier des amis</p>
+        </div>
+    </div>
+</a>
+@endif
+@endif
+```
+
+-   Code de l'application crush pour m'aider, merci de ne pas copier cela
 
 ```php
 <ul class="card-body">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
+use App\Amis;
 use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
@@ -15,14 +16,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post, User $user)
+    public function index(Post $post, User $user, Amis $amis)
     {
         //Post de tout le monde
         //$posts = $post->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->paginate(4);
 
         //Post de la personne connecter
         $posts = $post
-        //->whereIn('user_id', Auth::user()->following()->pluck('follower_id'))
+        //->whereIn('user_id', Auth::user()->amisActive()->pluck('amis_id'))
         ->orWhere('user_id', Auth::user()->id)
         ->with('user')
         ->orderBy('id', 'DESC')

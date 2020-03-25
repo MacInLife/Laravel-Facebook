@@ -37,3 +37,6 @@ Route::get('/account/{id}', 'AccountController@destroy')->middleware('auth')->na
 Route::get('/profil/{slug}', 'ProfilController@index')->name('profil');
 Route::post('profil/{slug}', 'ProfilController@updateAvatar')->middleware('auth')->name('profil.updateAvatar');
 Route::post('profil', 'ProfilController@updateCover')->middleware('auth')->name('profil.updateCover');
+Route::get('/profil/{slug}/amis_add', 'ProfilController@amis_add')->name('profil.amisAdd');
+Route::get('/profil/{slug}/amis_invit', 'ProfilController@amis_invit')->name('profil.amisInvit');
+Route::get('/profil/{slug}/amis_delete', 'ProfilController@amis_delete')->name('profil.amisDelete');
