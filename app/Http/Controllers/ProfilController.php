@@ -25,10 +25,11 @@ class ProfilController extends Controller
             }
         }
         $posts = $post->orderBy('id', 'DESC')->get();
-        $amis = $amis;
+        $amis= $amis;
+   //dd($user->amisDemande());
 
         //Retourne la view des posts
-        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts, 'amis' => $amis ]);
+        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts, 'amis'=>$amis]);
     }
 
     public function updateAvatar(User $user)
@@ -78,7 +79,14 @@ class ProfilController extends Controller
 
         $amis = new Amis;
         $amis->user_id = $user_id;  
-        $amis->amis_id = $amis_add->id;   
+        $amis->amis_id = $amis_add->id; 
+        $amis->active = 0;
+       //dd($amis);
+        $amis->save();
+
+        $amis = new Amis;
+        $amis->user_id = $amis_add->id;  
+        $amis->amis_id = $user_id; 
         $amis->active = 0;
        //dd($amis);
         $amis->save();
@@ -99,6 +107,13 @@ class ProfilController extends Controller
         $amis->active = 1;
         $amis->update();
 
+        $amisAccept = $amis
+        ->where('amis_id', $user_id)
+        ->where('user_id', $amis_invit->id)
+        ->first();
+        $amisAccept->active = 1;
+        $amisAccept->update();
+
         return redirect()->back()->withOk("Vous avez accepter la demande d'amis de " . $amis_invit->name ." ". $amis_invit->firstname . " !");
     }
 
@@ -114,6 +129,13 @@ class ProfilController extends Controller
             ->first();
            // dd($amis);
         $amis->delete();
+
+        $amisLiaison = $amis
+        ->where('amis_id', $user_id)
+        ->where('user_id', $amis_delete->id)
+        ->first();
+       // dd($amis);
+    $amisLiaison->delete();
 
         return redirect()->back()->withOk("Vous n'êtes plus amis avec " . $amis_delete->name ." ". $amis_delete->firstname . " !");
     }

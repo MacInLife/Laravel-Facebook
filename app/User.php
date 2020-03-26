@@ -50,22 +50,27 @@ class User extends Authenticatable
                 return $this->cover;
     }
 
+    public function amis(){
+        //Many To Many - withPivot = recup booleen
+        return $this->belongsToMany(\App\User::class,'user_id', 'amis_id')->withPivot('active')->withPivot('created_at');
+    }
     public function amisDemande(){
         //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
           //Many To Many - withPivot = recup booleen
-          return $this->belongsToMany(\App\User::class, 'amis_dmd','user_id', 'amis_id')->withPivot('created_at');
+          return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')->withPivot('created_at');
     }
 
     public function amisActive()
     {
-        return $this->belongsToMany(\App\User::class)
+         //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
+        return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', true);
     }
 
     public function amisNotActive()
     {
-        return $this->belongsToMany(\App\User::class)
+        return $this->belongsToMany(\App\User::class ,'amis','user_id', 'amis_id')
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
     }

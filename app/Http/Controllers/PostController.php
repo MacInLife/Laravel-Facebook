@@ -34,6 +34,7 @@ class PostController extends Controller
 
         //Récupère tous les users
         $users = $user->orderBy('id', 'DESC')->get();
+        //->except(Auth::user()->id)->except(Auth::user()->amisActive()->pluck('amis_id')->toArray());
 
         return view('home', ['posts' => $posts, 'users' => $users ]);
     }

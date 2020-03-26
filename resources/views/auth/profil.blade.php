@@ -143,7 +143,7 @@ Laravel Facebook - Profil
                         </div>
                     </div>
                 </a>
-                @elseif($amis->amisDemande == false && $amis->amisActive == false)
+                @elseif($amis->amisDemande == false)
                 <a class="text-decoration-none text-dark" href="{{ route('profil.amisInvit', $user->id)}}" role="button"
                     aria-pressed="true">
                     <div class="border border-dark"
@@ -205,14 +205,18 @@ Laravel Facebook - Profil
                         </div>
 
                         <div class="d-flex flex-wrap">
+                            @foreach ($user->amisActive as $amis)
                             <div class="m-2">
-                                <div class="">
-                                    <img src="{{$user->avatar}}" alt="" width="100">
-                                </div>
-                                <p>{{$user->firstname}} {{$user->name}}</p>
+                                <a href="{{ route('profil', $amis->id) }}" class="text-decoration-none text-dark">
+                                    <div class="">
+                                        <img src="{{$amis->avatar}}" alt="" width="100">
+                                    </div>
+                                </a>
+                                <a href="{{ route('profil', $amis->id) }}" class="text-decoration-none text-dark">
+                                    <p>{{$amis->firstname}} {{$amis->name}}</p>
+                                </a>
                             </div>
-
-
+                            @endforeach
                         </div>
                     </div>
 

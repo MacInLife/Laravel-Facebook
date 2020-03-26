@@ -85,22 +85,26 @@ Le model permet la liaison entre les différentes tables mais aussi de vérifier
 2. Nous avons donc besoin ici de rajouter la liaison entre nos amis et notre utilisateurs, pour cela écrire les fonctions suivantes dans notre model "User.php" :
 
 ```php
-      public function amisDemande(){
-        //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
-          //Many To Many - withPivot = recup booleen
-          return $this->belongsToMany(\App\User::class, 'amis_dmd','user_id', 'amis_id')->withPivot('created_at');
+    public function amis(){
+        //Many To Many - withPivot = recup booleen
+        return $this->belongsToMany(\App\Amis::class)->withPivot('active')->withPivot('created_at');
+    }
+    public function amisDemande(){
+    //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
+        //Many To Many - withPivot = recup booleen
+        return $this->belongsToMany(\App\Amis::class, 'amis_dmd','user_id', 'amis_id')->withPivot('created_at');
     }
 
     public function amisActive()
     {
-        return $this->belongsToMany(\App\User::class)
+        return $this->belongsToMany(\App\Amis::class)
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', true);
     }
 
     public function amisNotActive()
     {
-        return $this->belongsToMany(\App\User::class)
+        return $this->belongsToMany(\App\Amis::class)
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
     }
