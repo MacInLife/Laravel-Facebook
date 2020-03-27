@@ -50,11 +50,7 @@ class User extends Authenticatable
                 return $this->cover;
     }
 
-    public function amis(){
-        //Many To Many - withPivot = recup booleen
-        return $this->belongsToMany(\App\User::class,'user_id', 'amis_id')->withPivot('active')->withPivot('created_at');
-    }
-    public function amisDemande(){
+    public function amisAll(){
         //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
           //Many To Many - withPivot = recup booleen
           return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')->withPivot('created_at');
@@ -74,6 +70,13 @@ class User extends Authenticatable
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
     }
+    public function amisWait()
+    {
+        return $this->belongsToMany(\App\User::class ,'amis','amis_id', 'user_id')
+            ->withPivot('active')->withPivot('created_at')
+            ->wherePivot('active', false);
+    }
+
     public function posts() {
         return $this->hasMany(\App\Post::class, 'user_id');
     }

@@ -108,7 +108,7 @@ Laravel Facebook - Home
                 <div class="card border-0 bg-light" style="width:25%;">
                     <div class="navbar px-0 bg-light" style="
     border-bottom: 1px solid lightgrey;">
-                        <h6 class=" mt-2 pl-4">Suggestions d'amis ({{$users->count()-1}})
+                        <h6 class=" mt-2 pl-4">Suggestions d'amis ({{$users->count()}})
                         </h6>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -124,7 +124,6 @@ Laravel Facebook - Home
                         <div class="collapse navbar-collapse bg-white p-2" id="navbarSupportedContent">
                             <div class="content">
                                 @foreach ($users as $user)
-                                @if ($user != Auth::user())
                                 <div class="card-body d-flex p-0 pb-2">
                                     <a href="{{ route('profil', $user->id) }}" class="my-auto mr-auto"
                                         style="text-decoration: none; color: inherit;">
@@ -136,13 +135,33 @@ Laravel Facebook - Home
                                         </div>
                                     </a>
                                     <div class=" my-auto">
-                                        @if($users == true)
-                                        <a href="" class="btn btn-primary btn-sm" role="button"
-                                            aria-pressed="true">Ajouter</a>
+                                        @if($user == true)
+                                        @if($amis->amisNotActive )
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+                                            aria-pressed="true">
+                                            <div class="border border-dark">
+                                                <div class="bg-light d-flex m-auto">
+                                                    <div class="ml-2">
+                                                        <img src="/img/user-add.png" alt="" width="12" height="12">
+                                                    </div>
+                                                    <p class="my-auto mx-2">Ajouter</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @else
+                                        <div class="border border-dark">
+                                            <div class="bg-light d-flex m-auto">
+                                                <div class="ml-2">
+                                                    <img src="/img/user-invit.png" alt="" width="12" height="12">
+                                                </div>
+                                                <p class="my-auto mx-2">Invitation envoyée</p>
+                                            </div>
+                                        </div>
+                                        @endif
                                         @endif
                                     </div>
                                 </div>
-                                @endif
                                 @endforeach
                             </div>
                         </div>

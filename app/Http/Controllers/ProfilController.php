@@ -20,12 +20,14 @@ class ProfilController extends Controller
 
         if (!$u) {
             $u = $user->whereId($slug)->first();
+            $posts = $post->orderBy('id', 'DESC')->get();
+            $amis= $amis;
+        // dd($u->amisActive());
             if (!$u) {
                 return redirect('/', 302);
             }
         }
-        $posts = $post->orderBy('id', 'DESC')->get();
-        $amis= $amis;
+     
    //dd($user->amisDemande());
 
         //Retourne la view des posts
@@ -66,6 +68,7 @@ class ProfilController extends Controller
             $user = Auth::user();
             $user->cover = $path;
             $user->save();
+           // dd($cover);
         } 
 
     return redirect::back()->withOk("La photo de courverture a été modifié.");
@@ -84,12 +87,12 @@ class ProfilController extends Controller
        //dd($amis);
         $amis->save();
 
-        $amis = new Amis;
-        $amis->user_id = $amis_add->id;  
-        $amis->amis_id = $user_id; 
-        $amis->active = 0;
-       //dd($amis);
-        $amis->save();
+    //     $amis = new Amis;
+    //     $amis->user_id = $amis_add->id;  
+    //     $amis->amis_id = $user_id; 
+    //     $amis->active = 0;
+    //    //dd($amis);
+    //     $amis->save();
       
         return redirect()->back()->withOk("La demande d'amis à été envoyé à " . $amis_add->name ." ". $amis_add->firstname ." et est en attente de sa réponse !");
     }
@@ -100,12 +103,12 @@ class ProfilController extends Controller
         $amis_invit = $user->where('id', $id)->first();
        
         //where == request
-        $amis = $amis
-            ->where('user_id', $user_id)
-            ->where('amis_id', $amis_invit->id)
-            ->first();
+        $amis = new Amis;
+        $amis->user_id = $user_id;  
+        $amis->amis_id = $amis_invit->id; 
         $amis->active = 1;
-        $amis->update();
+       //dd($amis);
+        $amis->save();
 
         $amisAccept = $amis
         ->where('amis_id', $user_id)
@@ -131,11 +134,11 @@ class ProfilController extends Controller
         $amis->delete();
 
         $amisLiaison = $amis
-        ->where('amis_id', $user_id)
         ->where('user_id', $amis_delete->id)
+        ->where('amis_id', $user_id)
         ->first();
        // dd($amis);
-    $amisLiaison->delete();
+        $amisLiaison->delete();
 
         return redirect()->back()->withOk("Vous n'êtes plus amis avec " . $amis_delete->name ." ". $amis_delete->firstname . " !");
     }
