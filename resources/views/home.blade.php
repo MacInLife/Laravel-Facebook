@@ -105,7 +105,7 @@ Laravel Facebook - Home
                 </div>
 
                 <!-- Suggestions d'amis -->
-                <div class="card border-0 bg-light" style="width:25%;">
+                <div class="card border-0 bg-light" style="width:35%;">
                     <div class="navbar px-0 bg-light" style="
     border-bottom: 1px solid lightgrey;">
                         <h6 class=" mt-2 pl-4">Suggestions d'amis ({{$users->count()}})
@@ -134,9 +134,10 @@ Laravel Facebook - Home
                                             <p class="my-auto">{{$user->name}}</p>
                                         </div>
                                     </a>
-                                    <div class=" my-auto">
+                                    <div class="ml-2 my-auto">
                                         @if($user == true)
-                                        @if($amis->amisNotActive )
+                                        @foreach ($user->amisNotActive as $amis)
+                                        @if($user->amisNotActive)
                                         <a class="text-decoration-none text-dark"
                                             href="{{ route('profil.amisAdd', $user->id)}}" role="button"
                                             aria-pressed="true">
@@ -149,16 +150,20 @@ Laravel Facebook - Home
                                                 </div>
                                             </div>
                                         </a>
-                                        @else
-                                        <div class="border border-dark">
+                                        @endif
+                                        @endforeach
+                                        @foreach ($user->amisWait as $amis)
+                                        @if($user->amisWait)
+                                        <div class="border border-dark m-0">
                                             <div class="bg-light d-flex m-auto">
                                                 <div class="ml-2">
                                                     <img src="/img/user-invit.png" alt="" width="12" height="12">
                                                 </div>
-                                                <p class="my-auto mx-2">Invitation envoyée</p>
+                                                <p class="ml-2 mr-2 my-auto">Invitation envoyée</p>
                                             </div>
                                         </div>
                                         @endif
+                                        @endforeach
                                         @endif
                                     </div>
                                 </div>

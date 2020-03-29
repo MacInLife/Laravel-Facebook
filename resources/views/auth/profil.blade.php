@@ -129,36 +129,52 @@ Laravel Facebook - Profil
                 </div>
                 <!-- Bouton de demande d'amis "Ajouter"-->
                 @if($user->name != Auth::user()->name)
-                <div>
-                    @if($amis->amisNotActive)
-                    <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}"
-                        role="button" aria-pressed="true">
-                        <div class="border border-dark"
-                            style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
-                            <div class="bg-light d-flex m-auto">
-                                <div class="ml-2">
-                                    <img src="/img/user-add.png" alt="" width="12" height="12">
-                                </div>
-                                <p class="my-auto mx-2">Ajouter</p>
+                @foreach ($user->amisNotActive as $amis)
+                @if($user->amisNotActive)
+                <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+                    aria-pressed="true">
+                    <div class="border border-dark"
+                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+                        <div class="bg-light d-flex m-auto">
+                            <div class="ml-2">
+                                <img src="/img/user-add.png" alt="" width="12" height="12">
                             </div>
+                            <p class="my-auto mx-2">Ajouter</p>
                         </div>
-                    </a>
-
-                    @else
-                    <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
-                        role="button" aria-pressed="true">
-                        <div class="border border-dark"
-                            style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
-                            <div class="bg-light d-flex m-auto">
-                                <div class="ml-2">
-                                    <img src="/img/" alt="" width="12" height="12">
-                                </div>
-                                <p class="my-auto mx-2">Retirer des amis</p>
-                            </div>
+                    </div>
+                </a>
+                @endif
+                @endforeach
+                @foreach ($user->amisWait as $amis)
+                @if($user->amisWait)
+                <div class="border border-dark"
+                    style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
+                    <div class="bg-light d-flex m-auto">
+                        <div class="ml-2">
+                            <img src="/img/user-invit.png" alt="" width="12" height="12">
                         </div>
-                    </a>
-                    @endif
+                        <p class="my-auto mx-2">Invitation envoyée</p>
+                    </div>
                 </div>
+                @endif
+                @endforeach
+                @foreach ($user->amisActive as $amis)
+                @if($user->amisActive)
+                <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
+                    role="button" aria-pressed="true">
+                    <div class="border border-dark"
+                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:130px;">
+                        <div class="bg-light d-flex m-auto">
+                            <div class="ml-2">
+                                <img src="/img/" alt="" width="12" height="12">
+                            </div>
+                            <p class="my-auto mx-2">Retirer des amis</p>
+                        </div>
+                    </div>
+                </a>
+                @endif
+                @endforeach
+
                 @endif
 
             </div>
