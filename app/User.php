@@ -53,7 +53,7 @@ class User extends Authenticatable
     public function amisAll(){
         //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
           //Many To Many - withPivot = recup booleen
-          return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')->withPivot('created_at');
+          return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')->withPivot('active')->withPivot('created_at');
     }
 
     public function amisActive()

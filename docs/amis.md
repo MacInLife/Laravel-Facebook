@@ -82,34 +82,34 @@ php artisan make:model Amis
 
 Le model permet la liaison entre les différentes tables mais aussi de vérifier que la valeur correspond bien à ce que le champs demandent.
 
-2. Nous avons donc besoin ici de rajouter la liaison entre nos amis et notre utilisateurs, pour cela écrire les fonctions suivantes dans notre model "User.php" :
+2. Nous avons donc besoin ici de rajouter les liaisons entre nos amis et notre utilisateur, pour cela écrire les fonctions suivantes dans notre model "User.php" :
 
 ```php
-    public function amis(){
-        //Many To Many - withPivot = recup booleen
-        return $this->belongsToMany(\App\Amis::class)->withPivot('active')->withPivot('created_at');
-    }
-    public function amisDemande(){
+    public function amisAll(){
     //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
         //Many To Many - withPivot = recup booleen
-        return $this->belongsToMany(\App\Amis::class, 'amis_dmd','user_id', 'amis_id')->withPivot('created_at');
+        return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')->withPivot('created_at');
     }
 
     public function amisActive()
     {
-        return $this->belongsToMany(\App\Amis::class)
+         //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
+        return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', true);
     }
 
     public function amisNotActive()
     {
-        return $this->belongsToMany(\App\Amis::class)
+        return $this->belongsToMany(\App\User::class ,'amis','user_id', 'amis_id')
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
     }
-    public function posts() {
-        return $this->hasMany(\App\Post::class, 'user_id');
+    public function amisWait()
+    {
+        return $this->belongsToMany(\App\User::class ,'amis','amis_id', 'user_id')
+            ->withPivot('active')->withPivot('created_at')
+            ->wherePivot('active', false);
     }
 ```
 

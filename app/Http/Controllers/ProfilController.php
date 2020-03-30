@@ -20,18 +20,18 @@ class ProfilController extends Controller
 
         if (!$u) {
             $u = $user->whereId($slug)->first();
-            $posts = $post->orderBy('id', 'DESC')->get();
-            $amis= $amis;
+          
         // dd($u->amisActive());
             if (!$u) {
                 return redirect('/', 302);
             }
+           
         }
-     
+        $posts = $post->orderBy('id', 'DESC')->get();
    //dd($user->amisDemande());
 
         //Retourne la view des posts
-        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts, 'amis'=>$amis]);
+        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts]);
     }
 
     public function updateAvatar(User $user)
