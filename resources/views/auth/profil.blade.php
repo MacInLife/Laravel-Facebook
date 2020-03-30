@@ -129,37 +129,32 @@ Laravel Facebook - Profil
                 </div>
                 <!-- Bouton de demande d'amis "Ajouter"-->
                 @if($user->name != Auth::user()->name)
+                @if($user->amis == false)
+                <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+                    aria-pressed="true">
+                    <div class="border border-dark"
+                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%);">
+                        <div class="bg-light d-flex m-auto">
+                            <div class="ml-2">
+                                <img src="/img/user-add.png" alt="" width="12" height="12">
+                            </div>
+                            <p class="my-auto mx-2">Ajouter</p>
+                        </div>
+                    </div>
+                </a>
+                @endif
                 @foreach($user->amisAll as $amis)
-                <p>{{$amis->pivot->active}}</p>
-                <p>{{$amis->name}}</p>
                 @switch($user)
-                @case ($amis === 0)
-                <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
-                    aria-pressed="true">
-                    <div class="border border-dark"
-                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%);">
-                        <div class="bg-light d-flex m-auto">
-                            <div class="ml-2">
-                                <img src="/img/user-add.png" alt="" width="12" height="12">
-                            </div>
-                            <p class="my-auto mx-2">Ajouter</p>
+                @case ($amis->pivot->active == 0 )
+                <div class="border border-dark"
+                    style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
+                    <div class="bg-light d-flex m-auto">
+                        <div class="ml-2">
+                            <img src="/img/user-invit.png" alt="" width="12" height="12">
                         </div>
+                        <p class="my-auto mx-2">Invitation envoyée</p>
                     </div>
-                </a>
-                @break
-                @case ($amis->pivot->active === 0)
-                <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
-                    aria-pressed="true">
-                    <div class="border border-dark"
-                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%);">
-                        <div class="bg-light d-flex m-auto">
-                            <div class="ml-2">
-                                <img src="/img/user-add.png" alt="" width="12" height="12">
-                            </div>
-                            <p class="my-auto mx-2">Ajouter</p>
-                        </div>
-                    </div>
-                </a>
+                </div>
                 @break
                 @case ($amis->pivot->active === 1)
                 <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
@@ -175,19 +170,6 @@ Laravel Facebook - Profil
                     </div>
                 </a>
                 @break
-                @default
-                <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
-                    aria-pressed="true">
-                    <div class="border border-dark"
-                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%);">
-                        <div class="bg-light d-flex m-auto">
-                            <div class="ml-2">
-                                <img src="/img/user-add.png" alt="" width="12" height="12">
-                            </div>
-                            <p class="my-auto mx-2">Ajouter</p>
-                        </div>
-                    </div>
-                </a>
 
                 @endswitch
                 @endforeach
