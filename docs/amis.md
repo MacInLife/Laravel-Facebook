@@ -464,7 +464,7 @@ Nous allons y ajouter notre code pour faire apparaître ses différents paramèt
 
 </details>
 
-Nos demande d'amis sont désormais fonctionnelle et prête à l'emploi ! Tester-les !
+Nos demande d'amis sont désormais fonctionnelles et prête à l'emploi ! Tester-les !
 
 ### D. Rendu visuel
 
