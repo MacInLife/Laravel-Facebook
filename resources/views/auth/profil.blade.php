@@ -160,10 +160,10 @@ Laravel Facebook - Profil
                 <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
                     role="button" aria-pressed="true">
                     <div class="border border-dark"
-                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:130px;">
+                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
                         <div class="bg-light d-flex m-auto">
                             <div class="ml-2">
-                                <img src="/img/" alt="" width="12" height="12">
+                                <img src="/img/user-supp.png" alt="" width="12" height="12">
                             </div>
                             <p class="my-auto mx-2">Retirer des amis</p>
                         </div>
@@ -295,10 +295,19 @@ Laravel Facebook - Profil
                                         @endif
                                     </form>
                                 </div>
-                                <div class="card-body p-2">
+                                <div class="card-body px-2 py-1">
                                     <p class="m-0 text-info">
                                         {{$post->text }}
                                     </p>
+                                    <div class="mx-2">
+                                        <hr class="m-1 p-
+                                        0">
+                                    </div>
+                                    <div class="d-flex m-0">
+                                        
+                                        <p>J'aime</p>
+                                        <p>Commenter</p>
+                                    </div>
 
                                 </div>
                             </div>

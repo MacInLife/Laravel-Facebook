@@ -224,7 +224,7 @@ public function amis_add($id, User $user)
 
 ```php
     <div class="border border-dark"
-        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
         <div class="bg-light d-flex m-auto">
             <div class="ml-2">
                 <img src="/img/user-invit.png" alt="" width="12" height="12">
@@ -240,15 +240,29 @@ public function amis_add($id, User $user)
 <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
     role="button" aria-pressed="true">
     <div class="border border-dark"
-        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
         <div class="bg-light d-flex m-auto">
             <div class="ml-2">
-                <img src="/img/" alt="" width="12" height="12">
+                <img src="/img/user-supp.png" alt="" width="12" height="12">
             </div>
-            <p class="my-auto mx-2">Retier des amis</p>
+            <p class="my-auto mx-2">Retirer des amis</p>
         </div>
     </div>
 </a>
+```
+
+Bonus :
+
+```php
+    <div class="border border-dark"
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
+        <div class="bg-light d-flex m-auto">
+            <div class="ml-2">
+                <img src="/img/user-recu.png" alt="" width="12" height="12">
+            </div>
+            <p class="my-auto mx-2">Invitation reçue</p>
+        </div>
+    </div>
 ```
 
 #### \_\_Condition
@@ -261,7 +275,7 @@ public function amis_add($id, User $user)
 2. Si j'ai envoyé une invitation à devenir amis "Invitation envoyée".
 3. Si c'est un amis alors "Retirer des amis".
 
-Bonus ? : Si l'utlisateur m'est pas mon amis mais m'as envoyé une demande d'amis alors "Invitation reçue" .
+Bonus ? : Si l'utlisateur n'est pas mon amis mais m'as envoyé une demande d'amis alors "Invitation reçue" .
 
 ```php
   <!-- Bouton de demande d'amis "Ajouter"-->
@@ -283,7 +297,7 @@ Bonus ? : Si l'utlisateur m'est pas mon amis mais m'as envoyé une demande d'ami
 <a class="text-decoration-none text-dark" href="{{ route('profil.amisInvit', $user->id)}}" role="button"
     aria-pressed="true">
     <div class="border border-dark"
-        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
         <div class="bg-light d-flex m-auto">
             <div class="ml-2">
                 <img src="/img/user-invit.png" alt="" width="12" height="12">
@@ -296,10 +310,10 @@ Bonus ? : Si l'utlisateur m'est pas mon amis mais m'as envoyé une demande d'ami
 <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
     role="button" aria-pressed="true">
     <div class="border border-dark"
-        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
         <div class="bg-light d-flex m-auto">
             <div class="ml-2">
-                <img src="/img/" alt="" width="12" height="12">
+                <img src="/img/user-supp.png" alt="" width="12" height="12">
             </div>
             <p class="my-auto mx-2">Retier des amis</p>
         </div>

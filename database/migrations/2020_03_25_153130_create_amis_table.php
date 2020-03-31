@@ -14,7 +14,7 @@ class CreateAmisTable extends Migration
     public function up()
     {
         Schema::create('amis', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned();
             $table->integer('amis_id')->unsigned();
