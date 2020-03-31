@@ -293,7 +293,7 @@ Laravel Facebook - Profil
                                                 <p class="px-1 m-0 my-auto">J'aime</p>
                                             </div>
                                         </a>
-                                        <a href="" class="text-decoration-none text-secondary w-50">
+                                        <a href="" class="text-decoration-none text-secondary w-50 d-none">
                                             <div class="d-flex m-0 justify-content-center">
                                                 <img src="/img/like_post.png" alt="Aimer un post" width="18" height="18" class="my-auto">
                                                 <p class="px-1 m-0 my-auto text-primary">J'aime</p>
