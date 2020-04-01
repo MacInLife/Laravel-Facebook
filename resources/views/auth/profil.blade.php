@@ -306,14 +306,14 @@ Laravel Facebook - Profil
                                     <div class="d-flex m-0">
                                         <img src="/img/likes.png" alt="Icone nombre de j'aime" width="18" height="18"
                                             class="my-auto">
-                                        <p class="px-1 m-0 my-auto text-muted">Nombre de j'aime</p>
+                                        <p class="px-1 m-0 my-auto text-muted">{{count($post->postLike)}}</p>
                                     </div>
                                     <div class="mx-2">
                                         <hr class="m-1 p-
                                         0">
                                     </div>
                                     <div class="row m-0">
-                                        if($islike == false)
+                                        @if($likes == false)
                                         <a href="{{route('post.like', $post->id)}}"
                                             class="text-decoration-none text-secondary w-50">
                                             <div class="d-flex m-0 justify-content-center">
@@ -322,7 +322,7 @@ Laravel Facebook - Profil
                                                 <p class="px-1 m-0 my-auto">J'aime</p>
                                             </div>
                                         </a>
-                                        else
+                                        @else
                                         <a href="{{route('post.unlike', $post->id)}}"
                                             class="text-decoration-none text-secondary w-50">
                                             <div class="d-flex m-0 justify-content-center">
@@ -331,7 +331,7 @@ Laravel Facebook - Profil
                                                 <p class="px-1 m-0 my-auto text-primary">J'aime</p>
                                             </div>
                                         </a>
-                                        endif
+                                        @endif
                                         <a href="" class="text-decoration-none text-secondary w-50 ">
                                             <div class="d-flex m-0 justify-content-center">
                                                 <img src="/img/coms.png" alt="Aimer un post" width="18" height="18"

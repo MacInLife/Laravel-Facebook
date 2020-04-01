@@ -21,7 +21,9 @@ class PostController extends Controller
     {
         //Post de tout le monde
         //SELECT * FROM `likes` WHERE `post_id` =23
-        $likes = $like->where('post_id', $post->id)->get();
+
+        $likes = $like->where('post_id', $post->id)
+        ->get();
 
         //Post de la personne connecter
         $posts = $post
@@ -30,7 +32,6 @@ class PostController extends Controller
         ->with('user')
         ->orderBy('id', 'DESC')
         ->paginate(4);
-
         //Retourne la view des posts
 
         //Récupère tous les users
@@ -141,13 +142,13 @@ class PostController extends Controller
         return redirect()->back()->withOk("Vous aimez la publication « " . $like_post->text . " » de " . $like_post->user_id . ".");
     }
 
-    public function unlike($id, Like $unLike, Post $post)
+    public function unlike($id, Like $like, Post $post)
     {
         $user_id = Auth::user()->id;
         $post_id = $post->where('id', $id)->first();
 
         //where == request
-        $unlike = $unLike
+        $unlike = $like
             ->where('user_id', $user_id)
             ->where('post_id', $post_id->id)
             ->first();

@@ -10,11 +10,12 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use App\Post;
 use App\Amis;
+use App\Like;
 
 class ProfilController extends Controller
 {
     //
-    public function index($slug, User $user, Post $post, Amis $amis)
+    public function index($slug, User $user, Post $post, Like $like)
     {
         $u = $user->wherePseudo($slug)->first();
 
@@ -27,13 +28,16 @@ class ProfilController extends Controller
             }
            
         }
+        
         $posts = $post->orderBy('id', 'DESC')->get();
+        $likes = $like->where('post_id', $post->id)->first();
+        //dd($likes);
    //dd($user->amisAll());
 
    
 
         //Retourne la view des posts
-        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts]);
+        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts, 'likes' => $likes]);
     }
 
     public function updateAvatar(User $user)
