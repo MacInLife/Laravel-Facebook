@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
 use App\Amis;
+use App\Like;
 use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
@@ -16,10 +17,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post, User $user, Amis $amis)
+    public function index(Post $post, User $user, Like $like)
     {
         //Post de tout le monde
-        //$posts = $post->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->paginate(4);
+        //SELECT * FROM `likes` WHERE `post_id` =23
+        $likes = $like->where('post_id', $post->id)->get();
 
         //Post de la personne connecter
         $posts = $post
@@ -35,7 +37,7 @@ class PostController extends Controller
         $users = $user->orderBy('id', 'DESC')->get()
         ->except(Auth::user()->id)->except(Auth::user()->amisActive()->pluck('amis_id')->toArray());
 
-        return view('home', ['posts' => $posts, 'users' => $users ]);
+        return view('home', ['posts' => $posts, 'users' => $users, 'likes' => $likes  ]);
     }
 
     /**
@@ -123,5 +125,35 @@ class PostController extends Controller
         //
         return redirect::back()->withOk("Le post " . $p->text . " a été supprimé.");
         }
+    }
+
+    public function like($id, Post $post)
+    {
+        $user_id = Auth::user()->id;
+        $like_post = $post->where('id', $id)->first();
+
+        $like = new Like;
+        $like->user_id = $user_id;
+        $like->post_id = $like_post->id;
+       // dd($like, $like_post, $like_post->text);
+        $like->save();
+        
+        return redirect()->back()->withOk("Vous aimez la publication « " . $like_post->text . " » de " . $like_post->user_id . ".");
+    }
+
+    public function unlike($id, Like $unLike, Post $post)
+    {
+        $user_id = Auth::user()->id;
+        $post_id = $post->where('id', $id)->first();
+
+        //where == request
+        $unlike = $unLike
+            ->where('user_id', $user_id)
+            ->where('post_id', $post_id->id)
+            ->first();
+        //dd($unlike);
+        $unlike->delete();
+
+        return redirect()->back()->withOk("Vous n'aimez plus le post : " . $post_id->text . " » de " . $post_id->user_id . ".");
     }
 }

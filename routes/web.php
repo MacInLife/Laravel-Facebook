@@ -27,6 +27,8 @@ Route::get('/home', 'PostController@index')->name('home');
 Route::post('/home', 'PostController@create')->middleware('auth')->name('create.post');
 //Route de la méthode delete un post (suppression)
 Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('destroy.post');
+Route::get('/home/{id}/like', 'PostController@like')->name('post.like');
+Route::get('/home/{id}/unlike', 'PostController@unlike')->name('post.unlike');
 
 Route::get('account', 'AccountController@show')->middleware('auth')->name('account');
 Route::post('account/{id}', 'AccountController@update')->middleware('auth')->name('account.update');

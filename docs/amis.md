@@ -82,6 +82,20 @@ php artisan make:model Amis
 
 Le model permet la liaison entre les différentes tables mais aussi de vérifier que la valeur correspond bien à ce que le champs demandent.
 
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Amis extends Model
+{
+    //
+}
+
+```
+
 2. Nous avons donc besoin ici de rajouter les liaisons entre nos amis et notre utilisateur, pour cela écrire les fonctions suivantes dans notre model "User.php" :
 
 ```php
@@ -115,7 +129,7 @@ Le model permet la liaison entre les différentes tables mais aussi de vérifier
 
 Nos modèles sont désormais prêt !
 
-### B. Gestion des amis dans le controller
+### C. Gestion des amis dans le controller
 
 Comme expliquer précédemment les demandes d'amis se géreront dans le profil, nous utiliserons donc le controller correspondant au profil ici "ProfilController".
 
@@ -197,7 +211,23 @@ public function amis_add($id, User $user)
     }
 ```
 
-### C. Vue
+N'oubliez pas d'importer la référence à la table
+
+```php
+use App\Amis;
+```
+
+### D. Gestion des routes
+
+-   Ajouter les ligne suivante pour que la liaison entre vos boutons dans la vue et votre controller se fassent
+
+```php
+Route::get('/profil/{slug}/amis_add', 'ProfilController@amis_add')->name('profil.amisAdd');
+Route::get('/profil/{slug}/amis_invit', 'ProfilController@amis_invit')->name('profil.amisInvit');
+Route::get('/profil/{slug}/amis_delete', 'ProfilController@amis_delete')->name('profil.amisDelete');
+```
+
+### E. Vue
 
 #### \_\_Boutons
 
@@ -480,7 +510,7 @@ Nous allons y ajouter notre code pour faire apparaître ses différents paramèt
 
 Nos demande d'amis sont désormais fonctionnelles et prête à l'emploi ! Tester-les !
 
-### D. Rendu visuel
+### F. Rendu visuel
 
 #### Partie Journal avec amis
 

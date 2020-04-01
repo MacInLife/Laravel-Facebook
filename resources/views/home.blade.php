@@ -91,10 +91,52 @@ Laravel Facebook - Home
                                 @endif
                             </form>
                         </div>
-                        <div class="card-body outer p-2">
-                            <p class="m-0 text-info">
+                        <div class="card-body px-2 py-1">
+                            <p class="m-0 text-info" style="font-size:16px;">
                                 {{$post->text }}
                             </p>
+                            <div class="mx-2">
+                                <hr class="m-1 p-
+                                        0">
+                            </div>
+                            <div class="d-flex m-0">
+                                <img src="/img/likes.png" alt="Icone nombre de j'aime" width="18" height="18"
+                                    class="my-auto">
+                                <p class="px-1 m-0 my-auto text-muted">{{count($likes)}}</p>
+                            </div>
+                            <div class="mx-2">
+                                <hr class="m-1 p-
+                                        0">
+                            </div>
+                            <div class="row m-0">
+                                @if($likes == false)
+                                <a href="{{route('post.like', $post->id)}}"
+                                    class="text-decoration-none text-secondary w-50">
+                                    <div class="d-flex m-0 justify-content-center">
+                                        <img src="/img/unlike_post.png" alt="Aimer un post" width="18" height="18"
+                                            class="my-auto">
+                                        <p class="px-1 m-0 my-auto">J'aime</p>
+                                    </div>
+                                </a>
+                                @else
+                                <a href="{{route('post.unlike', $post->id)}}"
+                                    class="text-decoration-none text-secondary w-50">
+                                    <div class="d-flex m-0 justify-content-center">
+                                        <img src="/img/like_post.png" alt="Aimer un post" width="18" height="18"
+                                            class="my-auto">
+                                        <p class="px-1 m-0 my-auto text-primary">J'aime</p>
+                                    </div>
+                                </a>
+                                @endif
+                                <a href="" class="text-decoration-none text-secondary w-50 ">
+                                    <div class="d-flex m-0 justify-content-center">
+                                        <img src="/img/coms.png" alt="Aimer un post" width="18" height="18"
+                                            class="my-auto">
+                                        <p class="px-1 m-0 my-auto">Commenter</p>
+                                    </div>
+                                </a>
+
+                            </div>
 
                         </div>
 

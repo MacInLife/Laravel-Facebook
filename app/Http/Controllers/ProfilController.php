@@ -30,6 +30,8 @@ class ProfilController extends Controller
         $posts = $post->orderBy('id', 'DESC')->get();
    //dd($user->amisAll());
 
+   
+
         //Retourne la view des posts
         return view('/auth/profil', [ 'user' => $u , 'posts' => $posts]);
     }

@@ -77,6 +77,7 @@ class User extends Authenticatable
             ->wherePivot('active', false);
     }
 
+
     public function posts() {
         return $this->hasMany(\App\Post::class, 'user_id');
     }
