@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Post;
 
 class User extends Authenticatable
 {
@@ -70,6 +71,7 @@ class User extends Authenticatable
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
     }
+
     public function amisWait()
     {
         return $this->belongsToMany(\App\User::class ,'amis','amis_id', 'user_id')
@@ -77,6 +79,9 @@ class User extends Authenticatable
             ->wherePivot('active', false);
     }
 
+    public function isLike(Post $post){
+    return $post->hasMany(Like::class,'post_id')->where('user_id', $this->id)->count();
+    }
 
     public function posts() {
         return $this->hasMany(\App\Post::class, 'user_id');

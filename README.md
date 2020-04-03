@@ -33,6 +33,10 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 -   **XII. [J'aime/J'aime pas](docs/like-unlike.md)** > _Aimer un post, afficher le compteur et ne plus aimer un post, mise à jour du compteur._
 
+-   **XIII. [Répondre à un post](docs/rep-posts.md)** > _Répondre à un post du post parents, aimer ce post._
+
+-   **XIV. [Barre de Recherche](docs/search.md)** > _Rechercher un utilisateurs dans la barre de recherche._
+
 ## Grilles des Vues
 
 |                                                                                                                                       |                                                                                                                                      |                                                                                                                                |

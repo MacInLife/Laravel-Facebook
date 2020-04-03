@@ -19,11 +19,9 @@ class PostController extends Controller
      */
     public function index(Post $post, User $user, Like $like)
     {
-        //Post de tout le monde
-        //SELECT * FROM `likes` WHERE `post_id` =23
-
-        $likes = $like->where('post_id', $post->id)
-        ->get();
+    
+            //,compact('users'))->withuser($user)
+     
 
         //Post de la personne connecter
         $posts = $post
@@ -34,11 +32,12 @@ class PostController extends Controller
         ->paginate(4);
         //Retourne la view des posts
 
+       
         //Récupère tous les users
         $users = $user->orderBy('id', 'DESC')->get()
         ->except(Auth::user()->id)->except(Auth::user()->amisActive()->pluck('amis_id')->toArray());
 
-        return view('home', ['posts' => $posts, 'users' => $users, 'likes' => $likes  ]);
+        return view('home', ['posts' => $posts, 'users' => $users ]);
     }
 
     /**

@@ -16,7 +16,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="./img/logo-laravel-facebook.svg" />
+    <link rel="shortcut icon" type="image/png" href="/img/logo-laravel-facebook.svg" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -65,7 +65,7 @@
 
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto pl-2">
-                        <form class="form-inline position-relative w-100">
+                        <form class="form-inline position-relative w-100" action="{{ url('home') }}" method="GET">
                             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher"
                                 aria-label="Search">
                             <button class="btn btn-outline-primary" type="submit"><svg class="svg-search" width="16"

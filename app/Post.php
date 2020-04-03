@@ -11,9 +11,7 @@ class Post extends Model
         return $this->belongsTo(\App\User::class);
     }
 
-
     public function postLike(){
-        //Relation à plusieurs n à n //table 'like_unlike', post_id > user_id
-        return $this->belongsToMany(Post::class, 'likes','post_id', 'user_id')->withPivot('created_at');
-        }
+    return $this->hasMany(Like::class,'post_id');
+    }
 }

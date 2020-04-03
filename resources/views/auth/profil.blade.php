@@ -129,21 +129,6 @@ Laravel Facebook - Profil
                 </div>
                 <!-- Bouton de demande d'amis "Ajouter"-->
                 @if($user->name != Auth::user()->name)
-                @if($user->amis == false)
-                <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
-                    aria-pressed="true">
-                    <div class="border border-dark"
-                        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%);">
-                        <div class="bg-light d-flex m-auto">
-                            <div class="ml-2">
-                                <img src="/img/user-add.png" alt="" width="12" height="12">
-                            </div>
-                            <p class="my-auto mx-2">Ajouter</p>
-                        </div>
-                    </div>
-                </a>
-                @endif
-                @foreach($user->amisAll as $amis)
                 @switch($user)
                 @case ($amis->pivot->active == 0 )
                 <div class="border border-dark"
@@ -172,7 +157,6 @@ Laravel Facebook - Profil
                 @break
 
                 @endswitch
-                @endforeach
                 @endif
 
             </div>
@@ -306,14 +290,14 @@ Laravel Facebook - Profil
                                     <div class="d-flex m-0">
                                         <img src="/img/likes.png" alt="Icone nombre de j'aime" width="18" height="18"
                                             class="my-auto">
-                                        <p class="px-1 m-0 my-auto text-muted">{{count($post->postLike)}}</p>
+                                        <p class="px-1 m-0 my-auto text-muted">{{$post->postLike->count()}}</p>
                                     </div>
                                     <div class="mx-2">
                                         <hr class="m-1 p-
                                         0">
                                     </div>
                                     <div class="row m-0">
-                                        @if($likes == false)
+                                        @if($post->postLike)
                                         <a href="{{route('post.like', $post->id)}}"
                                             class="text-decoration-none text-secondary w-50">
                                             <div class="d-flex m-0 justify-content-center">

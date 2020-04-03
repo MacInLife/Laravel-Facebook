@@ -30,14 +30,11 @@ class ProfilController extends Controller
         }
         
         $posts = $post->orderBy('id', 'DESC')->get();
-        $likes = $like->where('post_id', $post->id)->first();
-        //dd($likes);
-   //dd($user->amisAll());
 
    
 
         //Retourne la view des posts
-        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts, 'likes' => $likes]);
+        return view('/auth/profil', [ 'user' => $u , 'posts' => $posts]);
     }
 
     public function updateAvatar(User $user)

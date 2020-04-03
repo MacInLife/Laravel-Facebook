@@ -102,14 +102,14 @@ Laravel Facebook - Home
                             <div class="d-flex m-0">
                                 <img src="/img/likes.png" alt="Icone nombre de j'aime" width="18" height="18"
                                     class="my-auto">
-                                <p class="px-1 m-0 my-auto text-muted">{{count($likes)}}</p>
+                                <p class="px-1 m-0 my-auto text-muted">{{$post->postLike->count()}}</p>
                             </div>
                             <div class="mx-2">
                                 <hr class="m-1 p-
                                         0">
                             </div>
                             <div class="row m-0">
-                                @if($likes == false)
+                                @if(!Auth::user()->isLike($post))
                                 <a href="{{route('post.like', $post->id)}}"
                                     class="text-decoration-none text-secondary w-50">
                                     <div class="d-flex m-0 justify-content-center">
