@@ -22,13 +22,26 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('style')
     <style>
-        button>.svg-search>path {
-            fill: #385898;
+        .btn-outline-primary {
+            position: absolute;
+            left: 135px;
+            background: #f8f9fa;
+            transition: all 0.5s ease;
+            border: none;
+            padding: 0.45rem 0.75rem;
+        }
+
+        .btn-outline-primary:hover {
+            background: #3490dc;
+        }
+
+        .btn-outline-primary>.svg-search>path {
+            fill: #3490dc;
             transition: all 0.5s ease;
         }
 
-        button>.svg-search>path:hover {
-            fill: #385898;
+        .btn-outline-primary:hover>.svg-search>path {
+            fill: #fff;
         }
 
     </style>
@@ -39,8 +52,8 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background:#385898; padding:0.25rem;">
             <div class="container">
                 <a class="navbar-brand p-0 m-0" href="{{ url('home') }}">
-                    <img class="m-0" src="/img/logo-laravel-facebook.svg" alt="Logo Laravel Facebook" width="50"
-                        height="50">
+                    <img class="m-0" src="/img/logo-laravel-facebook.svg" alt="Logo Laravel Facebook" width="43"
+                        height="43">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -52,11 +65,11 @@
 
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto pl-2">
-                        <form class="form-inline">
+                        <form class="form-inline position-relative w-100">
                             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher"
                                 aria-label="Search">
-                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><svg class="svg-search"
-                                    width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <button class="btn btn-outline-primary" type="submit"><svg class="svg-search" width="16"
+                                    height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path
                                         d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
                                 </svg></button>
