@@ -1,4 +1,4 @@
-# ![Logo Laravel Facebook](docs/screens/logo-laravel-facebook.png)
+# ![Logo Laravel Facebook](docs/screens/logo-laravel-facebook.png) <img class="m-0" src="/img/logo-laravel-facebook.svg" alt="Logo Laravel Facebook" width="43" height="43">
 
 Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel.
 
