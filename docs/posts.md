@@ -586,4 +586,4 @@ Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('de
 ![screens/FBL-post-alert.png](screens/FBL-post-alert.png)
 ![screens/FBL-page-home-supp.png](screens/FBL-page-home-supp.png)
 
-Bien la partie des posts est la même sur la home page que sur le profil.
+Bien sûre la partie des posts est la même sur la home page que sur le profil.
