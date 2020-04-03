@@ -55,7 +55,7 @@ class ProfilController extends Controller
             $user->save();
         } 
 
-    return redirect::back()->withOk("L'avatar a été modifié.");
+    return redirect::back()->withOk("Votre avatar a été modifié.");
     }
 
     public function updateCover(User $user)
@@ -74,7 +74,7 @@ class ProfilController extends Controller
            // dd($cover);
         } 
 
-    return redirect::back()->withOk("La photo de courverture a été modifié.");
+    return redirect::back()->withOk("Votre photo de courverture a été modifié.");
     }
 
 

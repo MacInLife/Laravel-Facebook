@@ -130,7 +130,7 @@ Laravel Facebook - Profil
                 <!-- Bouton de demande d'amis "Ajouter"-->
                 @if($user->name != Auth::user()->name)
                 @switch($user)
-                @case ($amis->pivot->active == 0 )
+                @case ($user->amisNotActive)
                 <div class="border border-dark"
                     style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
                     <div class="bg-light d-flex m-auto">
@@ -141,7 +141,7 @@ Laravel Facebook - Profil
                     </div>
                 </div>
                 @break
-                @case ($amis->pivot->active === 1)
+                @case ($user->amisActive)
                 <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
                     role="button" aria-pressed="true">
                     <div class="border border-dark"
@@ -297,7 +297,7 @@ Laravel Facebook - Profil
                                         0">
                                     </div>
                                     <div class="row m-0">
-                                        @if($post->postLike)
+                                        @if(!Auth::user()->isLike($post))
                                         <a href="{{route('post.like', $post->id)}}"
                                             class="text-decoration-none text-secondary w-50">
                                             <div class="d-flex m-0 justify-content-center">

@@ -123,7 +123,7 @@ class PostController extends Controller
         $p->delete($id);
 
         //
-        return redirect::back()->withOk("Le post " . $p->text . " a été supprimé.");
+        return redirect::back()->withOk("La publication «" . $p->text . "» a été supprimé.");
         }
     }
 
@@ -135,10 +135,9 @@ class PostController extends Controller
         $like = new Like;
         $like->user_id = $user_id;
         $like->post_id = $like_post->id;
-       // dd($like, $like_post, $like_post->text);
         $like->save();
         
-        return redirect()->back()->withOk("Vous aimez la publication « " . $like_post->text . " » de " . $like_post->user_id . ".");
+        return redirect()->back()->withOk("Vous aimez la publication « " . $like_post->text . " ». ");
     }
 
     public function unlike($id, Like $like, Post $post)
@@ -154,6 +153,6 @@ class PostController extends Controller
         //dd($unlike);
         $unlike->delete();
 
-        return redirect()->back()->withOk("Vous n'aimez plus le post : " . $post_id->text . " » de " . $post_id->user_id . ".");
+        return redirect()->back()->withOk("Vous n'aimez plus la publication «" . $post_id->text . " ».");
     }
 }
