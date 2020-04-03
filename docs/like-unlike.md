@@ -294,6 +294,8 @@ Ce bloc accueil actuelement le texte contenu dans les publications. Dans cette `
 
 #### Profil - Partie Journal avec j'aime / j'aime pas
 
-![Profil j'aime/j'aime pas](screens/FBL-page-profil-journal.png)
+![Profil j'aime/j'aime pas](screens/FBL-page-profil-like.png)
 
 #### Page d'accueil avec j'aime / j'aime pas
+
+![Profil j'aime/j'aime pas](screens/FBL-page-home-like.png)

@@ -402,21 +402,19 @@ Laravel Facebook - Home
 ```php
  public function index(Post $post, User $user)
     {
-        //Post de tout le monde
-        //$posts = $post->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->paginate(4);
-
-        //Post de la personne connecté
+        //Post de la personne connecter et des amis de la personne connectée
         $posts = $post
+        ->whereIn('user_id', Auth::user()->amisActive()->pluck('amis_id'))
         ->orWhere('user_id', Auth::user()->id)
         ->with('user')
         ->orderBy('id', 'DESC')
         ->paginate(4);
 
         //Récupère tous les users
-        $users = $user->orderBy('id', 'DESC')->get();
-
+        $users = $user->orderBy('id', 'DESC')->get()
+        ->except(Auth::user()->id)->except(Auth::user()->amisActive()->pluck('amis_id')->toArray());
         //Retourne la view des posts
-        return view('home', ['posts' => $posts ,  'users' => $users]);
+        return view('home', ['posts' => $posts, 'users' => $users ]);
     }
 ```
 
@@ -587,3 +585,5 @@ Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('de
 ![screens/FBL-post-supp.png](screens/FBL-post-supp.png)
 ![screens/FBL-post-alert.png](screens/FBL-post-alert.png)
 ![screens/FBL-page-home-supp.png](screens/FBL-page-home-supp.png)
+
+Bien la partie des posts est la même sur la home page que sur le profil.

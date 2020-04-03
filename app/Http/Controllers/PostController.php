@@ -17,26 +17,20 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post, User $user, Like $like)
+    public function index(Post $post, User $user)
     {
-    
-            //,compact('users'))->withuser($user)
-     
-
-        //Post de la personne connecter
+        //Post de la personne connecter et des amis de la personne connectée
         $posts = $post
         ->whereIn('user_id', Auth::user()->amisActive()->pluck('amis_id'))
         ->orWhere('user_id', Auth::user()->id)
         ->with('user')
         ->orderBy('id', 'DESC')
         ->paginate(4);
-        //Retourne la view des posts
-
        
         //Récupère tous les users
         $users = $user->orderBy('id', 'DESC')->get()
         ->except(Auth::user()->id)->except(Auth::user()->amisActive()->pluck('amis_id')->toArray());
-
+        //Retourne la view des posts
         return view('home', ['posts' => $posts, 'users' => $users ]);
     }
 
