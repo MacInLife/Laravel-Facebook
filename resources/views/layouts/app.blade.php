@@ -16,18 +16,31 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./img/logo-laravel-facebook.svg" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('style')
+    <style>
+        button>.svg-search>path {
+            fill: #385898;
+            transition: all 0.5s ease;
+        }
+
+        button>.svg-search>path:hover {
+            fill: #385898;
+        }
+
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background:#385898;">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background:#385898; padding:0.25rem;">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('home') }}">
-                    {{ config('app.name', 'Laravel') }}<img class="pl-2 mb-1" src="/img/facebook.png" alt="" width="90">
+                <a class="navbar-brand p-0 m-0" href="{{ url('home') }}">
+                    <img class="m-0" src="/img/logo-laravel-facebook.svg" alt="Logo Laravel Facebook" width="50"
+                        height="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -36,9 +49,18 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
 
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto pl-2">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher"
+                                aria-label="Search">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><svg class="svg-search"
+                                    width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path
+                                        d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+                                </svg></button>
+                        </form>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
