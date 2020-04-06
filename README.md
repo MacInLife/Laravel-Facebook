@@ -37,6 +37,8 @@ Créer un réseau social clone de Facebook en utilisant le framework PHP Laravel
 
 -   **XIV. [Barre de Recherche](docs/search.md)** > _Rechercher un utilisateurs dans la barre de recherche._
 
+-   PS : [Générateur de fausses données pour faire fonctionner l'application rapidement.](docs/seeders.md)
+
 ## Grilles des Vues
 
 |                                                                                                                                       |                                                                                                                                      |                                                                                                                                |
