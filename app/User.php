@@ -78,6 +78,19 @@ class User extends Authenticatable
             ->wherePivot('active', false);
     }
 
+    public function isFriend(User $user){
+        return $user->hasMany(Amis::class,'user_id')->where('amis_id', $this->id)
+        ->where('active', true)->count();
+    }
+    public function demandeAmis(User $user){
+        return $user->hasMany(Amis::class,'amis_id')->where('user_id', $this->id)
+        ->where('active', false)->count();
+    }
+    public function demandeRecu(User $user){
+        return $user->hasMany(Amis::class,'user_id')->where('amis_id', $this->id)
+        ->where('active', false)->count();
+    }
+
     public function isLike(Post $post){
     return $post->hasMany(Like::class,'post_id')->where('user_id', $this->id)->count();
     }

@@ -147,7 +147,7 @@ Laravel Facebook - Home
                 </div>
 
                 <!-- Suggestions d'amis -->
-                <div class="card border-0 bg-light" style="width:20%;">
+                <div class="card border-0 bg-light" style="width:35%;">
                     <div class="navbar px-0 bg-light" style="
     border-bottom: 1px solid lightgrey;">
                         <h6 class=" mt-2 pl-4">Suggestions d'amis ({{$users->count()}})
@@ -175,10 +175,81 @@ Laravel Facebook - Home
                                             <p class="p-2 my-auto">{{$user->firstname}}</p>
                                             <p class="my-auto">{{$user->name}}</p>
                                         </div>
+
                                     </a>
+                                    <div class="p-2 my-auto">
+                                        @switch(Auth::user())
+                                        @case ($user->isFriend(Auth::user()) == 0 &&
+                                        Auth::user()->demandeAmis($user) == 1 &&
+                                        Auth::user()->demandeRecu($user) == 1)
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+                                            aria-pressed="true">
+                                            <div class="border border-dark">
+                                                <div class="bg-light d-flex m-auto">
+                                                    <div class="ml-2">
+                                                        <img src="/img/user-add.png" alt="" width="12" height="12">
+                                                    </div>
+                                                    <p class="my-auto mx-2">Ajouter</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @break
+                                        @case (Auth::user()->demandeAmis($user) == 1)
+                                        <div class="border border-dark" style="width:160px;">
+                                            <div class="bg-light d-flex m-auto">
+                                                <div class="ml-2">
+                                                    <img src="/img/user-invit.png" alt="" width="12" height="12">
+                                                </div>
+                                                <p class="my-auto mx-2 text-secondary">Invitation envoyée
+                                                </p>
+                                            </div>
+                                        </div>
+                                        @break
+                                        @case (Auth::user()->demandeRecu($user) == 1)
+                                        <div class="border border-dark">
+                                            <div class="bg-light d-flex m-auto">
+                                                <div class="ml-2">
+                                                    <img src="/img/user-recu.png" alt="" width="12" height="12">
+                                                </div>
+                                                <p class="my-auto mx-2 text-secondary">Invitation reçue</p>
+                                            </div>
+                                        </div>
+                                        @break
+                                        @case (Auth::user()->isFriend($user) == 1)
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('profil.amisDelete', $user->id)}}" role="button"
+                                            aria-pressed="true">
+                                            <div class="border border-dark">
+                                                <div class="bg-light d-flex m-auto">
+                                                    <div class="ml-2">
+                                                        <img src="/img/user-supp.png" alt="" width="12" height="12">
+                                                    </div>
+                                                    <p class="my-auto mx-2">Retirer des amis</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @break
+                                        @default
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+                                            aria-pressed="true">
+                                            <div class="border border-dark">
+                                                <div class="bg-light d-flex m-auto">
+                                                    <div class="ml-2">
+                                                        <img src="/img/user-add.png" alt="" width="12" height="12">
+                                                    </div>
+                                                    <p class="my-auto mx-2">Ajouter</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @break
+                                        @endswitch
+                                    </div>
 
                                 </div>
                                 @endforeach
+
                             </div>
                         </div>
                     </div>
