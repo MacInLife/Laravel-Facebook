@@ -99,12 +99,13 @@ class Amis extends Model
 2. Nous avons donc besoin ici de rajouter les liaisons entre nos amis et notre utilisateur, pour cela écrire les fonctions suivantes dans notre model "User.php" :
 
 ```php
+    //Récupère tout les amis de l'utilisateur connecté avec le active à 0 ou 1
    public function amisAll(){
         //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
-          //Many To Many - withPivot = recup booleen
           return $this->belongsToMany(\App\User::class, 'amis','user_id', 'amis_id')->withPivot('active')->withPivot('created_at');
     }
 
+    //Récupère tous les amis de l'utilisateur connecté avec le active à 1 (true)
     public function amisActive()
     {
          //Relation à plusieurs n à n //table 'amis_dmd', user_id > amis_id
@@ -113,17 +114,38 @@ class Amis extends Model
             ->wherePivot('active', true);
     }
 
+    //Récupère tous les amis de l'utilisateur connecté avec le active à 0 (false)
     public function amisNotActive()
     {
         return $this->belongsToMany(\App\User::class ,'amis','user_id', 'amis_id')
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
     }
+
+    //Récupère toutes les demandes d'amis de l'utilisateur connecté avec le active à 0 (false)
     public function amisWait()
     {
         return $this->belongsToMany(\App\User::class ,'amis','amis_id', 'user_id')
             ->withPivot('active')->withPivot('created_at')
             ->wherePivot('active', false);
+    }
+
+    //Récupère les amis de l'utilisateur connecté ou le active est à 1
+    public function isFriend(User $user){
+        return $user->hasMany(Amis::class,'user_id')->where('amis_id', $this->id)
+        ->where('active', true)->count();
+    }
+
+    //Récupère les demande d'amis envoyé de l'utilisateur connecté ou le active n'est pas encore à 1
+    public function demandeAmis(User $user){
+        return $user->hasMany(Amis::class,'amis_id')->where('user_id', $this->id)
+        ->where('active', false)->count();
+    }
+
+    //Récupère les demande d'amis reçue de l'utilisateur connecté ou le active n'est pas encore à 1
+    public function demandeRecu(User $user){
+        return $user->hasMany(Amis::class,'user_id')->where('amis_id', $this->id)
+        ->where('active', false)->count();
     }
 ```
 
@@ -138,7 +160,7 @@ Ajouter donc dans votre controller les fonctions suivantes :
 1. Fonction de demande d'amis en attente d'acceptation
 
 ```php
-public function amis_add($id, User $user)
+   public function amis_add($id, User $user)
     {
         $user_id = Auth::user()->id;
         $amis_add = $user->where('id', $id)->first();
@@ -297,8 +319,6 @@ Bonus :
 
 #### \_\_Condition
 
-//**_Attention cette partie n'est pas fonctionnel pour le moment !_**
-
 -   Condition permettant d'afficher un bouton selon le profil sur lequel nous nous trouvons.
 
 1. Si c'est pas un amis et que aucune demande n'a été précédemment envoyé alors "Ajouter".
@@ -307,70 +327,87 @@ Bonus :
 
 Bonus ? : Si l'utlisateur n'est pas mon amis mais m'as envoyé une demande d'amis alors "Invitation reçue" .
 
+-   Cette condition est à placer ou vous voulez sur la page de profil, personnellement je l'ai positionné sur la photo de couverture de la personne.
+
 ```php
-  <!-- Bouton de demande d'amis "Ajouter"-->
-@if($user->name != Auth::user()->name)
-@if($amis == false)
-<a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
-    aria-pressed="true">
-    <div class="border border-dark"
-        style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
-        <div class="bg-light d-flex m-auto">
-            <div class="ml-2">
-                <img src="/img/user-add.png" alt="" width="12" height="12">
+  <!-- Condition (ne s'affiche que pour l'utilisateur non connecté)-->
+   @if($user->name != Auth::user()->name)
+     <!-- Switch car plusieurs cas.
+     Cas 1 : user = pas amis avec moi et pas de demande envoyés & pas de demande reçus -->
+    @switch(Auth::user())
+    @case ($user->isFriend(Auth::user()) == 0 && Auth::user()->demandeAmis($user) == 1 &&
+    Auth::user()->demandeRecu($user) == 1)
+    <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+        aria-pressed="true">
+        <div class="border border-dark"
+            style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+            <div class="bg-light d-flex m-auto">
+                <div class="ml-2">
+                    <img src="/img/user-add.png" alt="" width="12" height="12">
+                </div>
+                <p class="my-auto mx-2">Ajouter</p>
             </div>
-            <p class="my-auto mx-2">Ajouter</p>
         </div>
-    </div>
-</a>
-@elseif($amis->amisDemande == false && $amis->amisActive == false)
-<a class="text-decoration-none text-dark" href="{{ route('profil.amisInvit', $user->id)}}" role="button"
-    aria-pressed="true">
+    </a>
+    @break
+    <!-- Cas 2 : moi =  demande envoyés  -->
+    @case (Auth::user()->demandeAmis($user) == 1)
     <div class="border border-dark"
         style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
         <div class="bg-light d-flex m-auto">
             <div class="ml-2">
                 <img src="/img/user-invit.png" alt="" width="12" height="12">
             </div>
-            <p class="my-auto mx-2">Invitation envoyée</p>
+            <p class="my-auto mx-2 text-secondary">Invitation envoyée</p>
         </div>
     </div>
-</a>
-@else
-<a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
-    role="button" aria-pressed="true">
+    @break
+     <!-- Cas 3 : moi =  demande reçus  -->
+    @case (Auth::user()->demandeRecu($user) == 1)
     <div class="border border-dark"
         style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
         <div class="bg-light d-flex m-auto">
             <div class="ml-2">
-                <img src="/img/user-supp.png" alt="" width="12" height="12">
+                <img src="/img/user-recu.png" alt="" width="12" height="12">
             </div>
-            <p class="my-auto mx-2">Retier des amis</p>
+            <p class="my-auto mx-2 text-secondary">Invitation reçue</p>
         </div>
     </div>
-</a>
-@endif
-@endif
+    @break
+     <!-- Cas 4 : moi = amis  -->
+    @case (Auth::user()->isFriend($user) == 1)
+    <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}"
+        role="button" aria-pressed="true">
+        <div class="border border-dark"
+            style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%); width:160px;">
+            <div class="bg-light d-flex m-auto">
+                <div class="ml-2">
+                    <img src="/img/user-supp.png" alt="" width="12" height="12">
+                </div>
+                <p class="my-auto mx-2">Retirer des amis</p>
+            </div>
+        </div>
+    </a>
+    @break
+        <!-- Cas 5 par default : si pas autre cas alors ajouter  -->
+    @default
+    <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+        aria-pressed="true">
+        <div class="border border-dark"
+            style="position: absolute;   top: 84%;   left: 90%;  transform: translate(-50%,-50%)">
+            <div class="bg-light d-flex m-auto">
+                <div class="ml-2">
+                    <img src="/img/user-add.png" alt="" width="12" height="12">
+                </div>
+                <p class="my-auto mx-2">Ajouter</p>
+            </div>
+        </div>
+    </a>
+    @break
+
+    @endswitch
+    @endif
 ```
-
--   Code de l'application crush pour m'aider, merci de ne pas copier cela
-
-```php
-<ul class="card-body">
-    @foreach ($user->amis as $amis)
-    <li>{{ $amis->id }} - {{ $tag->name }} - Pivot Active = {{ $amis->pivot->active }}
-        @if($amis->pivot->active) ✅ @else ❌ @endif > Created at
-        {{ $amis->pivot->created_at->diffForHumans() }}
-    </li>
-      <li>{{ $amis->id }} - {{ $tag->name }} - Pivot Active = {{ $amis->pivot->active }}
-        @if($amis->pivot->tagActive) ✅ @else ❌ @endif > Created at
-        {{ $amis->pivot->created_at->diffForHumans() }}
-    </li>
-    @endforeach
-</ul>
-```
-
-//**_Attention cette partie n'est pas fonctionnel pour le moment !_**
 
 #### Édition du bloc vue des amis
 
@@ -520,13 +557,17 @@ Nos demande d'amis sont désormais fonctionnelles et prête à l'emploi ! Tester
 
 ![screens/FBL-page-profil-amis.png](screens/FBL-page-profil-amis.png)
 
-#### Partie Amis du profil de l'utlisateur non connecté
+#### Partie Amis du profil de l'utlisateur non connecté amis avec l'utilisateur connectée
 
 ![screens/FBL-page-profil-amis1.png](screens/FBL-page-profil-amis1.png)
 
-#### Profil Utilisateur - Etapes
+#### Profil Utilisateur - Journal - Etapes
 
 1. Ajout
+   ![Journal d'un utilisateur non amis](screens/FBL-page-profil-journal-add.png)
 2. Invitation envoyée
+   ![Journal d'un utilisateur à qui on a envoyé une demande d'amis](screens/FBL-page-profil-journal-invit_send.png)
 3. Retirer des amis
-   Bonus : Invitation reçue
+   ![Journal d'un utilisateur amis](screens/FBL-page-profil-amis2.png)
+4. Bonus : Invitation reçue
+   ![Journal d'un utilisateur à qui on a reçu une demande d'amis](screens/FBL-page-profil-journal-invit_received.png)

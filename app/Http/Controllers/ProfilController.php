@@ -89,13 +89,6 @@ class ProfilController extends Controller
         $amis->active = 0;
        //dd($amis);
         $amis->save();
-
-    //     $amis = new Amis;
-    //     $amis->user_id = $amis_add->id;  
-    //     $amis->amis_id = $user_id; 
-    //     $amis->active = 0;
-    //    //dd($amis);
-    //     $amis->save();
       
         return redirect()->back()->withOk("La demande d'amis à été envoyé à " . $amis_add->name ." ". $amis_add->firstname ." et est en attente de sa réponse !");
     }
