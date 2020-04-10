@@ -228,6 +228,9 @@ Laravel Facebook - Profil
                             </div>
 
                             <div class="d-flex flex-wrap">
+                                @if($user->amisActive->isEmpty())
+                                <div class=" my-2 p-2">Aucun amis</div>
+                                @else
                                 @foreach ($user->amisActive as $amis)
                                 <div class="m-2">
                                     <a href="{{ route('profil', $amis->id) }}" class="text-decoration-none text-dark">
@@ -240,6 +243,7 @@ Laravel Facebook - Profil
                                     </a>
                                 </div>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
 
@@ -286,15 +290,13 @@ Laravel Facebook - Profil
                             </div>
                             @endif
                             <!-- Publication -->
-                            @if(!$posts)
-                            <div class="card my-2">
-                                <div class="card-header">Publication du journal</div>
+                            @if($posts->isEmpty())
+                            <div class="card">
+                                <div class="card-header">Publication</div>
                                 <div class="card-body">Aucune publication</div>
                             </div>
                             @else
                             @foreach ($posts as $post)
-                            @if($post->user->name === $user->name)
-                            @csrf
                             <div class="card my-2">
                                 <div class="card-header d-flex my-auto p-2">
                                     <a href="{{ route('profil', $post->user->id) }}"
@@ -365,10 +367,9 @@ Laravel Facebook - Profil
                                         </a>
 
                                     </div>
-
                                 </div>
+
                             </div>
-                            @endif
                             @endforeach
                             @endif
 
@@ -386,6 +387,9 @@ Laravel Facebook - Profil
                             <p class="my-auto ml-2">Amis ({{$user->amisActive->count()}})</p>
                         </div>
                         <div class="card-body d-flex flex-wrap">
+                            @if($user->amisActive->isEmpty())
+                            <div class=" my-2 p-2">Aucun amis</div>
+                            @else
                             @foreach ($user->amisActive as $amis)
                             <div class="m-2 border border-lightgrey">
                                 <a href="{{ route('profil', $amis->id) }}" class="text-decoration-none text-dark">
@@ -396,6 +400,7 @@ Laravel Facebook - Profil
                                 </a>
                             </div>
                             @endforeach
+                            @endif
                         </div>
                     </div>
                     @else

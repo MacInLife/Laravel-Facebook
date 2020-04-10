@@ -9,14 +9,16 @@ class SearchController extends Controller
 {
     public function index(User $user)
     {
-        $user = User::all();
 
         $search = \Request::get('search');  
 
-        $users = User::where('name','=','%'.$search.'%')
+        $users = User::where('name','LIKE','%'.$search.'%')
+        ->orWhere('firstname','LIKE','%'.$search.'%')
+        ->orWhere('pseudo','LIKE','%'.$search.'%')
             ->orderBy('name')
-            ->paginate(20);
-
+            ->paginate(10);
+    //dd($users);
+    //dd($search);
         return view('search',compact('users'))->withuser($user);
 
     }

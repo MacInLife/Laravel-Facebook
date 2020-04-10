@@ -12,7 +12,7 @@ Celle-ci se trouve dans notre fichier _**"app.blade.php"**_. Nous allons donc en
 ```php
 <form class="form-inline position-relative w-100" action="{{ url('search') }}" method="GET">
     <input class="form-control mr-sm-2" type="search" placeholder="Rechercher"
-        aria-label="Search">
+        aria-label="Search" name="search" class="form-control @error('search') is-invalid @enderror">
     <button class="btn btn-outline-primary" type="submit"><svg class="svg-search" width="16"
             height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path
@@ -52,13 +52,15 @@ class SearchController extends Controller
 ```php
     public function index(User $user)
     {
-        $user = User::all();
-
         $search = \Request::get('search');  
 
-        $users = User::where('name','=','%'.$search.'%')
+          $users = User::where('name','LIKE','%'.$search.'%')
+        ->orWhere('firstname','LIKE','%'.$search.'%')
+        ->orWhere('pseudo','LIKE','%'.$search.'%')
             ->orderBy('name')
-            ->paginate(20);
+            ->paginate(10);
+    //dd($users);
+    //dd($search);
 
         return view('search',compact('users'))->withuser($user);
 
@@ -92,12 +94,9 @@ Laravel Facebook - Recherche
  @foreach($user as $users)
                 <th scope="row">1</th>
                 <td><a href="{{ url('/user').'/'.$users->id }}">show</a></td>
-                    <td>{{$users->name}}</td>
-                <td>{{$users->city}}</td>
-                <td>{{$users->phone}}</td>
-                <td>{{$users->street}}</td>
-                <td>{{$users->national_id}}</td>
+                    <td>{{$users->firstname}}</td>
                 <td>{{$users->name}}</td>
+                <td>{{$users->pseudo}}</td>
 
             </tr>
 @endforeach

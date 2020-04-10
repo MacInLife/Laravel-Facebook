@@ -67,7 +67,8 @@
                     <ul class="navbar-nav mr-auto pl-2">
                         <form class="form-inline position-relative w-100" action="{{ url('search') }}" method="GET">
                             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher"
-                                aria-label="Search">
+                                aria-label="Search" class="form-control @error('search') is-invalid @enderror"
+                                name="search">
                             <button class="btn btn-outline-primary" type="submit"><svg class="svg-search" width="16"
                                     height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                     <path

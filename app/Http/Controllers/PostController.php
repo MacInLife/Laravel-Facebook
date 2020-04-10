@@ -26,7 +26,6 @@ class PostController extends Controller
         ->with('user')
         ->orderBy('id', 'DESC')
         ->paginate(4);
-       
         //Récupère tous les users
         $users = $user->orderBy('id', 'DESC')->get()
         ->except(Auth::user()->id)->except(Auth::user()->amisActive()->pluck('amis_id')->toArray());

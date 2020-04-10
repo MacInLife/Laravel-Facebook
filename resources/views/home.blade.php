@@ -63,7 +63,7 @@ Laravel Facebook - Home
                     </div>
 
                     <!-- Fil d'actualité -->
-                    @if(!$posts)
+                    @if($posts->isEmpty())
                     <div class="card my-2">
                         <div class="card-header">Fil d'actualité</div>
                         <div class="card-body">Aucune publication</div>
@@ -165,6 +165,7 @@ Laravel Facebook - Home
                         </button>
                         <div class="collapse navbar-collapse bg-white p-2" id="navbarSupportedContent">
                             <div class="content">
+
                                 @foreach ($users as $user)
                                 <div class="card-body d-flex p-0 pb-2">
                                     <a href="{{ route('profil', $user->id) }}" class="my-auto mr-auto"
