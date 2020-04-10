@@ -263,6 +263,7 @@ Route::get('/search', 'SearchController@index')->name('search');
 Vous pouvez rechercher des utilisateurs via leurs noms, prénoms et pseudo
 
 1. Barre de recherche
+
   ![Barre de recherche style](screens/FBL-search.png)
 
 2. Recherche avec données non valide
