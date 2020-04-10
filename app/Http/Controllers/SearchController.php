@@ -9,7 +9,6 @@ class SearchController extends Controller
 {
     public function index(User $user)
     {
-
         $search = \Request::get('search');  
 
         $users = User::where('name','LIKE','%'.$search.'%')
@@ -19,7 +18,7 @@ class SearchController extends Controller
             ->paginate(10);
     //dd($users);
     //dd($search);
-        return view('search',compact('users'))->withuser($user);
 
+        return view('search',compact('users'))->withuser($user);
     }
 }

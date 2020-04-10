@@ -143,5 +143,4 @@ Laravel Facebook - Recherche
         </div>
     </div>
 
-
     @endsection
