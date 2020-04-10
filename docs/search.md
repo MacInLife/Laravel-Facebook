@@ -228,7 +228,7 @@ Laravel Facebook - Recherche
         </div>
     </div>
 ```
-<details>
+</details>
 
 Données essentiels non stylisé
 ```php
