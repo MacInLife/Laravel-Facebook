@@ -1,4 +1,4 @@
-## Intégration de Seeders (fausse données)
+## Intégration de Seeders (fausse données) USER + POST
 
 ### A - Création des Seeders pour les publications
 
