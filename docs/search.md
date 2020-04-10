@@ -275,6 +275,8 @@ Vous pouvez rechercher des utilisateurs via leurs noms, prénoms et pseudo
 4. Recherche avec le prénom
   ![Barre de recherche via Prénom](screens/FBL-barre-navigation-search.png)
 
+Tester votre barre de recherche !
+
 ## Petit Logo
 
 Changement du grand logo par le petit logo après connexion

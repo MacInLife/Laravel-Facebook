@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->string('text');
             $table->integer('user_id')->unsigned();
+            $table->integer('parent_id')->nullable()->unsigned();
         });
     }
 
