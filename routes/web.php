@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/search', 'SearchController@index')->name('search');
 //Route de vision de la page de fil d'actualité
 Route::get('/home', 'PostController@index')->name('home');
 //Route de la méthode publier un commentaire (création)

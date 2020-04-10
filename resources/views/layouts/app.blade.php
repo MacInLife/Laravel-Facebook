@@ -65,7 +65,7 @@
 
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto pl-2">
-                        <form class="form-inline position-relative w-100" action="{{ url('home') }}" method="GET">
+                        <form class="form-inline position-relative w-100" action="{{ url('search') }}" method="GET">
                             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher"
                                 aria-label="Search">
                             <button class="btn btn-outline-primary" type="submit"><svg class="svg-search" width="16"
