@@ -29,6 +29,7 @@ Laravel Facebook - Home
     .btn-coms:hover>.svgIcon>path {
         fill: #3490dc;
     }
+
 </style>
 @endsection
 @section('content')
@@ -44,7 +45,8 @@ Laravel Facebook - Home
                 <div class="" style="width:20%;">
                     <a href="{{ route('profil', Auth::user()->id) }}" class="text-decoration-none text-dark m-auto">
                         <p class="">
-                            <img style="border-radius:50%; border:1px solid #DADDE1;" src="{{Auth::user()->avatar}}" alt="" width="20"> {{Auth::user()->firstname}} {{Auth::user()->name}}
+                            <img style="border-radius:50%; border:1px solid #DADDE1;" src="{{Auth::user()->avatar}}"
+                                alt="" width="20"> {{Auth::user()->firstname}} {{Auth::user()->name}}
                         </p>
                     </a>
                     <div class="m-2">
@@ -69,16 +71,22 @@ Laravel Facebook - Home
                                 <form method="post" action="{{route('create.post')}}">
                                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                     <div class="d-flex">
-                                        <a href="{{ route('profil', Auth::user()->id) }}" class="text-decoration-none text-dark m-auto">
-                                            <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;" src="{{Auth::user()->avatar}}" alt="" width="40"></div>
+                                        <a href="{{ route('profil', Auth::user()->id) }}"
+                                            class="text-decoration-none text-dark m-auto">
+                                            <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                                    src="{{Auth::user()->avatar}}" alt="" width="40"></div>
                                         </a>
-                                        <textarea name="text" class="form-control @error('text') is-invalid @enderror mb-2 border-0" placeholder="Que voulez-vous dire, {{Auth::user()->firstname}} ?" id="text" rows="1">{{ old('text') }}</textarea>
+                                        <textarea name="text"
+                                            class="form-control @error('text') is-invalid @enderror mb-2 border-0"
+                                            placeholder="Que voulez-vous dire, {{Auth::user()->firstname}} ?" id="text"
+                                            rows="1">{{ old('text') }}</textarea>
                                     </div>
                                     {{csrf_field()}}
                                     <div class="m-2">
                                         <hr>
                                     </div>
-                                    <button href="#" class="btn btn-primary btn-sm btn-block" role="button" aria-pressed="true" type="submit">Publier</button>
+                                    <button href="#" class="btn btn-primary btn-sm btn-block" role="button"
+                                        aria-pressed="true" type="submit">Publier</button>
                                 </form>
                             </div>
                         </div>
@@ -96,7 +104,8 @@ Laravel Facebook - Home
                     <div class="card my-2">
                         <div class="card-header d-flex my-auto p-2">
                             <a href="{{ route('profil', $post->user->id) }}" class="text-decoration-none text-dark">
-                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;" src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
+                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                        src="{{$post->user->getAvatar()}}" alt="" width="40"></div>
                             </a>
                             <div class="mr-auto">
                                 <a href="{{ route('profil', $post->user->id) }}" class="text-decoration-none text-dark">
@@ -121,7 +130,8 @@ Laravel Facebook - Home
                                         0">
                             </div>
                             <div class="d-flex m-0">
-                                <img src="/img/likes.png" alt="Icone nombre de j'aime" width="18" height="18" class="my-auto">
+                                <img src="/img/likes.png" alt="Icone nombre de j'aime" width="18" height="18"
+                                    class="my-auto">
                                 <p class="px-1 m-0 my-auto text-muted">{{$post->postLike->count()}}</p>
                             </div>
                             <div class="mx-2">
@@ -130,48 +140,65 @@ Laravel Facebook - Home
                             </div>
                             <div class="row m-0">
                                 @if(!Auth::user()->isLike($post))
-                                <a href="{{route('post.like', $post->id)}}" class="text-decoration-none text-secondary w-50">
+                                <a href="{{route('post.like', $post->id)}}"
+                                    class="text-decoration-none text-secondary w-50">
                                     <div class="d-flex m-0 justify-content-center">
-                                        <img src="/img/unlike_post.png" alt="Aimer un post" width="18" height="18" class="my-auto">
+                                        <img src="/img/unlike_post.png" alt="Aimer un post" width="18" height="18"
+                                            class="my-auto">
                                         <p class="px-1 m-0 my-auto">J'aime</p>
                                     </div>
                                 </a>
                                 @else
-                                <a href="{{route('post.unlike', $post->id)}}" class="text-decoration-none text-secondary w-50">
+                                <a href="{{route('post.unlike', $post->id)}}"
+                                    class="text-decoration-none text-secondary w-50">
                                     <div class="d-flex m-0 justify-content-center">
-                                        <img src="/img/like_post.png" alt="Aimer un post" width="18" height="18" class="my-auto">
+                                        <img src="/img/like_post.png" alt="Aimer un post" width="18" height="18"
+                                            class="my-auto">
                                         <p class="px-1 m-0 my-auto text-primary">J'aime</p>
                                     </div>
                                 </a>
                                 @endif
                                 <a href="" class="text-decoration-none text-secondary w-50 ">
                                     <div class="d-flex m-0 justify-content-center">
-                                        <img src="/img/coms.png" alt="Aimer un post" width="18" height="18" class="my-auto">
+                                        <img src="/img/coms.png" alt="Aimer un post" width="18" height="18"
+                                            class="my-auto">
                                         <p class="px-1 m-0 my-auto">Commenter</p>
                                     </div>
                                 </a>
                             </div>
+                            @if($post->coms)
+                            @else
+                            foreach ($post->coms() as $com)
+                            @csrf
                             <div class="mx-2">
                                 <hr class="m-1 p-0">
                             </div>
                             <!--Partie affichage des commentaires-->
+
                             <div class="d-flex m-auto">
-                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;" src="{{$post->user->getAvatar()}}" alt="" width="32"></div>
-                                <p class="m-0 mb-1 px-2 py-1" style="font-size:13px; border-radius:50px; background:#f2f3f5;">
-                                    <a href="{{ route('profil', $post->user->id) }}" class="text-decoration-none text-blue mr-1">{{$post->user->firstname}}
+                                <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                        src="{{$post->user->getAvatar()}}" alt="" width="32"></div>
+                                <p class="m-0 mb-1 px-2 py-1"
+                                    style="font-size:13px; border-radius:50px; background:#f2f3f5;">
+                                    <a href="{{ route('profil', $post->user->id) }}"
+                                        class="text-decoration-none text-blue mr-1">{{$post->user->firstname}}
                                         {{$post->user->name}}</a> {{$post->text }}
                                 </p>
                                 @if($post->postLike->count() != 0)
-                                <div class="d-flex m-0 bg-white border bg-white" style="border-radius:50px; height:20px; ">
-                                    <img src="/img/likes.png" alt="Icone nombre de j'aime" width="16" height="16" class="my-auto">
+                                <div class="d-flex m-0 bg-white border bg-white"
+                                    style="border-radius:50px; height:20px; ">
+                                    <img src="/img/likes.png" alt="Icone nombre de j'aime" width="16" height="16"
+                                        class="my-auto">
                                     <p class="mx-1 m-0 my-auto text-muted" style="font-size:13px;">
                                         {{$post->postLike->count()}}</p>
                                 </div>
                                 @endif
-                                <form action="{{route('destroy.post', $post->id)}}" method="DELETE" id="myform" class="pl-2">
+                                <form action="{{route('destroyCom.com', $post->id)}}" method="DELETE" id="myform"
+                                    class="pl-2">
                                     @if ($post->user->id === Auth::user()->id)
                                     <button type="submit" class="btn  p-0 px-1" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
-                                                return true;}else{ return false;}"><img src="./img/delete.png" alt="Poubelle" width="14"></button>
+                                                return true;}else{ return false;}"><img src="./img/delete.png"
+                                            alt="Poubelle" width="14"></button>
                                     @endif
                                 </form>
                             </div>
@@ -189,20 +216,39 @@ Laravel Facebook - Home
                                 <p class="text-muted mx-2 my-auto text-secondary font-italic" style="font-size:14px;">
                                     - {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
                             </div>
-
+                            endforeach
+                            @endif
 
                             <!--Partie créations des commentaires-->
                             <div class="form-group m-2 ">
-                                <form method="post" action="{{route('create.post')}}">
-                                    <input type="hidden" name="parent_id" value="{{ Auth::user()->id }}">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+                                <form method="post" action="{{route('createCom.com')}}">
+                                    <input type="hidden" name="parent_id" value="{{ $post->id }}">
                                     <div class="d-flex m-auto">
-                                        <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;" src="{{Auth::user()->avatar}}" alt="" width="32"></div>
-                                        <input name="text" class="form-control @error('text') is-invalid @enderror mb-2" style="border-radius:50px; background:#f2f3f5;" placeholder="Votre commentaire...">{{ old('text') }}</input>
-                                        <button href="#" class="btn btn-primary btn-coms" role="button" aria-pressed="true" style="height:37px;" type="submit">
-                                            <svg class="svgIcon" height="16px" width="16px" version="1.1" viewBox="0 0 16 16" x="0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" y="0px">
-                                                <path d="M11,8.3L2.6,8.8C2.4,8.8,2.3,8.9,2.3,9l-1.2,4.1c-0.2,0.5,0,1.1,0.4,1.5C1.7,14.9,2,15,2.4,15c0.2,0,0.4,0,0.6-0.1l11.2-5.6 C14.8,9,15.1,8.4,15,7.8c-0.1-0.4-0.4-0.8-0.8-1L3,1.1C2.5,0.9,1.9,1,1.5,1.3C1,1.7,0.9,2.3,1.1,2.9L2.3,7c0,0.1,0.2,0.2,0.3,0.2 L11,7.7c0,0,0.3,0,0.3,0.3S11,8.3,11,8.3z" fill="#BEC3C9"></path>
+                                        <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                                src="{{Auth::user()->avatar}}" alt="" width="32"></div>
+                                        <input name="text" class="form-control @error('text') is-invalid @enderror mb-2"
+                                            type="text" style="border-radius:50px; background:#f2f3f5;"
+                                            placeholder="Votre commentaire...">{{ old('text') }}</input>
+                                        <button href="#" class="btn btn-primary btn-coms" role="button"
+                                            aria-pressed="true" style="height:37px;" type="submit">
+                                            <svg class="svgIcon" height="16px" width="16px" version="1.1"
+                                                viewBox="0 0 16 16" x="0px" xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" y="0px">
+                                                <path
+                                                    d="M11,8.3L2.6,8.8C2.4,8.8,2.3,8.9,2.3,9l-1.2,4.1c-0.2,0.5,0,1.1,0.4,1.5C1.7,14.9,2,15,2.4,15c0.2,0,0.4,0,0.6-0.1l11.2-5.6 C14.8,9,15.1,8.4,15,7.8c-0.1-0.4-0.4-0.8-0.8-1L3,1.1C2.5,0.9,1.9,1,1.5,1.3C1,1.7,0.9,2.3,1.1,2.9L2.3,7c0,0.1,0.2,0.2,0.3,0.2 L11,7.7c0,0,0.3,0,0.3,0.3S11,8.3,11,8.3z"
+                                                    fill="#BEC3C9"></path>
                                             </svg>
                                         </button>
+                                        {{csrf_field()}}
                                     </div>
 
                                 </form>
@@ -221,9 +267,14 @@ Laravel Facebook - Home
     border-bottom: 1px solid lightgrey;">
                         <h6 class=" mt-2 pl-4">Suggestions d'amis ({{$users->count()}})
                         </h6>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <svg width="20" height="20" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" class="svg-inline--fa fa-angle-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                                <path fill="currentColor" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <svg width="20" height="20" aria-hidden="true" focusable="false" data-prefix="fas"
+                                data-icon="angle-down" class="svg-inline--fa fa-angle-down fa-w-10" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                <path fill="currentColor"
+                                    d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z">
                                 </path>
                             </svg>
                         </button>
@@ -232,9 +283,11 @@ Laravel Facebook - Home
 
                                 @foreach ($users as $user)
                                 <div class="card-body d-flex p-0 pb-2">
-                                    <a href="{{ route('profil', $user->id) }}" class="my-auto mr-auto" style="text-decoration: none; color: inherit;">
+                                    <a href="{{ route('profil', $user->id) }}" class="my-auto mr-auto"
+                                        style="text-decoration: none; color: inherit;">
                                         <div class="d-flex">
-                                            <img style="border-radius:50%; border:1px solid #DADDE1;" src="{{$user->avatar}}" alt="" width="40">
+                                            <img style="border-radius:50%; border:1px solid #DADDE1;"
+                                                src="{{$user->avatar}}" alt="" width="40">
                                             <p class="p-2 my-auto">{{$user->firstname}}</p>
                                             <p class="my-auto">{{$user->name}}</p>
                                         </div>
@@ -245,7 +298,9 @@ Laravel Facebook - Home
                                         @case ($user->isFriend(Auth::user()) == 0 &&
                                         Auth::user()->demandeAmis($user) == 1 &&
                                         Auth::user()->demandeRecu($user) == 1)
-                                        <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button" aria-pressed="true">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+                                            aria-pressed="true">
                                             <div class="border border-dark">
                                                 <div class="bg-light d-flex m-auto">
                                                     <div class="ml-2">
@@ -278,7 +333,9 @@ Laravel Facebook - Home
                                         </div>
                                         @break
                                         @case (Auth::user()->isFriend($user) == 1)
-                                        <a class="text-decoration-none text-dark" href="{{ route('profil.amisDelete', $user->id)}}" role="button" aria-pressed="true">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('profil.amisDelete', $user->id)}}" role="button"
+                                            aria-pressed="true">
                                             <div class="border border-dark">
                                                 <div class="bg-light d-flex m-auto">
                                                     <div class="ml-2">
@@ -290,7 +347,9 @@ Laravel Facebook - Home
                                         </a>
                                         @break
                                         @default
-                                        <a class="text-decoration-none text-dark" href="{{ route('profil.amisAdd', $user->id)}}" role="button" aria-pressed="true">
+                                        <a class="text-decoration-none text-dark"
+                                            href="{{ route('profil.amisAdd', $user->id)}}" role="button"
+                                            aria-pressed="true">
                                             <div class="border border-dark">
                                                 <div class="bg-light d-flex m-auto">
                                                     <div class="ml-2">

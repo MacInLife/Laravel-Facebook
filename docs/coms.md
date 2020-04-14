@@ -93,7 +93,7 @@ boucle des post
 2. Modification de la page Profil
 ### C/D. Modification du Model "User.php"
 
-    $post->replies
+    $post->coms
 
 
     $post-pas parent
@@ -102,21 +102,23 @@ boucle des post
         return $query->whereNull('parent_id')
     }
 
-    public function replies(){
+    public function coms(){
     return $this->hasMany(Post::class, 'parent_id');
     }
     parent_id = id du post
 
-### C/D. Modifications des Controllers
+### C/D. Création / Modifications des Controllers
 Comme expliquer précedement, nous allons modifier les fichiers suivants :  ***PostController.php*** et  ***ProfilController.php*** pour récupérer les données des commentaires à afficher.
-
-1. Modification de PostController
+1. Création du ComController
+   `php artisan make:controller ComController`
+   
+2. Modification de PostController
 
 Ajout parent_id sur Post
 si parent_id = null = alors post 
 sinon parent_id = user_id alors com's
 
-2. Modification de ProfilController
+3. Modification de ProfilController
 
 
 

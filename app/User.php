@@ -98,4 +98,8 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany(\App\Post::class, 'user_id');
     }
+
+    public function coms(){
+        return $this->hasMany(Post::class, 'parent_id');
+    }
 }
