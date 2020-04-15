@@ -100,6 +100,26 @@ Laravel Facebook - Profil
         fill: #3490dc;
     }
 
+    .active-comment.active>div>p {
+        color: #3490dc;
+        transition: all 0.5s ease;
+    }
+
+    .active-comment.active>div>img {
+        content: url('/img/coms0.png');
+        transition: all 0.5s ease;
+    }
+
+    .comment {
+        display: none;
+        transition: all 1s ease-in-out;
+    }
+
+    .comment.active {
+        display: block;
+        transition: all 1s ease-in-out;
+    }
+
 </style>
 @endsection
 @section('content')
@@ -384,9 +404,10 @@ Laravel Facebook - Profil
                                             </div>
                                         </a>
                                         @endif
-                                        <a href="" class="text-decoration-none text-secondary w-50 ">
+                                        <a href="#commenter"
+                                            class="text-decoration-none text-secondary w-50 active-comment">
                                             <div class="d-flex m-0 justify-content-center">
-                                                <img src="/img/coms.png" alt="Aimer un post" width="18" height="18"
+                                                <img src="/img/coms.png" alt="Commenter un post" width="18" height="18"
                                                     class="my-auto">
                                                 <p class="px-1 m-0 my-auto">Commenter</p>
                                             </div>
@@ -448,7 +469,7 @@ Laravel Facebook - Profil
                                     @endif
 
                                     <!--Partie créations des commentaires-->
-                                    <div class="form-group m-2 ">
+                                    <div class="form-group m-2 comment">
                                         @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -464,7 +485,7 @@ Laravel Facebook - Profil
                                                 <div class="mr-2"><img
                                                         style="border-radius:50%; border:1px solid #DADDE1;"
                                                         src="{{Auth::user()->avatar}}" alt="" width="32"></div>
-                                                <input name="text"
+                                                <input name="text" id="commenter"
                                                     class="form-control @error('text') is-invalid @enderror mb-2"
                                                     type="text" style="border-radius:50px; background:#f2f3f5;"
                                                     placeholder="Votre commentaire...">{{ old('text') }}</input>
@@ -691,3 +712,53 @@ Laravel Facebook - Profil
 
 </script>
 @endsection
+<!-- Toujours mettre cette balise avant ses instructions ou instances -->
+<script src="http://code.jquery.com/jquery-3.4.0.min.js"></script> <!-- JQuery est inclus ! -->
+<script>
+    $(document).ready(function () {
+        // $(".active-comment").click(function () {
+        //     console.log(event.type);
+        // });
+
+
+        /* Animation des commentaires - Page Home */
+        let boutonComment = document.querySelectorAll('.active-comment'),
+            inputComment = document.querySelectorAll('.comment'),
+            maskInputComment = document.querySelectorAll('.comment');
+
+        boutonComment.forEach(function (el, index) {
+            el.addEventListener('click', function (event) {
+                console.log(event.currentTarget, index, event.type);
+                event.preventDefault();
+                maskInput();
+
+                let com = event.currentTarget;
+                com.classList.add('active');
+                console.log(inputComment[index]);
+                inputComment[index].classList.add('active');
+
+            });
+        });
+
+        maskInputComment.forEach(function (el, index) {
+            el.addEventListener('click', function (event) {
+                console.log(event.currentTarget, index);
+                event.preventDefault();
+                maskInput();
+
+            });
+        });
+
+        function maskInput() {
+
+            boutonComment.forEach(function (el, index) {
+                el.classList.remove('active');
+            });
+            inputComment.forEach(function (el, index) {
+                el.classList.remove('active');
+            });
+        }
+
+    });
+
+</script>
