@@ -42,7 +42,7 @@ Laravel Facebook - Home
     }
 
     .comment {
-        display: none;
+        /* display: none;*/
         transition: all 1s ease-in-out;
     }
 
@@ -213,8 +213,7 @@ Laravel Facebook - Home
                                         {{$com->postLike->count()}}</p>
                                 </div>
                                 @endif
-                                <form action="{{route('destroyCom.com', $com->id)}}" method="DELETE" id="myform"
-                                    class="pl-2">
+                                <form action="{{route('destroyCom.com', $com->id)}}" method="DELETE" class="pl-2">
                                     @if ($com->user->id === Auth::user()->id)
                                     <button type="submit" class="btn  p-0 px-1" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
                                                 return true;}else{ return false;}"><img src="./img/delete.png"
@@ -270,7 +269,6 @@ Laravel Facebook - Home
                                         </button>
                                         {{csrf_field()}}
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -396,56 +394,7 @@ Laravel Facebook - Home
 
 
         </div>
+
     </div>
 </div>
 @endsection
-<!-- Toujours mettre cette balise avant ses instructions ou instances -->
-<script src="http://code.jquery.com/jquery-3.4.0.min.js"></script> <!-- JQuery est inclus ! -->
-<script>
-    $(document).ready(function () {
-        // $(".active-comment").click(function () {
-        //     console.log(event.type);
-        // });
-
-
-        /* Animation des commentaires - Page Home */
-        let boutonComment = document.querySelectorAll('.active-comment'),
-            inputComment = document.querySelectorAll('.comment'),
-            maskInputComment = document.querySelectorAll('.comment');
-
-        boutonComment.forEach(function (el, index) {
-            el.addEventListener('click', function (event) {
-                console.log(event.currentTarget, index, event.type);
-                event.preventDefault();
-                maskInput();
-
-                let com = event.currentTarget;
-                com.classList.add('active');
-                console.log(inputComment[index]);
-                inputComment[index].classList.add('active');
-
-            });
-        });
-
-        maskInputComment.forEach(function (el, index) {
-            el.addEventListener('click', function (event) {
-                console.log(event.currentTarget, index);
-                event.preventDefault();
-                maskInput();
-
-            });
-        });
-
-        function maskInput() {
-
-            boutonComment.forEach(function (el, index) {
-                el.classList.remove('active');
-            });
-            inputComment.forEach(function (el, index) {
-                el.classList.remove('active');
-            });
-        }
-
-    });
-
-</script>

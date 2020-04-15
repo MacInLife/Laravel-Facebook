@@ -44,10 +44,6 @@
             fill: #fff;
         }
 
-        .form-inline {
-            margin-bottom: 0px;
-        }
-
     </style>
 </head>
 

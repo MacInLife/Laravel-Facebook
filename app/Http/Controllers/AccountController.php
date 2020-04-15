@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use App\User;
+use App\Post;
 use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
@@ -76,12 +77,12 @@ class AccountController extends Controller
     return redirect('/account')->withOk("L'utilisateur " . $user->firstname ." ". $user->name . " a été modifié.");
     }
     
-    public function destroy($id, User $user)
+    public function destroy($id, User $user, Post $post)
     {
     $u = $user->find($id);
-    //$posts = $post->where('user_id', Auth::user()->id);
+    $posts = $post->where('user_id', Auth::user()->id);
     $u->delete($id);
-    //$posts->delete($id);
+    $posts->delete($id);
     return redirect('/')->withOk("L'utilisateur ". $user->firstname ." ". $user->name . " a été supprimé.");
     //->withOk("L'utilisation'" . $u->name . " a été supprimé.");
     }
