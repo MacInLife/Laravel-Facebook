@@ -95,11 +95,4 @@ class User extends Authenticatable
     return $post->hasMany(Like::class,'post_id')->where('user_id', $this->id)->count();
     }
 
-    public function posts() {
-        return $this->hasMany(\App\Post::class, 'user_id');
-    }
-
-    public function coms(){
-        return $this->hasMany(Post::class, 'parent_id');
-    }
 }

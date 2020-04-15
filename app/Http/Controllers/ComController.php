@@ -32,7 +32,7 @@ class ComController extends Controller
     public function destroyCom($id, Post $post)
     {
         //Trouve le post de l'utilisateur concerné
-        $p = $post->parent_id->find($id);
+        $p = $post->find($id);
         //Si t'es authentifier alors il supprime
        if (Auth::check()) {
         $p->delete($id);

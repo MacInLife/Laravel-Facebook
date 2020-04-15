@@ -29,7 +29,7 @@ class ProfilController extends Controller
            
         }
    
-        $posts = $post->where('user_id', $u->id)->orderBy('id', 'DESC')->get();
+        $posts = $post->where('user_id', $u->id)->whereNull('parent_id')->orderBy('id', 'DESC')->get();
        //dd($posts);
    
 

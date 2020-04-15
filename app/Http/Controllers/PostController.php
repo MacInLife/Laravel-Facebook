@@ -21,7 +21,8 @@ class PostController extends Controller
     {
         //Post de la personne connecter et des amis de la personne connectée
         $posts = $post
-        ->whereIn('user_id', Auth::user()->amisActive()->pluck('amis_id'))
+        
+        ->whereIn('user_id', Auth::user()->amisActive()->pluck('amis_id'))->whereNull('parent_id')
         ->orWhere('user_id', Auth::user()->id)->whereNull('parent_id')
         ->with('user')
         ->orderBy('id', 'DESC')
@@ -30,6 +31,8 @@ class PostController extends Controller
         $users = $user->orderBy('id', 'DESC')->get()
         ->except(Auth::user()->id)->except(Auth::user()->amisActive()->pluck('amis_id')->toArray());
         //Retourne la view des posts
+
+ 
         return view('home', ['posts' => $posts, 'users' => $users ]);
     }
 

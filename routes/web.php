@@ -31,7 +31,7 @@ Route::post('/', 'ComController@createCom')->middleware('auth')->name('createCom
 //Route de la méthode delete un post (suppression)
 Route::get('/home/{id}', 'PostController@destroy')->middleware('auth')->name('destroy.post');
 //Route de la méthode delete un post (suppression)
-Route::get('/{id}', 'ComController@destroy')->middleware('auth')->name('destroyCom.com');
+Route::get('/{id}', 'ComController@destroyCom')->middleware('auth')->name('destroyCom.com');
 Route::get('/home/{id}/like', 'PostController@like')->name('post.like');
 Route::get('/home/{id}/unlike', 'PostController@unlike')->name('post.unlike');
 

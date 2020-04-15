@@ -74,6 +74,32 @@ Laravel Facebook - Profil
         position: absolute;
     }
 
+    .btn-coms {
+        position: absolute;
+        right: 20px;
+        background: none;
+        transition: all 0.5s ease;
+        border: none;
+        padding: 0.45rem 0.75rem;
+    }
+
+    .btn-coms:hover {
+        position: absolute;
+        right: 20px;
+        background: none;
+        transition: all 0.5s ease;
+        border: none;
+        padding: 0.45rem 0.75rem;
+    }
+
+    .btn-coms>.svgIcon>path {
+        transition: all 0.5s ease;
+    }
+
+    .btn-coms:hover>.svgIcon>path {
+        fill: #3490dc;
+    }
+
 </style>
 @endsection
 @section('content')
@@ -366,6 +392,97 @@ Laravel Facebook - Profil
                                             </div>
                                         </a>
 
+                                    </div>
+                                    <div class="mx-2">
+                                        <hr class="m-1 p-0">
+                                    </div>
+                                    <!--Partie affichage des commentaires-->
+                                    @if(!$post->coms->isEmpty())
+                                    @foreach ($post->coms as $com)
+                                    @csrf
+                                    <div class="d-flex m-auto">
+                                        <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
+                                                src="{{$com->user->getAvatar()}}" alt="" width="32"></div>
+                                        <p class="m-0 mb-1 px-2 py-1"
+                                            style="font-size:13px; border-radius:50px; background:#f2f3f5;">
+                                            <a href="{{ route('profil', $com->user->id) }}"
+                                                class="text-decoration-none text-blue mr-1">{{$com->user->firstname}}
+                                                {{$com->user->name}}</a> {{$com->text }}
+                                        </p>
+                                        @if($com->postLike->count() != 0)
+                                        <div class="d-flex m-0 bg-white border bg-white"
+                                            style="border-radius:50px; height:20px; ">
+                                            <img src="/img/likes.png" alt="Icone nombre de j'aime" width="16"
+                                                height="16" class="my-auto">
+                                            <p class="mx-1 m-0 my-auto text-muted" style="font-size:13px;">
+                                                {{$com->postLike->count()}}</p>
+                                        </div>
+                                        @endif
+                                        <form action="{{route('destroyCom.com', $com->id)}}" method="DELETE" id="myform"
+                                            class="pl-2">
+                                            @if ($com->user->id === Auth::user()->id)
+                                            <button type="submit" class="btn  p-0 px-1" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
+                                                return true;}else{ return false;}"><img src="/img/delete.png"
+                                                    alt="Poubelle" width="14"></button>
+                                            @endif
+                                        </form>
+                                    </div>
+                                    <div class="d-flex my-auto pb-2">
+                                        @if(!Auth::user()->isLike($com))
+                                        <a href="{{route('post.like', $com->id)}}"
+                                            class="text-decoration-none text-secondary">
+                                            <p class="m-0 pl-5" style="font-size:14px;">J'aime</p>
+                                        </a>
+                                        @else
+                                        <a href="{{route('post.unlike', $com->id)}}"
+                                            class="text-decoration-none text-indigo">
+                                            <p class="m-0 pl-5" style="font-size:14px;">J'aime</p>
+                                        </a>
+                                        @endif
+
+                                        <p class="text-muted mx-2 my-auto text-secondary font-italic"
+                                            style="font-size:14px;">
+                                            - {{$com->created_at->locale('fr_FR')->diffForHumans()}}</p>
+                                    </div>
+                                    @endforeach
+                                    @endif
+
+                                    <!--Partie créations des commentaires-->
+                                    <div class="form-group m-2 ">
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+                                        <form method="post" action="{{route('createCom.com')}}">
+                                            <input type="hidden" name="parent_id" value="{{ $post->id }}">
+                                            <div class="d-flex m-auto">
+                                                <div class="mr-2"><img
+                                                        style="border-radius:50%; border:1px solid #DADDE1;"
+                                                        src="{{Auth::user()->avatar}}" alt="" width="32"></div>
+                                                <input name="text"
+                                                    class="form-control @error('text') is-invalid @enderror mb-2"
+                                                    type="text" style="border-radius:50px; background:#f2f3f5;"
+                                                    placeholder="Votre commentaire...">{{ old('text') }}</input>
+                                                <button href="#" class="btn btn-primary btn-coms" role="button"
+                                                    aria-pressed="true" style="height:37px;" type="submit">
+                                                    <svg class="svgIcon" height="16px" width="16px" version="1.1"
+                                                        viewBox="0 0 16 16" x="0px" xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                                                        y="0px">
+                                                        <path
+                                                            d="M11,8.3L2.6,8.8C2.4,8.8,2.3,8.9,2.3,9l-1.2,4.1c-0.2,0.5,0,1.1,0.4,1.5C1.7,14.9,2,15,2.4,15c0.2,0,0.4,0,0.6-0.1l11.2-5.6 C14.8,9,15.1,8.4,15,7.8c-0.1-0.4-0.4-0.8-0.8-1L3,1.1C2.5,0.9,1.9,1,1.5,1.3C1,1.7,0.9,2.3,1.1,2.9L2.3,7c0,0.1,0.2,0.2,0.3,0.2 L11,7.7c0,0,0.3,0,0.3,0.3S11,8.3,11,8.3z"
+                                                            fill="#BEC3C9"></path>
+                                                    </svg>
+                                                </button>
+                                                {{csrf_field()}}
+                                            </div>
+
+                                        </form>
                                     </div>
                                 </div>
 

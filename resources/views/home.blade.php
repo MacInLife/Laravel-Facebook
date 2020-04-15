@@ -166,36 +166,35 @@ Laravel Facebook - Home
                                     </div>
                                 </a>
                             </div>
-                            @if($post->coms)
-                            @else
-                            foreach ($post->coms() as $com)
-                            @csrf
+
                             <div class="mx-2">
                                 <hr class="m-1 p-0">
                             </div>
                             <!--Partie affichage des commentaires-->
-
+                            @if(!$post->coms->isEmpty())
+                            @foreach ($post->coms as $com)
+                            @csrf
                             <div class="d-flex m-auto">
                                 <div class="mr-2"><img style="border-radius:50%; border:1px solid #DADDE1;"
-                                        src="{{$post->user->getAvatar()}}" alt="" width="32"></div>
+                                        src="{{$com->user->getAvatar()}}" alt="" width="32"></div>
                                 <p class="m-0 mb-1 px-2 py-1"
                                     style="font-size:13px; border-radius:50px; background:#f2f3f5;">
-                                    <a href="{{ route('profil', $post->user->id) }}"
-                                        class="text-decoration-none text-blue mr-1">{{$post->user->firstname}}
-                                        {{$post->user->name}}</a> {{$post->text }}
+                                    <a href="{{ route('profil', $com->user->id) }}"
+                                        class="text-decoration-none text-blue mr-1">{{$com->user->firstname}}
+                                        {{$com->user->name}}</a> {{$com->text }}
                                 </p>
-                                @if($post->postLike->count() != 0)
+                                @if($com->postLike->count() != 0)
                                 <div class="d-flex m-0 bg-white border bg-white"
                                     style="border-radius:50px; height:20px; ">
                                     <img src="/img/likes.png" alt="Icone nombre de j'aime" width="16" height="16"
                                         class="my-auto">
                                     <p class="mx-1 m-0 my-auto text-muted" style="font-size:13px;">
-                                        {{$post->postLike->count()}}</p>
+                                        {{$com->postLike->count()}}</p>
                                 </div>
                                 @endif
-                                <form action="{{route('destroyCom.com', $post->id)}}" method="DELETE" id="myform"
+                                <form action="{{route('destroyCom.com', $com->id)}}" method="DELETE" id="myform"
                                     class="pl-2">
-                                    @if ($post->user->id === Auth::user()->id)
+                                    @if ($com->user->id === Auth::user()->id)
                                     <button type="submit" class="btn  p-0 px-1" onclick="if(confirm('Voulez-vous vraiment supprimer ce post ?')){
                                                 return true;}else{ return false;}"><img src="./img/delete.png"
                                             alt="Poubelle" width="14"></button>
@@ -203,20 +202,20 @@ Laravel Facebook - Home
                                 </form>
                             </div>
                             <div class="d-flex my-auto pb-2">
-                                @if(!Auth::user()->isLike($post))
-                                <a href="{{route('post.like', $post->id)}}" class="text-decoration-none text-secondary">
+                                @if(!Auth::user()->isLike($com))
+                                <a href="{{route('post.like', $com->id)}}" class="text-decoration-none text-secondary">
                                     <p class="m-0 pl-5" style="font-size:14px;">J'aime</p>
                                 </a>
                                 @else
-                                <a href="{{route('post.unlike', $post->id)}}" class="text-decoration-none text-indigo">
+                                <a href="{{route('post.unlike', $com->id)}}" class="text-decoration-none text-indigo">
                                     <p class="m-0 pl-5" style="font-size:14px;">J'aime</p>
                                 </a>
                                 @endif
 
                                 <p class="text-muted mx-2 my-auto text-secondary font-italic" style="font-size:14px;">
-                                    - {{$post->created_at->locale('fr_FR')->diffForHumans()}}</p>
+                                    - {{$com->created_at->locale('fr_FR')->diffForHumans()}}</p>
                             </div>
-                            endforeach
+                            @endforeach
                             @endif
 
                             <!--Partie créations des commentaires-->
