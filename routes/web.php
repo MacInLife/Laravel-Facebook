@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/search', 'SearchController@index')->name('search');
 //Route de vision de la page de fil d'actualité
 Route::get('/home', 'PostController@index')->name('home');
-Route de la méthode publier un post (création)
+//Route de la méthode publier un post (création)
 Route::post('/home', 'PostController@create')->middleware('auth')->name('create.post');
 //Route de la méthode répondre à un post par un commentaire (création)
 Route::post('/', 'ComController@createCom')->middleware('auth')->name('createCom.com');
