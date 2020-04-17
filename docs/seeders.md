@@ -1,6 +1,6 @@
 ## Intégration de Seeders (fausse données) USER + POST
 
-### A - Création des Seeders pour les publications
+### A - Création des Seeders pour les publications et commentaires
 
 -   Création d'un seeder de fausse données pour les publications des utilisateurs (post)
 
@@ -54,6 +54,7 @@ class PostsTableSeeder extends Seeder
              $post = new Post();
              $post->text = $faker->text();
              $post->user_id = $faker->numberBetween(1, 9);
+             $post->parent_id = $faker->numberBetween(1, 9);
              $post->save();
          }
     ```
@@ -67,3 +68,6 @@ class PostsTableSeeder extends Seeder
     `php artisan db:seed`
 
 Vous pouvez vérifier que vos données ont été crée dans votre BDD !
+
+
+### B - Création des Seeders pour les utilisateurs
