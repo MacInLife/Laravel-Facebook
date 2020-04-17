@@ -339,3 +339,5 @@ Route::get('/com/{id}', 'ComController@destroyCom')->middleware('auth')->name('d
 ```
 
 ### F. Rendu visuel
+![Page Home - Com's](/screens/FBL-page-home-coms.png)
+![Page Profil - Journal - Com's](/screens/FBL-page-profil-journal-coms.png)
