@@ -26,5 +26,8 @@
     },
     "engines": {
         "none": "13.13.x"
+    },
+    "dependencies": {
+        "minimist": "^1.2.5"
     }
 }
