@@ -41,7 +41,7 @@ Laravel Facebook - Home
         transition: all 0.5s ease;
     }
 
-    .comment {
+                    .comment {
         /* display: none;*/
         transition: all 1s ease-in-out;
     }
