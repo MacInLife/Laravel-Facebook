@@ -28,7 +28,7 @@
         "none": "13.13.x"
     },
     "dependencies": {
-        "minimist": "^1.2.5",
+        "minimist": "^1.2.6",
         "normalize-url": "^4.5.1"
     }
 }
