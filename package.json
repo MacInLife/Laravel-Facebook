@@ -28,7 +28,7 @@
         "none": "13.13.x"
     },
     "dependencies": {
-        "elliptic": "^6.5.6",
+        "elliptic": "^6.5.7",
         "minimist": "^1.2.6",
         "normalize-url": "^4.5.1"
     }
